@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Recover</string>
+    <string-array name="units">
+        <item>kgs</item>
+        <item>lbs</item>
+    </string-array>
+    <string-array name="genders">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
 </resources>
