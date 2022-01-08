@@ -2,31 +2,37 @@ package com.github.meafs.recover.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.utils.Speak;
 
-public class SettingActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class SettingActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private SharedPreferences sharedPreferences;
     private EditText editText;
     private String Unit;
     private String Sex;
     private Button saveButton;
+    private TextToSpeech engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        engine = new TextToSpeech(this, this);
+
+        Speak speak = new Speak(SettingActivity.this);
 
         editText = findViewById(R.id.weightField);
         Spinner spinner1 = (Spinner) findViewById(R.id.unit);
@@ -66,22 +72,31 @@ public class SettingActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.save);
 
         saveButton.setOnClickListener(view -> {
-            sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt("weight", Integer.parseInt(editText.getText().toString()));
-            editor.putString("sex", Sex);
-            editor.putString("unit", Unit);
-            editor.apply();
-
-            int savedWeight = sharedPreferences.getInt("weight", -1);
-            String savedUnit = sharedPreferences.getString("unit", null);
-            String savedGender = sharedPreferences.getString("sex", null);
-
-            Toast.makeText(SettingActivity.this, "Saved weight: " + savedWeight + " " + savedUnit + " saved gender: " + savedGender, Toast.LENGTH_SHORT).show();
-
+//            sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            editor.putInt("weight", Integer.parseInt(editText.getText().toString()));
+//            editor.putString("sex", Sex);
+//            editor.putString("unit", Unit);
+//            editor.apply();
+//
+//            int savedWeight = sharedPreferences.getInt("weight", -1);
+//            String savedUnit = sharedPreferences.getString("unit", null);
+//            String savedGender = sharedPreferences.getString("sex", null);
+//
+//            Toast.makeText(SettingActivity.this, "Saved weight: " + savedWeight + " " + savedUnit + " saved gender: " + savedGender, Toast.LENGTH_SHORT).show();
+//
+            speak.speak(engine, saveButton.getText().toString());
         });
 
 
     }
 
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
+    }
 }

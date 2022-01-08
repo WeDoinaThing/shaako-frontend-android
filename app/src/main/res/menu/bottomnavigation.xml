@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:title="@string/user" />
+    <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:title="@string/patient" />
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:title="@string/contact" />
+</menu>

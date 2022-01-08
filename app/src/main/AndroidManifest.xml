@@ -3,20 +3,24 @@
     package="com.github.meafs.recover">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.MainActivity"
+            android:exported="true" />
+        <activity
             android:name=".activites.SettingActivity"
             android:exported="true" />
         <activity
-            android:name=".activites.MainActivity"
+            android:name=".activites.WalkThrough"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

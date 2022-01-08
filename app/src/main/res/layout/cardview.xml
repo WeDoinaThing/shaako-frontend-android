@@ -26,10 +26,10 @@
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:progress="90"
                 android:indeterminate="false"
-                app:trackThickness="20dp"
-                android:padding="20dp"/>
+                android:padding="20dp"
+                android:progress="90"
+                app:trackThickness="20dp" />
         </LinearLayout>
 
         <LinearLayout

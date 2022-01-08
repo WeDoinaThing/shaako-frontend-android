@@ -9,4 +9,10 @@
         <item>Female</item>
     </string-array>
 
+    <!--     Add translations later -->
+    <string name="user">User</string>
+    <string name="patient">Patient</string>
+    <string name="contact">Contact</string>
+
+
 </resources>
