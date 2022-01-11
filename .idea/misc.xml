@@ -12,6 +12,9 @@
         <entry key="app/src/main/res/layout/activity_walkthrough.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/alert_layout.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/cardview.xml" value="0.2803442028985507" />
+        <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
+        <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.1828125" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
       </map>
     </option>

@@ -1,4 +1,4 @@
-package com.github.meafs.recover.Models;
+package com.github.meafs.recover.models;
 
 public class UserModel {
 
