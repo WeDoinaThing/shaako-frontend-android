@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.TodoModel;
 import com.github.meafs.recover.viewmodels.ApiViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,14 +63,10 @@ public class PatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        list = new ArrayList<>();
+
         apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
         apiViewModel.init();
-        apiViewModel.getPatientResponseLiveData().observe(this, new Observer<List<TodoModel>>() {
-            @Override
-            public void onChanged(List<TodoModel> todoModels) {
-                System.out.println(todoModels.size());
-            }
-        });
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -79,7 +77,23 @@ public class PatientFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_patient, container, false);
+        View view = inflater.inflate(R.layout.fragment_patient, container, false);
+
+        apiViewModel.getPatientResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<TodoModel>>() {
+            @Override
+            public void onChanged(List<TodoModel> todoModels) {
+                list.addAll(todoModels);
+                System.out.println("HERE");
+            }
+        });
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                System.out.println(list.size());
+                System.out.println(list.get(1).getTitle());
+            }
+        }, 2000);
+
+        return view;
     }
 }

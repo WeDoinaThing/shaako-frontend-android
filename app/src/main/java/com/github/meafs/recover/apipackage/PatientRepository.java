@@ -19,11 +19,10 @@ public class PatientRepository {
     public static final String Base_URL = "https://jsonplaceholder.typicode.com/todos/";
 
     private ApiService apiService;
-    private MutableLiveData<List<TodoModel>> patientResponceLiveData;
+    private MutableLiveData<List<TodoModel>> patientResponceLiveData = new MutableLiveData<>();
 
 
-    public PatientRepository(){
-        patientResponceLiveData = new MutableLiveData();
+    public PatientRepository() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -31,7 +30,6 @@ public class PatientRepository {
 
         apiService = new retrofit2.Retrofit.Builder()
                 .baseUrl(Base_URL)
-                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ApiService.class);
@@ -55,6 +53,7 @@ public class PatientRepository {
     }
 
     public LiveData<List<TodoModel>> getPatientResponseLiveData() {
+//        getPatientData();
         return patientResponceLiveData;
     }
 

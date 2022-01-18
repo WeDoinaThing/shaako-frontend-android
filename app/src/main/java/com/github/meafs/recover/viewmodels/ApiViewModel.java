@@ -13,14 +13,15 @@ import java.util.List;
 
 public class ApiViewModel extends AndroidViewModel {
 
-    private PatientRepository patientRepository;
     private LiveData<List<TodoModel>> patientResponseLiveData;
+
     public ApiViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public void init(){
-        patientRepository = new PatientRepository();
+    public void init() {
+        PatientRepository patientRepository = new PatientRepository();
+        patientRepository.getPatientData();
         patientResponseLiveData = patientRepository.getPatientResponseLiveData();
     }
 

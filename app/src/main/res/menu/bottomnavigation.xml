@@ -12,6 +12,6 @@
     <item
         android:id="@+id/contact"
         android:enabled="true"
-        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:icon="@drawable/ic_contact"
         android:title="@string/contact" />
 </menu>
