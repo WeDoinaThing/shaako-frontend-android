@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.utils.FetchThumbnail;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
 
     private ArrayList<ContentModel> list = new ArrayList<>();
     private Context context;
+    private FetchThumbnail fetchThumbnail;
 
     public ContentRecylerAdapter(ArrayList<ContentModel> list, Context context) {
         this.list = list;
@@ -46,9 +48,9 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
 
         holder.title.setText(list.get(position).getFields().getTitle());
         holder.details.setText(list.get(position).getFields().getDetails());
-
+        fetchThumbnail = new FetchThumbnail(list.get(position).getFields().getAssociatedLink());
         Glide.with(context)
-                .load(list.get(position).getFields().getAssociatedLink())
+                .load(fetchThumbnail.getThumbnailUrl())
                 .into(holder.imageView);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

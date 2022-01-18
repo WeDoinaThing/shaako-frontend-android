@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/cardview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/category_card.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/categoty_card.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/content_card.xml" value="0.20923913043478262" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.1828125" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.2" />

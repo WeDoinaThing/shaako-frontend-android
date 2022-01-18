@@ -26,10 +26,10 @@
             <ImageView
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:contentDescription="Thumbnail"
-                android:padding="5dp"
-                android:src="@drawable/ic_quiz" />
+                android:src="@drawable/ic_quiz"
+                android:paddingBottom="10dp"/>
 
         </LinearLayout>
 
