@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.TodoModel;
+import com.github.meafs.recover.utils.FetchThumbnail;
 import com.github.meafs.recover.viewmodels.ApiViewModel;
 
 import java.util.ArrayList;
@@ -79,6 +80,11 @@ public class PatientFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_patient, container, false);
 
+
+        FetchThumbnail fetchThumbnail = new FetchThumbnail("2whZ4O1T1Eo");
+
+        System.out.println(fetchThumbnail.getThumbnailUrl());
+
         apiViewModel.getPatientResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<TodoModel>>() {
             @Override
             public void onChanged(List<TodoModel> todoModels) {
@@ -90,7 +96,6 @@ public class PatientFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 System.out.println(list.size());
-                System.out.println(list.get(1).getTitle());
             }
         }, 2000);
 
