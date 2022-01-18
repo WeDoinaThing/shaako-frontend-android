@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardView"
+    android:id="@+id/contentcard"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="12dp"
     app:cardUseCompatPadding="true">
@@ -23,13 +23,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
+            <ImageView
+                android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:indeterminate="false"
-                android:padding="20dp"
-                android:progress="90"
-                app:trackThickness="20dp" />
+                android:contentDescription="Thumbnail"
+                android:padding="5dp"
+                android:src="@drawable/ic_quiz" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -37,23 +38,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:text="Ok" />
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Title"
+                android:id="@+id/title"
+                android:textSize="20sp" />
 
-            <Button
+            <TextView
+                android:id="@+id/details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="150dp"
-                android:layout_marginEnd="25dp"
-                android:text="Ok" />
+                android:layout_marginStart="20dp"
+                android:text="Details" />
 
         </LinearLayout>
 

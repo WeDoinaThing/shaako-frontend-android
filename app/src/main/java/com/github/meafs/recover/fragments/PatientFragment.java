@@ -81,7 +81,7 @@ public class PatientFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_patient, container, false);
 
 
-        FetchThumbnail fetchThumbnail = new FetchThumbnail("2whZ4O1T1Eo");
+        FetchThumbnail fetchThumbnail = new FetchThumbnail("https://www.youtube.com/watch?v=dEXu_2HWHMw");
 
         System.out.println(fetchThumbnail.getThumbnailUrl());
 
