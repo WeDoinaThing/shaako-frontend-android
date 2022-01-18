@@ -17,26 +17,32 @@ public class WalkThrough extends FancyWalkthroughActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FancyWalkthroughCard card1 = new FancyWalkthroughCard("Unique QR code login", "", R.drawable.first);
-        FancyWalkthroughCard card2 = new FancyWalkthroughCard("Online lessons and quizzes", "", R.drawable.second);
-        FancyWalkthroughCard card3 = new FancyWalkthroughCard("Video demonstration of first aid", "", R.drawable.third);
+        FancyWalkthroughCard card1 = new FancyWalkthroughCard("Learn and review training modules smartly", "", R.drawable.ic_first);
+        FancyWalkthroughCard card2 = new FancyWalkthroughCard("Diagnose and document patients automatically", "", R.drawable.ic_second);
+        FancyWalkthroughCard card3 = new FancyWalkthroughCard("Find emergency contacts to nearby hospitals and pharmacies", "", R.drawable.ic_third);
+        FancyWalkthroughCard card4 = new FancyWalkthroughCard("Prepare, prevent, provide", "", R.drawable.four);
 
         card1.setBackgroundColor(R.color.white);
-        card1.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        card1.setIconLayoutParams(500, 800, 0, 0, 0, 0);
         card1.setDisplaySkip(false);
         card2.setBackgroundColor(R.color.white);
-        card2.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        card2.setIconLayoutParams(500, 800, 0, 0, 0, 0);
         card2.setDisplaySkip(false);
 
         card3.setBackgroundColor(R.color.white);
-        card3.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        card3.setIconLayoutParams(500, 800, 0, 0, 0, 0);
         card3.setDisplaySkip(false);
+
+        card4.setBackgroundColor(R.color.white);
+        card4.setIconLayoutParams(500, 800, 0, 0, 0, 0);
+        card4.setDisplaySkip(false);
 
         List<FancyWalkthroughCard> pages = new ArrayList<>();
 
         pages.add(card1);
         pages.add(card2);
         pages.add(card3);
+        pages.add(card4);
 
         for (FancyWalkthroughCard page : pages) {
             page.setTitleColor(R.color.black);

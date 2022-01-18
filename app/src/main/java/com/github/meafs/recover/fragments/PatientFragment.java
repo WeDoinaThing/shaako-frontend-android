@@ -3,12 +3,18 @@ package com.github.meafs.recover.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.models.TodoModel;
+import com.github.meafs.recover.viewmodels.ApiViewModel;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +22,9 @@ import com.github.meafs.recover.R;
  * create an instance of this fragment.
  */
 public class PatientFragment extends Fragment {
+
+    private ApiViewModel apiViewModel;
+    private List<TodoModel> list;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +60,16 @@ public class PatientFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
+        apiViewModel.init();
+        apiViewModel.getPatientResponseLiveData().observe(this, new Observer<List<TodoModel>>() {
+            @Override
+            public void onChanged(List<TodoModel> todoModels) {
+                System.out.println(todoModels.size());
+            }
+        });
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

@@ -13,6 +13,7 @@
     <string name="user">User</string>
     <string name="patient">Patient</string>
     <string name="contact">Contact</string>
+    <string name="base_url">Set it later</string>
 
 
 </resources>
