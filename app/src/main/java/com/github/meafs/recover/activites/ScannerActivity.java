@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,9 +29,7 @@ public class ScannerActivity extends AppCompatActivity {
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
 
-
         userViewModel = ViewModelProviders.of(ScannerActivity.this).get(UserViewModel.class);
-
 
         mCodeScanner.startPreview();
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -43,8 +42,12 @@ public class ScannerActivity extends AppCompatActivity {
                         userViewModel.getuserResponseLiveData().observe(ScannerActivity.this, new Observer<CHWModel>() {
                                     @Override
                                     public void onChanged(CHWModel chwModel) {
-                                        if (chwModel != null) {
-                                            System.out.println(chwModel.getName());
+                                        if (chwModel != null && chwModel.getName() != null) {
+                                            mCodeScanner.releaseResources();
+                                            startActivity(new Intent(ScannerActivity.this, MainActivity.class));
+                                        } else {
+                                            mCodeScanner.startPreview();
+                                            Toast.makeText(ScannerActivity.this, "Please scan a valid QR code!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
@@ -53,7 +56,6 @@ public class ScannerActivity extends AppCompatActivity {
                 });
             }
         });
-
 
 
     }

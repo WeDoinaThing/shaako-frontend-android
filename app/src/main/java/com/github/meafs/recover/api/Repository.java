@@ -65,8 +65,10 @@ public class Repository {
                 .enqueue(new Callback<CHWModel>() {
                     @Override
                     public void onResponse(Call<CHWModel> call, Response<CHWModel> response) {
-                        if (response.body() != null) {
+                        if (response.body() != null && response.code() == 200) {
                             userResponceLiveData.postValue(response.body());
+                        } else {
+                            userResponceLiveData.postValue(null);
                         }
                     }
 

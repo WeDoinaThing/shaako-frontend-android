@@ -103,8 +103,7 @@ public class ContactFragment extends Fragment {
 
                     recyclerView.setAdapter(contentRecylerAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(view.getContext(), "Error! Please connect to internet!", Toast.LENGTH_SHORT).show();
                 }
 
