@@ -10,7 +10,7 @@
     </string-array>
 
     <!--     Add translations later -->
-    <string name="user">User</string>
+    <string name="user">CHW</string>
     <string name="patient">Patient</string>
     <string name="contact">Contact</string>
     <string name="base_url">Set it later</string>

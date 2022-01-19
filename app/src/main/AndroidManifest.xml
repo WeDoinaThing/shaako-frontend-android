@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.ContentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activites.ScannerActivity"
+            android:exported="true" />
+        <activity
             android:name=".activites.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />

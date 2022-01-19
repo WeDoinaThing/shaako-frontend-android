@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_quiz.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_training.xml" value="0.371875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_walkthrough.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/alert_layout.xml" value="0.190625" />

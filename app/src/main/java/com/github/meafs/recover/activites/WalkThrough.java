@@ -61,6 +61,6 @@ public class WalkThrough extends FancyWalkthroughActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        startActivity(new Intent(WalkThrough.this, MainActivity.class));
+        startActivity(new Intent(WalkThrough.this, ScannerActivity.class));
     }
 }
