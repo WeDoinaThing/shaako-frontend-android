@@ -7,7 +7,7 @@
     <item
         android:id="@+id/patient"
         android:enabled="true"
-        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:icon="@drawable/ic_patient"
         android:title="@string/patient" />
     <item
         android:id="@+id/contact"

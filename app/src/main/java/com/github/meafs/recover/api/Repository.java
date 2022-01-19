@@ -3,6 +3,7 @@ package com.github.meafs.recover.api;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
 
 import java.util.List;
@@ -14,16 +15,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ContentRepository {
+public class Repository {
 
     public static final String Base_URL = "http://194.163.148.43/";
 
     private ApiService apiService;
-    private MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
+    private final MutableLiveData<CHWModel> userResponceLiveData = new MutableLiveData();
     private String authtoken;
 
 
-    public ContentRepository(String authToken) {
+    public Repository(String authToken) {
         authtoken = authToken;
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -56,7 +58,31 @@ public class ContentRepository {
                 });
     }
 
+
+    public void authUser() {
+
+        apiService.getUser(authtoken)
+                .enqueue(new Callback<CHWModel>() {
+                    @Override
+                    public void onResponse(Call<CHWModel> call, Response<CHWModel> response) {
+                        if (response.body() != null) {
+                            userResponceLiveData.postValue(response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CHWModel> call, Throwable t) {
+                        userResponceLiveData.postValue(null);
+                    }
+                });
+    }
+
+
     public LiveData<List<ContentModel>> getContentResponseLiveData() {
         return contentResponceLiveData;
+    }
+
+    public LiveData<CHWModel> getUserLiveData() {
+        return userResponceLiveData;
     }
 }

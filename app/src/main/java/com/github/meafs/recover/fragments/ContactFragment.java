@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.ContentRecylerAdapter;
@@ -96,14 +97,19 @@ public class ContactFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 System.out.println(list.size());
-                ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, view.getContext());
-                contentRecylerAdapter.setList(list);
+                try {
+                    ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, view.getContext());
+                    contentRecylerAdapter.setList(list);
 
-                recyclerView.setAdapter(contentRecylerAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                    recyclerView.setAdapter(contentRecylerAdapter);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                }
+                catch (Exception e){
+                    Toast.makeText(view.getContext(), "Error! Please connect to internet!", Toast.LENGTH_SHORT).show();
+                }
 
             }
-        }, 5000);
+        }, 3000);
 
 
         return view;

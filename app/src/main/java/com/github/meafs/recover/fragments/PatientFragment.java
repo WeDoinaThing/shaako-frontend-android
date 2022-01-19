@@ -12,9 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.meafs.recover.R;
-import com.github.meafs.recover.models.TodoModel;
 import com.github.meafs.recover.utils.FetchThumbnail;
-import com.github.meafs.recover.viewmodels.ApiViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +24,8 @@ import java.util.List;
  */
 public class PatientFragment extends Fragment {
 
-    private ApiViewModel apiViewModel;
-    private List<TodoModel> list;
+//    private ApiViewModel apiViewModel;
+//    private List<TodoModel> list;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,10 +62,10 @@ public class PatientFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        list = new ArrayList<>();
-
-        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
-        apiViewModel.init();
+//        list = new ArrayList<>();
+//
+//        apiViewModel = ViewModelProviders.of(this).get(ApiViewModel.class);
+//        apiViewModel.init();
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -85,19 +83,19 @@ public class PatientFragment extends Fragment {
 
         System.out.println(fetchThumbnail.getThumbnailUrl());
 
-        apiViewModel.getPatientResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<TodoModel>>() {
-            @Override
-            public void onChanged(List<TodoModel> todoModels) {
-                list.addAll(todoModels);
-                System.out.println("HERE");
-            }
-        });
+//        apiViewModel.getPatientResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<TodoModel>>() {
+//            @Override
+//            public void onChanged(List<TodoModel> todoModels) {
+//                list.addAll(todoModels);
+//                System.out.println("HERE");
+//            }
+//        });
 
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                System.out.println(list.size());
-            }
-        }, 2000);
+//        new Handler().postDelayed(new Runnable() {
+//            public void run() {
+//                System.out.println(list.size());
+//            }
+//        }, 2000);
 
         return view;
     }
