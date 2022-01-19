@@ -89,7 +89,7 @@ public class ContactFragment extends Fragment {
             @Override
             public void onChanged(List<ContentModel> contactModels) {
                 list.addAll(contactModels);
-                System.out.println("HERE");
+                System.out.println(contactModels.size());
             }
         });
 

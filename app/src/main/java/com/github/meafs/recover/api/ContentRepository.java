@@ -1,4 +1,4 @@
-package com.github.meafs.recover.apipackage;
+package com.github.meafs.recover.api;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,14 +16,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ContentRepository {
 
-    public static final String Base_URL = "http://192.168.0.105:7000/";
+    public static final String Base_URL = "http://194.163.148.43/";
 
     private ApiService apiService;
     private MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
+    private String authtoken;
 
 
     public ContentRepository(String authToken) {
-
+        authtoken = authToken;
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -31,13 +32,15 @@ public class ContentRepository {
         apiService = new retrofit2.Retrofit.Builder()
                 .baseUrl(Base_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
                 .build()
                 .create(ApiService.class);
     }
 
     public void getContentData() {
 
-        apiService.getContent()
+        System.out.println(authtoken);
+        apiService.getContent(authtoken)
                 .enqueue(new Callback<List<ContentModel>>() {
                     @Override
                     public void onResponse(Call<List<ContentModel>> call, Response<List<ContentModel>> response) {

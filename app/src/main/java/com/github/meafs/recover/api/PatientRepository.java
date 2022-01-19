@@ -1,4 +1,4 @@
-package com.github.meafs.recover.apipackage;
+package com.github.meafs.recover.api;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

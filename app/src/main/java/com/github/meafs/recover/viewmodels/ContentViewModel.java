@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.github.meafs.recover.apipackage.ContentRepository;
+import com.github.meafs.recover.api.ContentRepository;
 
 import com.github.meafs.recover.models.ContentModel;
 
@@ -22,7 +22,7 @@ public class ContentViewModel extends AndroidViewModel {
     }
 
     public void init() {
-        ContentRepository contentRepository = new ContentRepository("blahblahblah");
+        ContentRepository contentRepository = new ContentRepository("aa53d4f90f93e71f6d858301ab0ef53f");
         contentRepository.getContentData();
         contentResponseLiveData = contentRepository.getContentResponseLiveData();
     }

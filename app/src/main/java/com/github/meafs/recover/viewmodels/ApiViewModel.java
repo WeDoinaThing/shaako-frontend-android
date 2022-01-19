@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.github.meafs.recover.apipackage.PatientRepository;
+import com.github.meafs.recover.api.PatientRepository;
 import com.github.meafs.recover.models.TodoModel;
 
 import java.util.List;
