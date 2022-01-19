@@ -1,8 +1,14 @@
 package com.github.meafs.recover.activites;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.github.meafs.recover.R;
 import com.shashank.sony.fancywalkthroughlib.FancyWalkthroughActivity;
@@ -61,6 +67,21 @@ public class WalkThrough extends FancyWalkthroughActivity {
 
     @Override
     public void onFinishButtonPressed() {
-        startActivity(new Intent(WalkThrough.this, ScannerActivity.class));
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED) {
+            startActivity(new Intent(WalkThrough.this, ScannerActivity.class));
+        } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(WalkThrough.this, new String[]{Manifest.permission.CAMERA}, 5);
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                startActivity(new Intent(WalkThrough.this, ScannerActivity.class));
+            }
+        } else {
+            Toast.makeText(this, "Please allow camera permission", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

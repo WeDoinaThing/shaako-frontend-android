@@ -21,8 +21,8 @@ public class ContentViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void init() {
-        Repository repository = new Repository("aa53d4f90f93e71f6d858301ab0ef53f");
+    public void init(String authToken) {
+        Repository repository = new Repository(authToken);
         repository.getContentData();
         contentResponseLiveData = repository.getContentResponseLiveData();
     }

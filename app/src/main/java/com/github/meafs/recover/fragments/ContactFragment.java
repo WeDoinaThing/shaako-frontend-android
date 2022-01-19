@@ -1,5 +1,7 @@
 package com.github.meafs.recover.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -68,8 +70,10 @@ public class ContactFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        SharedPreferences pref = getContext().getSharedPreferences("CHW", Context.MODE_PRIVATE);
+
         contentViewModel = ViewModelProviders.of(this).get(ContentViewModel.class);
-        contentViewModel.init();
+        contentViewModel.init(pref.getString("authToken", ""));
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -91,6 +95,7 @@ public class ContactFragment extends Fragment {
             public void onChanged(List<ContentModel> contactModels) {
                 list.addAll(contactModels);
                 System.out.println(contactModels.size());
+
             }
         });
 

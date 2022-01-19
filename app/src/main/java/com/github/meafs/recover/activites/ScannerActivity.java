@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class ScannerActivity extends AppCompatActivity {
 
     private CodeScanner mCodeScanner;
     private UserViewModel userViewModel;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,9 @@ public class ScannerActivity extends AppCompatActivity {
                                     public void onChanged(CHWModel chwModel) {
                                         if (chwModel != null && chwModel.getName() != null) {
                                             mCodeScanner.releaseResources();
+                                            SaveData(result.getText());
                                             startActivity(new Intent(ScannerActivity.this, MainActivity.class));
+                                            Toast.makeText(ScannerActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                                         } else {
                                             mCodeScanner.startPreview();
                                             Toast.makeText(ScannerActivity.this, "Please scan a valid QR code!", Toast.LENGTH_SHORT).show();
@@ -71,4 +76,14 @@ public class ScannerActivity extends AppCompatActivity {
         mCodeScanner.releaseResources();
         super.onPause();
     }
+
+    public void SaveData(String token) {
+        sharedPreferences = getSharedPreferences("CHW", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("authToken", token);
+        editor.apply();
+
+    }
+
+
 }
