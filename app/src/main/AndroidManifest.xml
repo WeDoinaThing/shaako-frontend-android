@@ -18,11 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.QuizActivity"
+            android:exported="true" />
+        <activity
             android:name=".activites.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -3,65 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentcard"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:cardMaxElevation="12dp"
     app:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/ic_launcher_background" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:contentDescription="Thumbnail"
-                android:src="@drawable/ic_quiz"
-                android:paddingBottom="10dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/thumbnail"
+            android:gravity="center_vertical"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:paddingTop="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="Title"
                 android:id="@+id/title"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Details" />
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="left"
+                android:text="Title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="left"
+                    android:text="Details"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
