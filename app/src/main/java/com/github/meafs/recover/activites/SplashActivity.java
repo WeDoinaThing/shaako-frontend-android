@@ -20,12 +20,12 @@ public class SplashActivity extends AppCompatActivity {
 
         if (pref.getString("authToken", "") == null) {
 
-            startActivity(new Intent(SplashActivity.this, WalkThrough.class));
+            startActivity(new Intent(SplashActivity.this, OnBoardingActivity.class));
 
         } else if (pref.getString("authToken", "").length() != 0) {
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
         } else {
-            startActivity(new Intent(SplashActivity.this, WalkThrough.class));
+            startActivity(new Intent(SplashActivity.this, OnBoardingActivity.class));
         }
 
     }

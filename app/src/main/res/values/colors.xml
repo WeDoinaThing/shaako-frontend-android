@@ -8,4 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorGreen">#00dc9e</color>
+    <color name="primaryColor">#00bfa5</color>
+    <color name="secondaryColor">#4a148c</color>
+    <color name="lightSecondaryColor">#7c43bd</color>
+    <color name="darkSecondaryColor">#12005e</color>
+    <color name="darkPrimaryColor">#008e76</color>
+    <color name="lightPrimaryColor">#5df2d6</color>
+    <color name="complementaryColor">#96000f</color>
+    <color name="analogousColor">#00963c</color>
+    <color name="analogousSecondaryColor">#005a96</color>
+    <color name="black_transparent_app">#55000000</color>
+    <color name="black_pushed">#90000000</color>
 </resources>
