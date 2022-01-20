@@ -65,10 +65,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
         } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 5);
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-                    == PackageManager.PERMISSION_GRANTED) {
-                startActivity(new Intent(this, ScannerActivity.class));
-            }
+
         } else {
             Toast.makeText(this, "Please allow camera permission", Toast.LENGTH_SHORT).show();
         }
@@ -77,7 +74,18 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 5) {
-            startActivity(new Intent(this, ScannerActivity.class));
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                startActivity(new Intent(this, ScannerActivity.class));
+            } else if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_DENIED) {
+                try {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 5);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Please go to settings and give camera permission!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
