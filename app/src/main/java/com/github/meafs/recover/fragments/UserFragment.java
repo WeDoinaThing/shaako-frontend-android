@@ -1,7 +1,9 @@
 package com.github.meafs.recover.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.ContentActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +19,8 @@ import com.github.meafs.recover.R;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
+    private CardView trainingContent;
+    private CardView quizcontent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +67,14 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+        trainingContent = view.findViewById(R.id.card1);
+        quizcontent = view.findViewById(R.id.card2);
+        trainingContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ContentActivity.class));
+            }
+        });
 
         return view;
     }
