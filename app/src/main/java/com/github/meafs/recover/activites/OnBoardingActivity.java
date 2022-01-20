@@ -48,7 +48,7 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
         setFinishButtonDrawableStyle(ContextCompat.getDrawable(this, R.drawable.button_rounded));
     }
 
-    private void setCardVariables(AhoyOnboarderCard card){
+    private void setCardVariables(AhoyOnboarderCard card) {
         card.setBackgroundColor(R.color.white);
         card.setTitleColor(R.color.black);
         card.setDescriptionColor(R.color.black);
@@ -73,4 +73,13 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
             Toast.makeText(this, "Please allow camera permission", Toast.LENGTH_SHORT).show();
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 5) {
+            startActivity(new Intent(this, ScannerActivity.class));
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }
