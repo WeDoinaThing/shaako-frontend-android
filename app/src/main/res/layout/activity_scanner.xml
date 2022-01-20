@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:autoFocusButtonColor="@android:color/white"
-        app:autoFocusButtonVisible="true"
+        app:autoFocusButtonVisible="false"
         app:flashButtonColor="@android:color/white"
         app:flashButtonVisible="true"
         app:frameAspectRatioHeight="1"
