@@ -30,6 +30,9 @@
             android:name=".activites.ContentActivity"
             android:exported="true" />
         <activity
+            android:name=".activites.OnBoardingActivity"
+            android:exported="true" />
+        <activity
             android:name=".activites.ScannerActivity"
             android:exported="true"
             android:theme="@style/Theme.Recover" />
@@ -39,9 +42,6 @@
             android:theme="@style/Theme.Recover" />
         <activity
             android:name=".activites.SettingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".activites.WalkThrough"
             android:exported="true" />
     </application>
 
