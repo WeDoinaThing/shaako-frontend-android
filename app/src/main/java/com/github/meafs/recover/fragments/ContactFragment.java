@@ -1,5 +1,6 @@
 package com.github.meafs.recover.fragments;
 
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.github.meafs.recover.R;
  * create an instance of this fragment.
  */
 public class ContactFragment extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,6 +64,7 @@ public class ContactFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
+
 
         return view;
     }

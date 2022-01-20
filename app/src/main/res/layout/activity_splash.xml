@@ -3,6 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activites.SplashActivity">
-
+<ImageView
+    android:id="@+id/logo"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:src="@mipmap/ic_launcher_foreground"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/text_under_logo"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    />
+<TextView
+    android:id="@+id/text_under_logo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="সেতু"
+    android:textSize="40dp"
+    android:fontFamily="@font/kohinoorbangla"
+    android:textFontWeight="600"
+    android:textColor="@color/black"
+    app:layout_constraintTop_toBottomOf="@id/logo"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
