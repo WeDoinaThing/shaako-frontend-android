@@ -23,25 +23,15 @@ public class WalkThrough extends FancyWalkthroughActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FancyWalkthroughCard card1 = new FancyWalkthroughCard("Learn and review training modules smartly", "", R.drawable.ic_first);
-        FancyWalkthroughCard card2 = new FancyWalkthroughCard("Diagnose and document patients automatically", "", R.drawable.ic_second);
-        FancyWalkthroughCard card3 = new FancyWalkthroughCard("Find emergency contacts to nearby hospitals and pharmacies", "", R.drawable.ic_third);
-        FancyWalkthroughCard card4 = new FancyWalkthroughCard("Prepare, prevent, provide", "", R.drawable.four);
+        FancyWalkthroughCard card1 = new FancyWalkthroughCard("Learn", "Learn and review training modules smartly", R.drawable.ic_first);
+        FancyWalkthroughCard card2 = new FancyWalkthroughCard("Document", "Diagnose and document patients automatically", R.drawable.ic_second);
+        FancyWalkthroughCard card3 = new FancyWalkthroughCard("Find", "Find emergency contacts to nearby hospitals and pharmacies", R.drawable.ic_third);
+        FancyWalkthroughCard card4 = new FancyWalkthroughCard("Prepare", "Prepare, prevent, provide\n", R.drawable.four);
 
-        card1.setBackgroundColor(R.color.white);
-        card1.setIconLayoutParams(500, 800, 0, 0, 0, 0);
-        card1.setDisplaySkip(false);
-        card2.setBackgroundColor(R.color.white);
-        card2.setIconLayoutParams(500, 800, 0, 0, 0, 0);
-        card2.setDisplaySkip(false);
-
-        card3.setBackgroundColor(R.color.white);
-        card3.setIconLayoutParams(500, 800, 0, 0, 0, 0);
-        card3.setDisplaySkip(false);
-
-        card4.setBackgroundColor(R.color.white);
-        card4.setIconLayoutParams(500, 800, 0, 0, 0, 0);
-        card4.setDisplaySkip(false);
+        setCardVariable(card1);
+        setCardVariable(card2);
+        setCardVariable(card3);
+        setCardVariable(card4);
 
         List<FancyWalkthroughCard> pages = new ArrayList<>();
 
@@ -55,14 +45,17 @@ public class WalkThrough extends FancyWalkthroughActivity {
             page.setDescriptionColor(R.color.black);
         }
         setFinishButtonTitle("Get Started");
-
         showNavigationControls(true);
-        setColorBackground(R.color.colorGreen);
+        setColorBackground(R.color.white);
         setInactiveIndicatorColor(R.color.grey_600);
-        setActiveIndicatorColor(R.color.colorGreen);
+        setActiveIndicatorColor(R.color.white);
         setOnboardPages(pages);
+    }
 
-
+    private void setCardVariable(FancyWalkthroughCard card){
+        card.setBackgroundColor(R.color.primaryColor);
+        card.setIconLayoutParams(500, 800, 0, 0, 0, 0);
+        card.setDisplaySkip(false);
     }
 
     @Override
