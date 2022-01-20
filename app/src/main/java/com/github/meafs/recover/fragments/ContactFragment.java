@@ -1,5 +1,6 @@
 package com.github.meafs.recover.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ public class ContactFragment extends Fragment {
     private ContentViewModel contentViewModel;
     private ArrayList<ContentModel> list;
     private RecyclerView recyclerView;
-
+    private ProgressDialog dialog;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -87,32 +88,35 @@ public class ContactFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
+        dialog=new ProgressDialog(getContext());
+        dialog.setMessage("Fetching Content.");
+        dialog.setCancelable(false);
+        dialog.setInverseBackgroundForced(false);
+        dialog.show();
+
         recyclerView = view.findViewById(R.id.recylerview);
         list = new ArrayList<>();
 
-        contentViewModel.getContentResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<ContentModel>>() {
-            @Override
-            public void onChanged(List<ContentModel> contactModels) {
-                list.addAll(contactModels);
-                System.out.println(contactModels.size());
+        contentViewModel.getContentResponseLiveData().observe(getViewLifecycleOwner(), contactModels -> {
+            list.addAll(contactModels);
 
-            }
+            System.out.println(contactModels.size());
+
         });
 
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                System.out.println(list.size());
-                try {
-                    ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, view.getContext());
-                    contentRecylerAdapter.setList(list);
-
-                    recyclerView.setAdapter(contentRecylerAdapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                } catch (Exception e) {
-                    Toast.makeText(view.getContext(), "Error! Please connect to internet!", Toast.LENGTH_SHORT).show();
-                }
-
+        new Handler().postDelayed(() -> {
+            System.out.println(list.size());
+            try {
+                ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, view.getContext());
+                contentRecylerAdapter.setList(list);
+                dialog.hide();
+                recyclerView.setVisibility(View.VISIBLE);
+                recyclerView.setAdapter(contentRecylerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            } catch (Exception e) {
+                Toast.makeText(view.getContext(), "Error! Please connect to internet!", Toast.LENGTH_SHORT).show();
             }
+
         }, 3000);
 
 
