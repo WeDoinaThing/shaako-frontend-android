@@ -90,4 +90,8 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 }
