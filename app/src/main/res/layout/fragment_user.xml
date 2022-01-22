@@ -34,138 +34,81 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </ScrollView>
-        <RelativeLayout
-            android:id="@+id/dashbottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/scroll_stats"
-            >
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card1"
+            <RelativeLayout
+                android:id="@+id/dashbottom"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:elevation="10dp"
-                android:padding="50dp"
-                android:paddingBottom="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardMaxElevation="12dp"
-                app:cardUseCompatPadding="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_height="match_parent"
+                android:layout_below="@id/scroll_stats"
+                android:orientation="vertical"
+                >
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/card1">
 
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="240dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/training"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Topicwise training contents"
-                        android:textColor="@color/black"
-                        android:textFontWeight="600"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/card1"
-                android:elevation="10dp"
-                android:padding="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardMaxElevation="12dp"
-                app:cardUseCompatPadding="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="240dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/quiz"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Topicwise quiz module"
-                        android:textColor="@color/black"
-                        android:textFontWeight="600"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card3"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/card2"
-                android:elevation="10dp"
-                android:padding="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardMaxElevation="12dp"
-                app:cardUseCompatPadding="true">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageView3"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/setting"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_height="match_parent"
+                        android:minHeight="100dp"
+                        android:background="@drawable/gradient_1"
+                        android:padding="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Preferences"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/textViewSub1Title"
+                            android:text="Maths"
+                            style="@style/viewParent.headerText.HomeCardTitle" />
 
+                        <TextView
+                            android:text="Study nature, love nature,\nclose to nature"
+                            style="@style/viewParent.headerText.homeCardContent"
+                            android:layout_below="@id/textViewSub1Title"/>
 
-            </androidx.cardview.widget.CardView>
-        </RelativeLayout>
+                        <ImageView
+                            android:maxHeight="90dp"
+                            android:src="@drawable/training"
+                            style="@style/homeCardImage" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardPreventCornerOverlap="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/card1"
+                    android:id="@+id/card2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minHeight="100dp"
+                        android:background="@drawable/gradient_1"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/textViewSub2Title"
+                            android:text="Maths"
+                            style="@style/viewParent.headerText.HomeCardTitle" />
+
+                        <TextView
+                            android:text="Study nature, love nature,\nclose to nature"
+                            style="@style/viewParent.headerText.homeCardContent"
+                            android:layout_below="@id/textViewSub2Title"/>
+
+                        <ImageView
+                            android:maxHeight="90dp"
+                            android:src="@drawable/quiz"
+                            style="@style/homeCardImage" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
