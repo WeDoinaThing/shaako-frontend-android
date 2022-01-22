@@ -12,74 +12,36 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <RelativeLayout
-                android:id="@+id/dashtop"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/lightSecondaryColor"
-                android:paddingTop="20dp"
-                android:paddingStart="20dp"
+                android:layout_height="match_parent"
+                android:id="@+id/scroll_stats"
                 >
-                <RelativeLayout
-                    android:id="@+id/left_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/ngo_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jonathan Doe,"
-                    android:textSize="28sp"
-                    android:textFontWeight="700"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/nunito"
-                    />
-                <TextView
-                    android:id="@+id/ngo_dataline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="You have schedules with \n20 patients today."
-                    android:textSize="18sp"
-                    android:textFontWeight="500"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/nunito"
-                    android:layout_below="@id/ngo_name"
-                    />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/right_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal"
-                    android:layout_toEndOf="@id/left_layout">
-                    <TextView
-                        android:id="@+id/point"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="69"
-                        android:textSize="84sp"
-                        android:textFontWeight="700"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/nunito"
-                        />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/static_rv_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/point"
-                        android:fontFamily="@font/nunito"
-                        android:text="points"
-                        android:layout_marginStart="26dp"
-                        android:textColor="@color/white"
-                        android:textFontWeight="500"
-                        android:textSize="18sp" />
-                </RelativeLayout>
-            </RelativeLayout>
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </ScrollView>
         <RelativeLayout
             android:id="@+id/dashbottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dashtop"
+            android:layout_below="@id/scroll_stats"
             >
             <androidx.cardview.widget.CardView
                 android:id="@+id/card1"

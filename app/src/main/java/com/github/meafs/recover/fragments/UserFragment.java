@@ -2,16 +2,21 @@ package com.github.meafs.recover.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.adapters.StaticRvAdapter;
+import com.github.meafs.recover.models.StaticRvModel;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,7 +26,8 @@ import com.github.meafs.recover.activites.ContentActivity;
 public class UserFragment extends Fragment {
     private CardView trainingContent;
     private CardView quizcontent;
-
+    private RecyclerView recyclerView;
+    private StaticRvAdapter staticRvAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,6 +66,7 @@ public class UserFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -75,7 +82,16 @@ public class UserFragment extends Fragment {
                 startActivity(new Intent(getContext(), ContentActivity.class));
             }
         });
+        ArrayList <StaticRvModel> item = new ArrayList<>() ;
+        item.add( new StaticRvModel(R.drawable.coursefin, "69 courses finished"));
+        item.add( new StaticRvModel(R.drawable.score, "100 points earned"));
+        item.add( new StaticRvModel(R.drawable.schedule, "5 scheduled appointment"));
+        item.add( new StaticRvModel(R.drawable.success, "56% of monthly target met"));
 
+        recyclerView = view.findViewById(R.id.static_rv_layout);
+        staticRvAdapter = new StaticRvAdapter(item);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(staticRvAdapter);
         return view;
     }
 }
