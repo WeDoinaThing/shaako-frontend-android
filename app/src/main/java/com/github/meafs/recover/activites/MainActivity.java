@@ -40,14 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        Test test = new Test("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==",
-//                "imadatabaseid", "imcontainerid");
-//        System.out.println("Main Activity: " + test.encodeURI());
-
         PatientAPI patientAPI = new PatientAPI("imadatabaseid", "imcontainerid", "get");
         try {
-            authString = patientAPI.getAuthenticationString();
+            authString = patientAPI.generateAuthHeader("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==");
             System.out.println(authString);
         } catch (Exception e) {
             e.printStackTrace();

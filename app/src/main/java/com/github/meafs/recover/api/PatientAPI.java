@@ -43,14 +43,17 @@ public class PatientAPI {
                 + "" + "\n";
     }
 
-    public String getAuthenticationString() throws Exception {
-        Mac mac = Mac.getInstance("HmacSHA256");
-        mac.init(new SecretKeySpec(Base64.decode("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==", Base64.DEFAULT), "HmacSHA256"));
-        String authKey = Base64.encode(mac.doFinal(getStirngToSign().getBytes("UTF-8")), Base64.DEFAULT).toString();
-        System.out.println("authkey:" + authKey);
-        String auth = "type=master&ver=1.0&sig=" + authKey;
-        auth = URLEncoder.encode(auth);
-        System.out.println("authString:" + auth);
-        return auth;
+
+    public String generateAuthHeader(String masterKeyBase64) throws Exception {
+
+        byte[] masterKeyBytes = Base64.decode(masterKeyBase64, Base64.NO_WRAP);
+        Mac mac = Mac.getInstance("HMACSHA256");
+        mac.init(new SecretKeySpec(masterKeyBytes, "HMACSHA256"));
+
+        String signature = Base64.encodeToString(mac.doFinal(getStirngToSign().toLowerCase().getBytes("UTF-8")), Base64.NO_WRAP);
+
+        String authHeader = URLEncoder.encode("type=master&ver=1.0&sig=" + signature, "UTF-8");
+
+        return authHeader;
     }
 }
