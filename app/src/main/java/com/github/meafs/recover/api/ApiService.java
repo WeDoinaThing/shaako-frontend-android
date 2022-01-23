@@ -7,8 +7,11 @@ import com.github.meafs.recover.models.PatientModel;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -25,5 +28,12 @@ public interface ApiService {
             "x-ms-version: 2018-12-31",
     })
     @GET("dbs/imadatabaseid/colls/imcontainerid/docs")
-    Call<List<PatientModel>> getPatientData();
+    Call<PatientModel> getPatientData(@Header("Authorization") String token, @Header("x-ms-date") String date);
+
+    @Headers({
+            "Accept: application/json",
+            "x-ms-version: 2018-12-31",
+    })
+    @POST( "dbs/imadatabaseid/colls/imcontainerid/docs")
+    Call<List<PatientModel>> getIndividualPatient(@Body String query);
 }
