@@ -36,6 +36,7 @@
                         app:layout_constraintVertical_bias="0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
+
             <RelativeLayout
                 android:id="@+id/dashbottom"
                 android:layout_width="match_parent"
@@ -44,20 +45,21 @@
                 android:orientation="vertical"
 
                 >
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card1"
                     android:layout_width="300dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="50dp"
-                    app:cardPreventCornerOverlap="true"
-                    android:layout_marginTop="30dp"
                     android:layout_centerHorizontal="true"
-                    android:id="@+id/card1">
+                    android:layout_marginTop="30dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardPreventCornerOverlap="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:minHeight="100dp"
                         android:background="@drawable/gradient_1"
+                        android:minHeight="100dp"
                         android:padding="10dp">
 
                         <TextView
@@ -72,30 +74,30 @@
                             android:text="Complete your preparation\n at your own pace!" />
 
                         <ImageView
+                            style="@style/homeCardImage"
                             android:maxHeight="90dp"
-                            android:src="@drawable/training"
-                            style="@style/homeCardImage" />
+                            android:src="@drawable/training" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
                     android:layout_width="300dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="50dp"
-                    app:cardPreventCornerOverlap="true"
-                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/card1"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="50dp"
 
-                    android:id="@+id/card2">
+                    app:cardPreventCornerOverlap="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:minHeight="100dp"
                         android:background="@drawable/gradient_1"
-                        android:padding="10dp"
-                        >
+                        android:minHeight="100dp"
+                        android:padding="10dp">
 
                         <TextView
                             android:id="@+id/textViewSub2Title"
@@ -104,14 +106,14 @@
                             android:text="Quizzes" />
 
                         <TextView
-                            android:text="Test yourself and earn points!"
                             style="@style/viewParent.headerText.homeCardContent"
-                            android:layout_below="@id/textViewSub2Title"/>
+                            android:layout_below="@id/textViewSub2Title"
+                            android:text="Test yourself and earn points!" />
 
                         <ImageView
+                            style="@style/homeCardImage"
                             android:maxHeight="90dp"
-                            android:src="@drawable/quiz"
-                            style="@style/homeCardImage" />
+                            android:src="@drawable/quiz" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>

@@ -32,23 +32,23 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
 
     @Override
     public void onBindViewHolder(@NonNull StaticRvViewHolder holder, int position) {
-StaticRvModel currentItem = items.get(position);
-holder.imageView.setImageResource(currentItem.getImage());
-holder.textView.setText(currentItem.getText());
-holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        row_index = position;
-        notifyDataSetChanged();
-    }
-});
-if (row_index == position) {
-    holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
+        StaticRvModel currentItem = items.get(position);
+        holder.imageView.setImageResource(currentItem.getImage());
+        holder.textView.setText(currentItem.getText());
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                row_index = position;
+                notifyDataSetChanged();
+            }
+        });
+        if (row_index == position) {
+            holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
         }
-else {
-    holder.linearLayout.setBackgroundResource(R.drawable.static_rv_selected_bg);
+        else {
+            holder.linearLayout.setBackgroundResource(R.drawable.static_rv_selected_bg);
 
-}
+        }
     }
 
     @Override

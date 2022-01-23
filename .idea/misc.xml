@@ -20,6 +20,8 @@
         <entry key="app/src/main/res/drawable/ic_third.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/ic_training.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_untitled.xml" value="0.22239583333333332" />
+        <entry key="app/src/main/res/drawable/patient_rv_item.xml" value="0.28974358974358977" />
+        <entry key="app/src/main/res/drawable/rounded_icon.xml" value="0.28974358974358977" />
         <entry key="app/src/main/res/drawable/static_rv_bg.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/drawable/static_rv_selected_bg.xml" value="0.14074074074074075" />
         <entry key="app/src/main/res/font/kohinoorbangla.xml" value="0.23645833333333333" />
@@ -41,6 +43,7 @@
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.29213483146067415" />
+        <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.22" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22239583333333332" />
