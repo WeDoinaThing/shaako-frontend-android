@@ -11,7 +11,8 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,13 +42,15 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/scroll_stats"
                 android:orientation="vertical"
+
                 >
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="50dp"
                     app:cardPreventCornerOverlap="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerHorizontal="true"
                     android:id="@+id/card1">
 
                     <RelativeLayout
@@ -59,13 +62,14 @@
 
                         <TextView
                             android:id="@+id/textViewSub1Title"
-                            android:text="Maths"
-                            style="@style/viewParent.headerText.HomeCardTitle" />
+                            style="@style/viewParent.headerText.HomeCardTitle"
+                            android:layout_marginStart="10dp"
+                            android:text="Training Module" />
 
                         <TextView
-                            android:text="Study nature, love nature,\nclose to nature"
                             style="@style/viewParent.headerText.homeCardContent"
-                            android:layout_below="@id/textViewSub1Title"/>
+                            android:layout_below="@id/textViewSub1Title"
+                            android:text="Complete your preparation\n at your own pace!" />
 
                         <ImageView
                             android:maxHeight="90dp"
@@ -75,12 +79,14 @@
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                    android:layout_width="300dp"
                     android:layout_height="150dp"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="50dp"
                     app:cardPreventCornerOverlap="true"
                     android:layout_marginTop="10dp"
                     android:layout_below="@+id/card1"
+                    android:layout_centerHorizontal="true"
+
                     android:id="@+id/card2">
 
                     <RelativeLayout
@@ -93,11 +99,12 @@
 
                         <TextView
                             android:id="@+id/textViewSub2Title"
-                            android:text="Maths"
-                            style="@style/viewParent.headerText.HomeCardTitle" />
+                            style="@style/viewParent.headerText.HomeCardTitle"
+                            android:layout_marginStart="10dp"
+                            android:text="Quizzes" />
 
                         <TextView
-                            android:text="Study nature, love nature,\nclose to nature"
+                            android:text="Test yourself and earn points!"
                             style="@style/viewParent.headerText.homeCardContent"
                             android:layout_below="@id/textViewSub2Title"/>
 
