@@ -4,13 +4,11 @@ public class PatientRvModel {
     private String name;
     private String area;
     private String priority;
-    private int fire;
 
-    public PatientRvModel(String name, String area, String priority, int fire) {
+    public PatientRvModel(String name, String area, String priority) {
         this.name = name;
         this.area = area;
         this.priority = priority;
-        this.fire = fire;
     }
 
     public void setName(String name) {
@@ -25,10 +23,6 @@ public class PatientRvModel {
         this.priority = priority;
     }
 
-    public void setFire(int fire) {
-        this.fire = fire;
-    }
-
     public String getName() {
         return name;
     }
@@ -41,7 +35,4 @@ public class PatientRvModel {
         return priority;
     }
 
-    public int getFire() {
-        return fire;
-    }
 }

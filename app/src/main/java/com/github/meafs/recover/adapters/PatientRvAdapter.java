@@ -42,7 +42,7 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
         holder.mName.setText(pData.get(position).getName());
         holder.mArea.setText(pData.get(position).getArea());
         holder.mPriority.setText(pData.get(position).getPriority());
-        holder.mFire.setImageResource(pData.get(position).getFire());
+//        holder.mFire.setImageResource(pData.get(position).getFire());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.mIcon.getBackground()).setColor(color);
