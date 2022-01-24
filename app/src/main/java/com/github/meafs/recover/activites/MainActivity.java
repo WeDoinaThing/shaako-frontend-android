@@ -18,6 +18,7 @@ import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.models.PatientModel;
 import com.github.meafs.recover.viewmodels.PatientViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Document> documents) {
                 System.out.println(documents.get(1).getWeight());
+            }
+        });
+
+        JsonObject jsonResult = new JsonObject();
+
+        jsonResult.addProperty("id", "6");
+        jsonResult.addProperty("added_by", "replace with CHW UUID");
+        jsonResult.addProperty("date_added", "date patient was added");
+        jsonResult.addProperty("region", "village/mouja other info");
+        jsonResult.addProperty("name", "patient name");
+        jsonResult.addProperty("sex", "M/F/O");
+        jsonResult.addProperty("dob", "Date of Birth of patient dd/mm/yyyy");
+        jsonResult.addProperty("bgroup", "optional blood group info");
+        jsonResult.addProperty("weight", "50");
+        jsonResult.addProperty("height", "optional patient height");
+        jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
+        jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
+
+        patientViewModel.addPatient(jsonResult);
+
+        patientViewModel.addPatientDone().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equals("Done")) {
+                    System.out.println(s);
+                }
+                System.out.println(s);
             }
         });
 

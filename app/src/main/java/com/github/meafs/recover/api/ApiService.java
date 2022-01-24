@@ -1,8 +1,10 @@
 package com.github.meafs.recover.api;
 
+import com.github.meafs.recover.models.AddPatientModel;
 import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
 import com.github.meafs.recover.models.PatientModel;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -30,10 +32,20 @@ public interface ApiService {
     @GET("dbs/imadatabaseid/colls/imcontainerid/docs")
     Call<PatientModel> getPatientData(@Header("Authorization") String token, @Header("x-ms-date") String date);
 
+    // For search
     @Headers({
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST( "dbs/imadatabaseid/colls/imcontainerid/docs")
-    Call<List<PatientModel>> getIndividualPatient(@Body String query);
+    @POST("dbs/imadatabaseid/colls/imcontainerid/docs")
+    Call<AddPatientModel> getIndividualPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Body String query);
+
+    // For adding new user
+    @Headers({
+            "Accept: application/json",
+            "x-ms-version: 2018-12-31",
+//            "Content-Type: application/json"
+    })
+    @POST("dbs/newdatabaseid/colls/newcontainerid/docs")
+    Call<PatientModel> addPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Body JsonObject json);
 }
