@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="130dp"
+    android:layout_height="150dp"
+    android:id = "@+id/linearLayout"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginBottom="20dp"
+    android:elevation="5dp"
+    android:background="@drawable/static_rv_bg"
+    >
+    <ImageView
+        android:id="@+id/static_rv_im"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/patientinfo"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:id="@+id/static_rv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:text="pizza"
+        android:textAllCaps="true"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:layout_margin="3dp"/>
+
+
+</LinearLayout>

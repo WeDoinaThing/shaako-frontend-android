@@ -23,11 +23,9 @@
         <activity
             android:name=".activites.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.Recover.FullScreen"
-            >
+            android:theme="@style/Theme.Recover.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

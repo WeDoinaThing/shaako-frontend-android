@@ -18,13 +18,8 @@
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_arrow_back_24" />
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,28 +32,31 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="left"
                 android:text="Title"
+                android:fontFamily="@font/nunito"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="left"
                     android:text="Details"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/nunito"/>
 
 
             </LinearLayout>

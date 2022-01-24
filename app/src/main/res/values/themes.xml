@@ -9,10 +9,10 @@
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/darkSecondaryColor</item>
-        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorAccent">@color/lightSecondaryColor</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorAccent</item>
         <!-- Customize your theme here. -->
     </style>
     <style name="Theme.Recover.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
