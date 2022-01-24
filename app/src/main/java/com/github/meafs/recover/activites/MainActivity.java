@@ -2,6 +2,7 @@ package com.github.meafs.recover.activites;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     private PatientViewModel patientViewModel;
-    private ArrayList<PatientModel> arrayList = new ArrayList<>();
+    private final ArrayList<PatientModel> arrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -41,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Document> documents) {
                 System.out.println(documents.get(1).getWeight());
+                System.out.println(documents.size());
             }
         });
 
         JsonObject jsonResult = new JsonObject();
 
-        jsonResult.addProperty("id", "6");
+        jsonResult.addProperty("id", "8");
         jsonResult.addProperty("added_by", "replace with CHW UUID");
         jsonResult.addProperty("date_added", "date patient was added");
         jsonResult.addProperty("region", "village/mouja other info");
@@ -59,17 +61,23 @@ public class MainActivity extends AppCompatActivity {
         jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
         jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
 
-        patientViewModel.addPatient(jsonResult);
 
-        patientViewModel.addPatientDone().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if (s.equals("Done")) {
-                    System.out.println(s);
-                }
-                System.out.println(s);
+
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                patientViewModel.addPatient(String.valueOf(7),jsonResult);
+                patientViewModel.addPatientDone().observe(MainActivity.this, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        if (s.equals("Done")) {
+                            System.out.println(s);
+                        }
+                    }
+                });
             }
-        });
+        }, 5000);
+
+
 
         bottomNavigation = findViewById(R.id.bottomNavigationView);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);

@@ -14,17 +14,17 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
-import com.github.meafs.recover.models.PatientRvModel;
+import com.github.meafs.recover.models.Document;
 
 import java.util.List;
 import java.util.Random;
 
 public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> {
 
-    private List<PatientRvModel> pData;
+    private List<Document> pData;
     private Context mContext;
 
-    public PatientRvAdapter(Context mContext, List<PatientRvModel> pData) {
+    public PatientRvAdapter(Context mContext, List<Document> pData) {
         this.pData = pData;
         this.mContext = mContext;
     }
@@ -40,8 +40,8 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
     public void onBindViewHolder(final PatientRvViewHolder holder, int position) {
         holder.mIcon.setText(pData.get(position).getName().substring(0, 1));
         holder.mName.setText(pData.get(position).getName());
-        holder.mArea.setText(pData.get(position).getArea());
-        holder.mPriority.setText(pData.get(position).getPriority());
+        holder.mArea.setText(pData.get(position).getRegion());
+        holder.mPriority.setText(pData.get(position).getId());
 //        holder.mFire.setImageResource(pData.get(position).getFire());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
@@ -87,7 +87,8 @@ class PatientRvViewHolder extends RecyclerView.ViewHolder {
     TextView mArea;
     TextView mPriority;
     ImageView mFire;
-RelativeLayout rv_layout;
+    RelativeLayout rv_layout;
+
     PatientRvViewHolder(View itemView) {
         super(itemView);
 

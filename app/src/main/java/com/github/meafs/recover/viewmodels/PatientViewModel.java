@@ -28,8 +28,8 @@ public class PatientViewModel extends AndroidViewModel {
         patientResponseLiveData = repository.getPatientResponseLiveData();
     }
 
-    public void addPatient(JsonObject jsonObject) {
-        repository.postPatientDataFromApi("[\"6\"]", jsonObject);
+    public void addPatient(String size, JsonObject jsonObject) {
+        repository.postPatientDataFromApi("[" + "\"" + (Integer.parseInt(size) + 1) + "\"" + "]", jsonObject);
         liveData = repository.addPatientResponseLiveData();
     }
 
@@ -37,7 +37,7 @@ public class PatientViewModel extends AndroidViewModel {
         return patientResponseLiveData;
     }
 
-    public LiveData<String> addPatientDone(){
+    public LiveData<String> addPatientDone() {
         return liveData;
     }
 
