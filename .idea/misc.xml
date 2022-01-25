@@ -11,8 +11,11 @@
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/gradient_1.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_2.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_3.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_3_rounded.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_4.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.22239583333333332" />
-        <entry key="app/src/main/res/drawable/ic_contact.xml" value="0.32685185185185184" />
         <entry key="app/src/main/res/drawable/ic_first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2328125" />
         <entry key="app/src/main/res/drawable/ic_patient.xml" value="0.22239583333333332" />
@@ -49,6 +52,7 @@
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.22" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.19791666666666666" />
       </map>
     </option>
