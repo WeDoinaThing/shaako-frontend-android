@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pName"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/pIcon"
         android:layout_toRightOf="@+id/pIcon"
@@ -56,9 +56,9 @@
         android:id="@+id/ivFire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/pPriority"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/pPriority"
         android:padding="5dp"
         android:src="@drawable/ic_priority" />
 </RelativeLayout>

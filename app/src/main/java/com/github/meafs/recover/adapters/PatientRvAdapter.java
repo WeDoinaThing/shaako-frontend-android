@@ -1,6 +1,7 @@
 package com.github.meafs.recover.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -14,17 +15,18 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
-import com.github.meafs.recover.models.Document;
+import com.github.meafs.recover.activites.PatientDetails;
+import com.github.meafs.recover.models.PatientRvModel;
 
 import java.util.List;
 import java.util.Random;
 
 public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> {
 
-    private List<Document> pData;
+    private List<PatientRvModel> pData;
     private Context mContext;
 
-    public PatientRvAdapter(Context mContext, List<Document> pData) {
+    public PatientRvAdapter(Context mContext, List<PatientRvModel> pData) {
         this.pData = pData;
         this.mContext = mContext;
     }
@@ -40,8 +42,8 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
     public void onBindViewHolder(final PatientRvViewHolder holder, int position) {
         holder.mIcon.setText(pData.get(position).getName().substring(0, 1));
         holder.mName.setText(pData.get(position).getName());
-        holder.mArea.setText(pData.get(position).getRegion());
-        holder.mPriority.setText(pData.get(position).getId());
+        holder.mArea.setText(pData.get(position).getArea());
+        holder.mPriority.setText(pData.get(position).getPriority());
 //        holder.mFire.setImageResource(pData.get(position).getFire());
         Random mRandom = new Random();
         final int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
@@ -58,19 +60,19 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
             }
         });
 
-//        holder.rv_layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent mIntent = new Intent(mContext, DetailActivity.class);
-//                mIntent.putExtra("sender", holder.mSender.getText().toString());
-//                mIntent.putExtra("title", holder.mEmailTitle.getText().toString());
-//                mIntent.putExtra("details", holder.mEmailDetails.getText().toString());
+        holder.rv_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(mContext, PatientDetails.class);
+                mIntent.putExtra("name", holder.mName.getText().toString());
+                mIntent.putExtra("area", holder.mArea.getText().toString());
+                mIntent.putExtra("priority", holder.mPriority.getText().toString());
 //                mIntent.putExtra("time", holder.mEmailTime.getText().toString());
-//                mIntent.putExtra("icon", holder.mIcon.getText().toString());
-//                mIntent.putExtra("colorIcon", color);
-//                mContext.startActivity(mIntent);
-//            }
-//        });
+                mIntent.putExtra("icon", holder.mIcon.getText().toString());
+                mIntent.putExtra("colorIcon", color);
+                mContext.startActivity(mIntent);
+            }
+        });
 
     }
 
@@ -87,8 +89,7 @@ class PatientRvViewHolder extends RecyclerView.ViewHolder {
     TextView mArea;
     TextView mPriority;
     ImageView mFire;
-    RelativeLayout rv_layout;
-
+RelativeLayout rv_layout;
     PatientRvViewHolder(View itemView) {
         super(itemView);
 
