@@ -25,6 +25,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
+    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+            item -> {
+                switch (item.getItemId()) {
+                    case R.id.user:
+                        openFragment(UserFragment.newInstance("", ""));
+                        return true;
+                    case R.id.patient:
+                        openFragment(PatientFragment.newInstance("", ""));
+                        return true;
+                    case R.id.contact:
+                        openFragment(ContactFragment.newInstance("", ""));
+                        return true;
+                }
+                return false;
+            };
     private PatientViewModel patientViewModel;
     private ArrayList<PatientModel> arrayList = new ArrayList<>();
 
@@ -82,22 +97,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
-            item -> {
-                switch (item.getItemId()) {
-                    case R.id.user:
-                        openFragment(UserFragment.newInstance("", ""));
-                        return true;
-                    case R.id.patient:
-                        openFragment(PatientFragment.newInstance("", ""));
-                        return true;
-                    case R.id.contact:
-                        openFragment(ContactFragment.newInstance("", ""));
-                        return true;
-                }
-                return false;
-            };
 
     @Override
     public void onBackPressed() {

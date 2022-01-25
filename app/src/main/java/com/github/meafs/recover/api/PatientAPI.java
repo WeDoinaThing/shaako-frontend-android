@@ -12,10 +12,10 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public class PatientAPI {
+    private static String key = "xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==";
     private String databaseId;
     private String containerId;
     private String method;
-    private static String key = "xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==";
 
     public PatientAPI(String databaseId, String containerId, String method) {
         this.databaseId = databaseId;

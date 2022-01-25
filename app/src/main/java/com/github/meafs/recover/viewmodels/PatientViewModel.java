@@ -37,7 +37,7 @@ public class PatientViewModel extends AndroidViewModel {
         return patientResponseLiveData;
     }
 
-    public LiveData<String> addPatientDone(){
+    public LiveData<String> addPatientDone() {
         return liveData;
     }
 

@@ -18,11 +18,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CosmosDBRepository {
     public static final String DB_URI = "https://timaginecup-test.documents.azure.com/";
-
-    private ApiService apiService;
     private final MutableLiveData<List<Document>> patientResponceLiveData = new MutableLiveData<>();
-    private String authString;
     private final MutableLiveData<String> addPatientResponceLiveData = new MutableLiveData<>();
+    private ApiService apiService;
+    private String authString;
 
     public CosmosDBRepository() {
 

@@ -23,15 +23,14 @@ import java.util.ArrayList;
  */
 public class PatientFragment extends Fragment {
 
-//    private ApiViewModel apiViewModel;
-//    private List<TodoModel> list;
-    private RecyclerView recyclerView;
-    private PatientRvAdapter patientRvAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    //    private ApiViewModel apiViewModel;
+//    private List<TodoModel> list;
+    private RecyclerView recyclerView;
+    private PatientRvAdapter patientRvAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -83,11 +82,11 @@ public class PatientFragment extends Fragment {
 
         System.out.println(fetchThumbnail.getThumbnailUrl());
 
-        ArrayList <PatientRvModel> item = new ArrayList<>();
-        item.add(new PatientRvModel("nazia","ctg","high"));
-        item.add(new PatientRvModel("pazia2","ctg2","high2"));
-        item.add(new PatientRvModel("kazia3","ctg3","high3"));
-        item.add(new PatientRvModel("hazia4","ctg4","high4"));
+        ArrayList<PatientRvModel> item = new ArrayList<>();
+        item.add(new PatientRvModel("nazia", "ctg", "high"));
+        item.add(new PatientRvModel("pazia2", "ctg2", "high2"));
+        item.add(new PatientRvModel("kazia3", "ctg3", "high3"));
+        item.add(new PatientRvModel("hazia4", "ctg4", "high4"));
 
         recyclerView = view.findViewById(R.id.patient_rv_layout);
         patientRvAdapter = new PatientRvAdapter(this.getContext(), item);

@@ -1,14 +1,8 @@
 package com.github.meafs.recover.utils;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-
-import com.github.meafs.recover.R;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class Alert {
     private Context context;

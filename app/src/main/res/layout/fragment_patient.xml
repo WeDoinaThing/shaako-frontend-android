@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.PatientFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:id="@+id/dashbottom"
             android:layout_width="match_parent"
@@ -52,13 +53,48 @@
                         android:src="@drawable/addpatient" />
 
                 </RelativeLayout>
+
             </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/pSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add_card1"
+                android:background="@drawable/search_bg">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/search_img" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="55dp"
+                    android:text="Search"
+                    android:textColor="#03082b"
+                    android:textSize="18dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/arrow_bottom" />
+
+            </RelativeLayout>
 
             <ScrollView
                 android:id="@+id/patients_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/add_card1">
+                android:layout_below="@id/pSearch">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/patient_rv_layout"

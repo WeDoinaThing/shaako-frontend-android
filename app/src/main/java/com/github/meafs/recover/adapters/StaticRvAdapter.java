@@ -17,17 +17,19 @@ import java.util.ArrayList;
 
 public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.StaticRvViewHolder> {
 
-    private ArrayList<StaticRvModel> items;
     int row_index = -1;
-    public StaticRvAdapter (ArrayList<StaticRvModel> items) {
+    private ArrayList<StaticRvModel> items;
+
+    public StaticRvAdapter(ArrayList<StaticRvModel> items) {
         this.items = items;
     }
+
     @NonNull
     @Override
     public StaticRvViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.static_rv_item, parent, false) ;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.static_rv_item, parent, false);
         StaticRvViewHolder staticRvViewHolder = new StaticRvViewHolder(view);
-        return  staticRvViewHolder;
+        return staticRvViewHolder;
     }
 
     @Override
@@ -44,8 +46,7 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
         });
         if (row_index == position) {
             holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
-        }
-        else {
+        } else {
             holder.linearLayout.setBackgroundResource(R.drawable.static_rv_selected_bg);
 
         }
@@ -56,12 +57,12 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
         return items.size();
     }
 
-    public static class  StaticRvViewHolder extends RecyclerView.ViewHolder {
+    public static class StaticRvViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
         LinearLayout linearLayout;
 
-        public   StaticRvViewHolder (@NonNull View itemView) {
+        public StaticRvViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.static_rv_im);
             textView = itemView.findViewById(R.id.static_rv_text);

@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FetchThumbnail {
-    String inputUrl;
     static String outputUrl = "https://img.youtube.com/vi/";
+    String inputUrl;
 
     public FetchThumbnail(String inputUrl) {
         this.inputUrl = inputUrl;
