@@ -7,10 +7,12 @@
         <entry key="../../.gradle/caches/transforms-3/ea030ec8957954f564a3b5a8ec794cd7/transformed/jetified-onboarder-1.0.4/res/drawable/rounded_button.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2328125" />
         <entry key="app/src/main/res/drawable/back_to_home_button.xml" value="0.31296296296296294" />
+        <entry key="app/src/main/res/drawable/banner_layout.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/button_drawable_complementary.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/gradient_1.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_1_rounded.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/gradient_2.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/gradient_3.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/gradient_3_rounded.xml" value="0.34375" />
@@ -40,6 +42,7 @@
         <entry key="app/src/main/res/layout/activity_user_dashboard.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_walkthrough.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/alert_layout.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout/banner_layout.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/cardview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/category_card.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/categoty_card.xml" value="0.35572916666666665" />
@@ -47,7 +50,7 @@
         <entry key="app/src/main/res/layout/content_chwprofile.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.29213483146067415" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.25" />
         <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.22" />

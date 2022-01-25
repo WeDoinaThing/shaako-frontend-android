@@ -24,15 +24,14 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
-    private CardView trainingContent;
-    private CardView quizcontent;
-    private RecyclerView recyclerView;
-    private StaticRvAdapter staticRvAdapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private CardView trainingContent;
+    private CardView quizcontent;
+    private RecyclerView recyclerView;
+    private StaticRvAdapter staticRvAdapter;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -82,11 +81,11 @@ public class UserFragment extends Fragment {
                 startActivity(new Intent(getContext(), AddPatientActivity.class));
             }
         });
-        ArrayList <StaticRvModel> item = new ArrayList<>() ;
-        item.add( new StaticRvModel(R.drawable.coursefin, "69 courses finished"));
-        item.add( new StaticRvModel(R.drawable.score, "100 points earned"));
-        item.add( new StaticRvModel(R.drawable.schedule, "5 scheduled appointment"));
-        item.add( new StaticRvModel(R.drawable.success, "56% of monthly target met"));
+        ArrayList<StaticRvModel> item = new ArrayList<>();
+        item.add(new StaticRvModel(R.drawable.coursefin, "69 courses finished"));
+        item.add(new StaticRvModel(R.drawable.score, "100 points earned"));
+        item.add(new StaticRvModel(R.drawable.schedule, "5 scheduled appointment"));
+        item.add(new StaticRvModel(R.drawable.success, "56% of monthly target met"));
 
         recyclerView = view.findViewById(R.id.static_rv_layout);
         staticRvAdapter = new StaticRvAdapter(item);

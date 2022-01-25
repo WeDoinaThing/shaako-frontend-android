@@ -30,28 +30,28 @@ public class PatientRvModel {
         this.history = history;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getArea() {
         return area;
     }
 
+    public void setArea(String area) {
+        this.area = area;
+    }
+
     public String getPriority() {
         return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public double getWeight() {

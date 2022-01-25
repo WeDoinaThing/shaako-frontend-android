@@ -7,6 +7,7 @@
     android:paddingLeft="15dp"
     android:paddingTop="15dp"
     android:paddingRight="15dp">
+
     <TextView
         android:id="@+id/tt1"
         android:layout_width="wrap_content"
@@ -30,10 +31,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
+        android:padding="5dp"
         android:text="15 Dec - 6:20 AM"
         android:textColor="#516b9e"
-        android:textSize="16dp"
-        android:padding="5dp"/>
+        android:textSize="16dp" />
 
 
 </RelativeLayout>

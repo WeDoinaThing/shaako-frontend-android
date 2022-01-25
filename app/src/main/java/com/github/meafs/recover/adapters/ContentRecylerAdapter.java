@@ -69,6 +69,11 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
         return list.size();
     }
 
+    public void setList(ArrayList<ContentModel> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cardView;
@@ -83,10 +88,5 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
             title = itemView.findViewById(R.id.title);
             details = itemView.findViewById(R.id.details);
         }
-    }
-
-    public void setList(ArrayList<ContentModel> list) {
-        this.list = list;
-        notifyDataSetChanged();
     }
 }

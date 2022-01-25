@@ -16,7 +16,7 @@ public class PatientDetails extends AppCompatActivity {
     TextView mIcon;
     TextView mName;
     TextView mArea;
-//    TextView mEmailDetails;
+    //    TextView mEmailDetails;
 //    TextView mEmailTime;
     ImageView mFire;
 

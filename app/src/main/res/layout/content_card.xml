@@ -20,6 +20,7 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_arrow_back_24" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,18 +35,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginBottom="5dp"
+                android:fontFamily="@font/nunito"
                 android:gravity="left"
                 android:text="Title"
-                android:fontFamily="@font/nunito"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingEnd="10dp">
 
                 <TextView
                     android:id="@+id/details"
@@ -53,10 +54,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/nunito"
                     android:gravity="left"
                     android:text="Details"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/nunito"/>
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

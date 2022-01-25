@@ -7,9 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.github.meafs.recover.api.Repository;
-
 import com.github.meafs.recover.models.ContentModel;
-
 
 import java.util.List;
 

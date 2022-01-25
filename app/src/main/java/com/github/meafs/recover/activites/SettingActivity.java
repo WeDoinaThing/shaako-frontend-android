@@ -1,7 +1,5 @@
 package com.github.meafs.recover.activites;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -11,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.utils.Speak;

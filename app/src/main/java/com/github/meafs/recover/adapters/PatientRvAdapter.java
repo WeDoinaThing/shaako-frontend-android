@@ -89,7 +89,8 @@ class PatientRvViewHolder extends RecyclerView.ViewHolder {
     TextView mArea;
     TextView mPriority;
     ImageView mFire;
-RelativeLayout rv_layout;
+    RelativeLayout rv_layout;
+
     PatientRvViewHolder(View itemView) {
         super(itemView);
 
