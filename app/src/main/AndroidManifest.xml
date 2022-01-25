@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.PatientDetails"
+            android:exported="false" />
+        <activity
             android:name=".activites.QuizActivity"
             android:exported="true" />
         <activity
@@ -26,6 +29,7 @@
             android:theme="@style/Theme.Recover.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

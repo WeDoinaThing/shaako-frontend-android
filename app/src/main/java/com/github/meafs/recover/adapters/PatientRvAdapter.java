@@ -1,6 +1,7 @@
 package com.github.meafs.recover.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.PatientDetails;
 import com.github.meafs.recover.models.PatientRvModel;
 
 import java.util.List;
@@ -58,19 +60,19 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
             }
         });
 
-//        holder.rv_layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent mIntent = new Intent(mContext, DetailActivity.class);
-//                mIntent.putExtra("sender", holder.mSender.getText().toString());
-//                mIntent.putExtra("title", holder.mEmailTitle.getText().toString());
-//                mIntent.putExtra("details", holder.mEmailDetails.getText().toString());
+        holder.rv_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(mContext, PatientDetails.class);
+                mIntent.putExtra("name", holder.mName.getText().toString());
+                mIntent.putExtra("area", holder.mArea.getText().toString());
+                mIntent.putExtra("priority", holder.mPriority.getText().toString());
 //                mIntent.putExtra("time", holder.mEmailTime.getText().toString());
-//                mIntent.putExtra("icon", holder.mIcon.getText().toString());
-//                mIntent.putExtra("colorIcon", color);
-//                mContext.startActivity(mIntent);
-//            }
-//        });
+                mIntent.putExtra("icon", holder.mIcon.getText().toString());
+                mIntent.putExtra("colorIcon", color);
+                mContext.startActivity(mIntent);
+            }
+        });
 
     }
 

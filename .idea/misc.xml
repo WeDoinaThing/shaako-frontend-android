@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/activity_chwprofile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26313405797101447" />
+        <entry key="app/src/main/res/layout/activity_patient_details.xml" value="0.32155797101449274" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20625" />
@@ -43,6 +44,7 @@
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.29213483146067415" />
+        <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.22" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
