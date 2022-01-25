@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activites.PatientDetails"
     android:orientation="vertical"
-    android:background="@drawable/bg">
+    android:background="@drawable/gradient_2">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,8 +69,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:clipToOutline="true"
+        android:elevation="20dp"
         android:gravity="center"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/gradient_3_rounded"
+        >
 
         <androidx.cardview.widget.CardView
             android:layout_width="70dp"
@@ -255,7 +260,7 @@
             android:textSize="25dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-black"
-            android:textColor="#516b9e"
+            android:textColor="#fff"
             android:letterSpacing="0.02"/>
 
         <TextView
@@ -263,7 +268,7 @@
             android:layout_height="wrap_content"
             android:text="See All"
             android:textSize="23dp"
-            android:textColor="#D06D88BD"
+            android:textColor="#fff"
             android:gravity="end"
             android:layout_marginRight="16dp"/>
 
