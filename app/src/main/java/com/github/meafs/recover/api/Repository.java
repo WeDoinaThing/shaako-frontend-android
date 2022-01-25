@@ -79,6 +79,10 @@ public class Repository {
                 });
     }
 
+    public void getPatientData() {
+
+    }
+
 
     public LiveData<List<ContentModel>> getContentResponseLiveData() {
         return contentResponceLiveData;
