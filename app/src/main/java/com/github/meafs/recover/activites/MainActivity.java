@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             item -> {
                 bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_person_inactive);
                 bottomNavigation.getMenu().findItem(R.id.patient).setIcon(R.drawable.ic_outline_person_add);
-                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_contact_outlined);
+                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_contact);
                 switch (item.getItemId()) {
                     case R.id.user:
                         openFragment(UserFragment.newInstance("", ""));

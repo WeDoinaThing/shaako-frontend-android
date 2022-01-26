@@ -31,8 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.db.entity.TaskEntity;
 import com.github.meafs.recover.activites.model.Task;
-import com.github.meafs.recover.activites.ui.detail_task.TaskDetailActivity;
-import com.github.meafs.recover.activites.ui.detail_task.TaskDetailFragment;
+import com.github.meafs.recover.activites.ui.configure_task.ConfigureTaskActivity;
 import com.github.meafs.recover.activites.util.DateUtils;
 
 import java.util.List;
@@ -46,9 +45,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         Task item = (TaskEntity) view.getTag();
 
         Context context = view.getContext();
-        Intent intent = new Intent(context, TaskDetailActivity.class);
-        intent.putExtra(TaskDetailFragment.ARG_TASK_ID, item.getId());
-
+        Intent intent = new Intent(context, ConfigureTaskActivity.class);
+//        intent.putExtra(TaskDetailFragment.ARG_TASK_ID, item.getId());
+        intent.putExtra("item_id", item.getId());
         context.startActivity(intent);
 
     };

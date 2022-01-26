@@ -33,7 +33,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.db.entity.TaskEntity;
-import com.github.meafs.recover.activites.ui.detail_task.TaskDetailFragment;
 import com.github.meafs.recover.databinding.ActivityConfigureTaskBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -108,7 +107,7 @@ public class ConfigureTaskActivity extends AppCompatActivity {
     }
 
     private void configureTask() {
-        int taskId = getIntent().getIntExtra(TaskDetailFragment.ARG_TASK_ID, -1);
+        int taskId = getIntent().getIntExtra("item_id", -1);
         configureTaskViewModel.setConfigurationMode(taskId);
     }
 

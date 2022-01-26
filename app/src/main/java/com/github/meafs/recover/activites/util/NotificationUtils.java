@@ -34,8 +34,7 @@ import androidx.core.content.ContextCompat;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.db.entity.TaskEntity;
-import com.github.meafs.recover.activites.ui.detail_task.TaskDetailActivity;
-import com.github.meafs.recover.activites.ui.detail_task.TaskDetailFragment;
+import com.github.meafs.recover.activites.ui.configure_task.ConfigureTaskActivity;
 
 import java.util.Calendar;
 
@@ -105,9 +104,9 @@ public final class NotificationUtils {
 
 
         // 3. Set up main Intent for notification.
-        Intent detailActivity = new Intent(context, TaskDetailActivity.class);
+        Intent detailActivity = new Intent(context, ConfigureTaskActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putInt(TaskDetailFragment.ARG_TASK_ID,taskEntity.getId());
+        bundle.putInt("item_id",taskEntity.getId());
         detailActivity.putExtras(bundle);
         detailActivity.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

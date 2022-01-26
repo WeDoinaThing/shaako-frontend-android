@@ -18,14 +18,10 @@
 package com.github.meafs.recover.activites.ui.task_list;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -34,7 +30,6 @@ import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.MenuItemCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -42,7 +37,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
-import com.github.meafs.recover.activites.MainActivity;
 import com.github.meafs.recover.activites.db.entity.TaskEntity;
 import com.github.meafs.recover.activites.ui.configure_task.ConfigureTaskActivity;
 import com.github.meafs.recover.activites.util.DateUtils;
@@ -111,47 +105,47 @@ public class TaskListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.list_menu, menu);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.action_share_app));
-        shareActionProvider.setShareIntent(getShareIntent());
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.list_menu, menu);
+//        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.action_share_app));
+//        shareActionProvider.setShareIntent(getShareIntent());
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_feedback:
-                sendFeedbackViaMail();
-                return true;
-            case R.id.action_about:
-                callAboutActivity();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_feedback:
+//                sendFeedbackViaMail();
+//                return true;
+//            case R.id.action_about:
+//                callAboutActivity();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
-    private Intent getShareIntent() {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-        String shareMessage = getString(R.string.share_message);
-        shareMessage = shareMessage + "\n\nhttps://play.google.com/store/apps/details?id=" + this.getApplicationContext().getPackageName() + " \n\n";
-        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-        return shareIntent;
-    }
-
-    private void sendFeedbackViaMail() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "sanjeevy133@email.address", null));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-        intent.putExtra(Intent.EXTRA_TEXT, "Hi Streaky team, ");
-        startActivity(Intent.createChooser(intent, ""));
-    }
-
-    private void callAboutActivity() {
-        startActivity(new Intent(this, MainActivity.class));
-    }
+//    private Intent getShareIntent() {
+//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//        shareIntent.setType("text/plain");
+//        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+//        String shareMessage = getString(R.string.share_message);
+//        shareMessage = shareMessage + "\n\nhttps://play.google.com/store/apps/details?id=" + this.getApplicationContext().getPackageName() + " \n\n";
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+//        return shareIntent;
+//    }
+//
+//    private void sendFeedbackViaMail() {
+//        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "sanjeevy133@email.address", null));
+//        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+//        intent.putExtra(Intent.EXTRA_TEXT, "Hi Streaky team, ");
+//        startActivity(Intent.createChooser(intent, ""));
+//    }
+//
+//    private void callAboutActivity() {
+//        startActivity(new Intent(this, MainActivity.class));
+//    }
     
     private void init(){
         // Obtain the ViewModel component.
@@ -176,10 +170,10 @@ public class TaskListActivity extends AppCompatActivity {
 
 
     private void setupToolbar() {
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false); //Showing TextView instead of toolbar default title, to position title in middle
-        }
+//        setSupportActionBar(toolbar);
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setDisplayShowTitleEnabled(false); //Showing TextView instead of toolbar default title, to position title in middle
+//        }
     }
 
     private void setupTaskRecyclerView() {
@@ -350,22 +344,4 @@ public class TaskListActivity extends AppCompatActivity {
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 
-    /**
-     * Function used for debugging purpose
-     */
-    private void printScreenDimensions(View view) {
-        final String TAG = "SANJEEV";
-        float density = this.getResources()
-                .getDisplayMetrics()
-                .density;
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-
-        Log.d(TAG, "density: " + density);
-        Log.d(TAG, "height: " + height);
-        Log.d(TAG, "width: " + width);
-    }
 }
