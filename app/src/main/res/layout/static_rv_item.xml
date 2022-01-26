@@ -27,7 +27,7 @@
         android:fontFamily="@font/nunito"
         android:textFontWeight="600"
         android:text="69"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="48sp" />
@@ -40,7 +40,7 @@
         android:layout_margin="3dp"
         android:fontFamily="@font/nunito"
         android:text="pizza"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textFontWeight="500"
         android:textAlignment="center"
         android:textAllCaps="true"
