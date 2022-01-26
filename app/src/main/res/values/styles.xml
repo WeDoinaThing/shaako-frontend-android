@@ -64,6 +64,8 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_alignParentTop">true</item>
     </style>
-
+    <style name="setActionBarBlue">
+        <item name="android:statusBarColor" >@color/analogousSecondaryColor</item>
+    </style>
 
 </resources>

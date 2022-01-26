@@ -1,0 +1,4 @@
+<bitmap
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/education_background_pink"
+    android:gravity="fill" />

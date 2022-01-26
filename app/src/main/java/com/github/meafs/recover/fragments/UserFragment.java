@@ -1,12 +1,15 @@
 package com.github.meafs.recover.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +31,7 @@ public class UserFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private RelativeLayout trainingContent;
+    private ConstraintLayout trainingContent;
     private RelativeLayout quizcontent;
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
@@ -71,7 +74,7 @@ public class UserFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        inflater.getContext().setTheme(R.style.setActionBarBlue);
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         trainingContent = view.findViewById(R.id.train_card);
         quizcontent = view.findViewById(R.id.quizcard);
@@ -82,10 +85,10 @@ public class UserFragment extends Fragment {
             }
         });
         ArrayList<StaticRvModel> item = new ArrayList<>();
-        item.add(new StaticRvModel(R.drawable.coursefin, "69 courses finished"));
-        item.add(new StaticRvModel(R.drawable.score, "100 points earned"));
-        item.add(new StaticRvModel(R.drawable.schedule, "5 scheduled appointment"));
-        item.add(new StaticRvModel(R.drawable.success, "56% of monthly target met"));
+        item.add(new StaticRvModel(R.drawable.coursefin, "69", "courses finished"));
+        item.add(new StaticRvModel(R.drawable.score, "100", "points earned"));
+        item.add(new StaticRvModel(R.drawable.schedule, "5", "scheduled appointment"));
+        item.add(new StaticRvModel(R.drawable.success, "56%", "of monthly target met"));
 
         recyclerView = view.findViewById(R.id.static_rv_layout);
         staticRvAdapter = new StaticRvAdapter(item);
