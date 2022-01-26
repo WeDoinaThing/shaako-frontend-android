@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/layout/activity_chwprofile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_configure_task.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
+<<<<<<< HEAD
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26313405797101447" />
         <entry key="app/src/main/res/layout/activity_patient_details.xml" value="0.32155797101449274" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
@@ -50,6 +51,13 @@
         <entry key="app/src/main/res/layout/activity_task_detail.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/activity_task_list.xml" value="0.2821557971014493" />
         <entry key="app/src/main/res/layout/activity_user_dashboard.xml" value="0.33" />
+=======
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.20625" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20625" />
+        <entry key="app/src/main/res/layout/activity_user_dashboard.xml" value="0.3697916666666667" />
+>>>>>>> 3bf5d34f4eb1d1c9c27dbf5f8c16a4c765199c4c
         <entry key="app/src/main/res/layout/activity_walkthrough.xml" value="0.1490036231884058" />
         <entry key="app/src/main/res/layout/alert_layout.xml" value="0.190625" />
         <entry key="app/src/main/res/layout/banner_layout.xml" value="0.16770833333333332" />

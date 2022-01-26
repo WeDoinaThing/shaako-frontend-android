@@ -1,5 +1,6 @@
 package com.github.meafs.recover.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
             holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
         } else {
             holder.linearLayout.setBackgroundResource(R.drawable.static_rv_selected_bg);
-
+            holder.linearLayout.setBackgroundColor(Color.parseColor(currentItem.getColorResource()));
         }
     }
 
