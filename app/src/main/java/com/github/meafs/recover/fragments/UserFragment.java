@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,8 +28,8 @@ public class UserFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private CardView trainingContent;
-    private CardView quizcontent;
+    private RelativeLayout trainingContent;
+    private RelativeLayout quizcontent;
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
     // TODO: Rename and change types of parameters
@@ -73,8 +73,8 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
-        trainingContent = view.findViewById(R.id.card1);
-        quizcontent = view.findViewById(R.id.card2);
+        trainingContent = view.findViewById(R.id.train_card);
+        quizcontent = view.findViewById(R.id.quizcard);
         trainingContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
