@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
-import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.activites.AddPatientActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
 import com.github.meafs.recover.models.StaticRvModel;
 
@@ -79,7 +79,7 @@ public class UserFragment extends Fragment {
         trainingContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), ContentActivity.class));
+                startActivity(new Intent(getContext(), AddPatientActivity.class));
             }
         });
         ArrayList <StaticRvModel> item = new ArrayList<>() ;
