@@ -66,4 +66,5 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$arch_version"
     //waveview animation
     implementation 'com.gelitenight.waveview:waveview:1.0.0'
+    implementation "com.azure.android:azure-maps-control:1.0.0"
 }
