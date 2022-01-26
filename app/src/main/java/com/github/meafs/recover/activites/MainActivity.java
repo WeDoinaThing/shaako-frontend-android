@@ -28,15 +28,21 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             item -> {
+                bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_person_inactive);
+                bottomNavigation.getMenu().findItem(R.id.patient).setIcon(R.drawable.ic_outline_person_add);
+                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_contact_outlined);
                 switch (item.getItemId()) {
                     case R.id.user:
                         openFragment(UserFragment.newInstance("", ""));
+                        item.setIcon(R.drawable.ic_baseline_person_24);
                         return true;
                     case R.id.patient:
                         openFragment(PatientFragment.newInstance("", ""));
+                        item.setIcon(R.drawable.ic_patient);
                         return true;
                     case R.id.contact:
                         openFragment(ContactFragment.newInstance("", ""));
+                        item.setIcon(R.drawable.ic_contact);
                         return true;
                 }
                 return false;
@@ -96,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation = findViewById(R.id.bottomNavigationView);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_baseline_person_24);
         openFragment(UserFragment.newInstance("", ""));
     }
 
