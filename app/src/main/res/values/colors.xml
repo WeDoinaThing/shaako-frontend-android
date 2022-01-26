@@ -19,4 +19,8 @@
     <color name="analogousSecondaryColor">#005a96</color>
     <color name="black_transparent_app">#55000000</color>
     <color name="black_pushed">#90000000</color>
+<!--    extra-->
+    <color name="colorAccent">#5AD701</color>
+    <color name="colorAccentTransparent">#805AD701</color>
+    <color name="colorBackground">#000</color>
 </resources>

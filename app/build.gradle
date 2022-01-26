@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    def arch_version = "2.0.0-beta01"
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
@@ -56,4 +57,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.codemybrainsout.onboarding:onboarder:1.0.4'
     implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$arch_version"
+    // Room dependency
+    implementation "androidx.room:room-runtime:$arch_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
+    annotationProcessor "androidx.room:room-compiler:$arch_version"
+    //waveview animation
+    implementation 'com.gelitenight.waveview:waveview:1.0.0'
 }

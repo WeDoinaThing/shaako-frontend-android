@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="com.github.meafs.recover.activites.util.TaskStateAnnotation" />
+
+        <variable
+            name="viewmodel"
+            type="com.github.meafs.recover.activites.ui.detail_task.TaskDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? @color/colorAccent : @color/colorBackground}"
+        tools:context=".ui.detail_task.TaskDetailFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
+
+        <TextView
+            android:id="@+id/tv_task_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{viewmodel.task.title ?? @string/default_task_title}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textIsSelectable="true"
+            app:layout_constraintBottom_toTopOf="@+id/tv_task_status"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Learn Spanish" />
+
+        <TextView
+            android:id="@+id/tv_task_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:text="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? @string/task_completed : @string/task_not_completed}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_task_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_task_title"
+            tools:text="@string/task_not_completed" />
+
+        <ImageView
+            android:id="@+id/iv_white_circle"
+            android:layout_width="@dimen/wave_view_size"
+            android:layout_height="@dimen/wave_view_size"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:src="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? @drawable/round_button_white : @drawable/round_button_transparent}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.gelitenight.waveview.library.WaveView
+            android:id="@+id/wave"
+            android:layout_width="@dimen/wave_view_size"
+            android:layout_height="@dimen/wave_view_size"
+            android:visibility="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_white_circle"
+            app:layout_constraintEnd_toEndOf="@+id/iv_white_circle"
+            app:layout_constraintStart_toStartOf="@+id/iv_white_circle"
+            app:layout_constraintTop_toTopOf="@+id/iv_white_circle" />
+
+        <ImageButton
+            android:id="@+id/iBtn_action"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:clickable="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? false  : true}"
+            android:onClick="@{viewmodel::changeTaskStatusButtonClicked}"
+            android:src="@{viewmodel.taskRunningStatus == TaskStateAnnotation.TASK_COMPLETED ? @drawable/ic_done_green : (viewmodel.taskRunningStatus  == TaskStateAnnotation.TASK_PAUSED || viewmodel.taskRunningStatus  == TaskStateAnnotation.TASK_STOPPED)? @drawable/ic_play : @drawable/ic_pause }"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_white_circle"
+            app:layout_constraintEnd_toEndOf="@+id/iv_white_circle"
+            app:layout_constraintStart_toStartOf="@+id/iv_white_circle"
+            app:layout_constraintTop_toTopOf="@+id/iv_white_circle"
+            tools:src="@drawable/ic_play" />
+
+        <TextView
+            android:id="@+id/tv_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Streak"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintEnd_toEndOf="@+id/tv_task_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_task_title"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <TextView
+            android:id="@+id/tv_current_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/current_streak_text(viewmodel.task!=null ? viewmodel.task.currentStreak : @integer/default_streak)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_streak"
+            app:layout_constraintStart_toStartOf="@+id/tv_streak"
+            app:layout_constraintTop_toBottomOf="@+id/tv_streak"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
