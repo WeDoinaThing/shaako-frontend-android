@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_height">76dp</dimen>
+    <dimen name="wave_view_size">200dp</dimen>
+    <dimen name="task_card_corner_radius">10dp</dimen>
+    <dimen name="list_gutter">8dp</dimen>
+    <dimen name="card_view_padding">16dp</dimen>
+    <dimen name="card_view_title_size">20sp</dimen>
+</resources>

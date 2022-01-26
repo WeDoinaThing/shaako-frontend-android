@@ -28,8 +28,8 @@
     <!-- Ash :  linear-gradient(to right, #606c88, #3f4c6b);-->
     <gradient
         android:angle="180"
-        android:endColor="#FBAB7E"
-        android:startColor="#F7CE68"
+        android:endColor="#232526"
+        android:startColor="#414345"
         android:type="linear" />
 
     <corners android:radius="10dp"/>

@@ -7,6 +7,7 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.activites.ui.task_list.TaskListActivity;
 import com.github.meafs.recover.activites.AddPatientActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
 import com.github.meafs.recover.models.StaticRvModel;
@@ -33,6 +36,7 @@ public class UserFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private ConstraintLayout trainingContent;
     private RelativeLayout quizcontent;
+    private Button dummbutton;
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
     // TODO: Rename and change types of parameters
@@ -78,10 +82,17 @@ public class UserFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         trainingContent = view.findViewById(R.id.train_card);
         quizcontent = view.findViewById(R.id.quizcard);
+        dummbutton = view.findViewById(R.id.dummy);
         trainingContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), AddPatientActivity.class));
+                startActivity(new Intent(getContext(), ContentActivity.class));
+            }
+        });
+        dummbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), TaskListActivity.class));
             }
         });
         ArrayList<StaticRvModel> item = new ArrayList<>();

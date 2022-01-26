@@ -64,37 +64,41 @@
                     android:layout_height="120dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/education_background_pink">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Training Courses"
-                        android:fontFamily="@font/nunito"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:textColor="#000"
-                        android:textSize="25dp"
-                        android:textFontWeight="700" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12 Courses"
-                        android:textColor="#000"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/nunito"
-                        android:textSize="18sp"/>
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Training Courses"
+                            android:textColor="#000"
+                            android:textFontWeight="700"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="12 Courses"
+                            android:textColor="#000"
+                            android:textSize="18sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        >
+                        app:layout_constraintEnd_toEndOf="parent">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -108,39 +112,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_margin="10dp"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/quiz_background">
+                    android:background="@drawable/quiz_background"
+                    android:scaleType="centerCrop">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Quiz"
-                            android:fontFamily="@font/nunito"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Quiz"
                             android:textColor="#000"
-                            android:textSize="25dp"
-                            android:textFontWeight="700" />
+                            android:textFontWeight="700"
+                            android:textSize="25dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5 new Quizzes"
-                            android:textColor="#000"
                             android:layout_marginStart="16dp"
                             android:fontFamily="@font/nunito"
-                            android:textSize="18sp"/>
+                            android:text="5 new Quizzes"
+                            android:textColor="#000"
+                            android:textSize="18sp" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        >
+                        app:layout_constraintEnd_toEndOf="parent">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,6 +156,16 @@
                             app:tint="@color/black" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dummy"
+                    android:text="tasklist"
+                    />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

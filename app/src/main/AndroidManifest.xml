@@ -53,6 +53,12 @@
         <activity
             android:name=".activites.SettingActivity"
             android:exported="true" />
+        <activity android:name=".activites.ui.task_list.TaskListActivity"
+            android:exported="true"/>
+        <activity android:name=".activites.ui.configure_task.ConfigureTaskActivity"
+            android:exported="true"/>
+        <activity android:name=".activites.ui.detail_task.TaskDetailActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
