@@ -9,7 +9,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -17,184 +16,138 @@
             <ScrollView
                 android:id="@+id/scroll_stats"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/lightSecondaryColor">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/intro_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/highlights"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/nunito"
+                        android:layout_marginTop="10dp"
+                        android:textFontWeight="700"
+                        android:paddingStart="16dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/static_rv_layout"
+                        />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/static_rv_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/intro_text"
                         app:layout_constraintVertical_bias="0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
 
-            <!--            <RelativeLayout-->
-            <!--                android:id="@+id/dashbottom"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="match_parent"-->
-            <!--                android:layout_below="@id/scroll_stats"-->
-            <!--                android:orientation="vertical"-->
-
-            <!--                >-->
-
-            <!--                <androidx.cardview.widget.CardView-->
-            <!--                    android:id="@+id/card1"-->
-            <!--                    android:layout_width="300dp"-->
-            <!--                    android:layout_height="150dp"-->
-            <!--                    android:layout_centerHorizontal="true"-->
-            <!--                    android:layout_marginTop="30dp"-->
-            <!--                    app:cardCornerRadius="50dp"-->
-            <!--                    app:cardPreventCornerOverlap="true">-->
-
-            <!--                    <RelativeLayout-->
-            <!--                        android:layout_width="match_parent"-->
-            <!--                        android:layout_height="match_parent"-->
-            <!--                        android:background="@drawable/gradient_1"-->
-            <!--                        android:minHeight="100dp"-->
-            <!--                        android:padding="10dp">-->
-
-            <!--                        <TextView-->
-            <!--                            android:id="@+id/textViewSub1Title"-->
-            <!--                            style="@style/viewParent.headerText.HomeCardTitle"-->
-            <!--                            android:layout_marginStart="10dp"-->
-            <!--                            android:text="Training Module" />-->
-
-            <!--                        <TextView-->
-            <!--                            style="@style/viewParent.headerText.homeCardContent"-->
-            <!--                            android:layout_below="@id/textViewSub1Title"-->
-            <!--                            android:text="Complete your preparation\n at your own pace!" />-->
-
-            <!--                        <ImageView-->
-            <!--                            style="@style/homeCardImage"-->
-            <!--                            android:maxHeight="90dp"-->
-            <!--                            android:src="@drawable/training" />-->
-
-            <!--                    </RelativeLayout>-->
-            <!--                </androidx.cardview.widget.CardView>-->
-
-            <!--                <androidx.cardview.widget.CardView-->
-            <!--                    android:id="@+id/card2"-->
-            <!--                    android:layout_width="300dp"-->
-            <!--                    android:layout_height="150dp"-->
-            <!--                    android:layout_below="@+id/card1"-->
-            <!--                    android:layout_centerHorizontal="true"-->
-            <!--                    android:layout_marginTop="10dp"-->
-            <!--                    app:cardCornerRadius="50dp"-->
-
-            <!--                    app:cardPreventCornerOverlap="true">-->
-
-            <!--                    <RelativeLayout-->
-            <!--                        android:layout_width="match_parent"-->
-            <!--                        android:layout_height="match_parent"-->
-            <!--                        android:background="@drawable/gradient_1"-->
-            <!--                        android:minHeight="100dp"-->
-            <!--                        android:padding="10dp">-->
-
-            <!--                        <TextView-->
-            <!--                            android:id="@+id/textViewSub2Title"-->
-            <!--                            style="@style/viewParent.headerText.HomeCardTitle"-->
-            <!--                            android:layout_marginStart="10dp"-->
-            <!--                            android:text="Quizzes" />-->
-
-            <!--                        <TextView-->
-            <!--                            style="@style/viewParent.headerText.homeCardContent"-->
-            <!--                            android:layout_below="@id/textViewSub2Title"-->
-            <!--                            android:text="Test yourself and earn points!" />-->
-
-            <!--                        <ImageView-->
-            <!--                            style="@style/homeCardImage"-->
-            <!--                            android:maxHeight="90dp"-->
-            <!--                            android:src="@drawable/quiz" />-->
-
-            <!--                    </RelativeLayout>-->
-            <!--                </androidx.cardview.widget.CardView>-->
-            <!--            </RelativeLayout>-->
             <LinearLayout
                 android:id="@+id/chw_button_holders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/scroll_stats"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="4">
 
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/train_card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="2"
-
-                    android:background="@drawable/gradient_1_rounded">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="300dp"
-                        android:src="@drawable/training" />
-
+                    android:background="@drawable/education_background_pink">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
                         android:text="Training Courses"
-                        android:textColor="#fff"
+                        android:fontFamily="@font/nunito"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:textColor="#000"
                         android:textSize="25dp"
-                        android:textStyle="bold" />
-
+                        android:textFontWeight="700" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:layout_marginTop="70dp"
                         android:text="12 Courses"
-                        android:textColor="#ab03082b"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
+                        android:textColor="#000"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/nunito"
+                        android:textSize="18sp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_inward"
+                            app:tint="@color/black" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </RelativeLayout>
-
-                <RelativeLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/quiz_card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/gradient_1_rounded">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="300dp"
-                        android:src="@drawable/quiz" />
-
-                    <TextView
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/quiz_background">
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Quiz"
-                        android:textColor="#fff"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <TextView
+                        android:layout_height="match_parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Quiz"
+                            android:fontFamily="@font/nunito"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:textColor="#000"
+                            android:textSize="25dp"
+                            android:textFontWeight="700" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5 new Quizzes"
+                            android:textColor="#000"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="35dp"
-                        android:layout_marginTop="70dp"
-                        android:text="17 Courses"
-                        android:textColor="#ab03082b"
-                        android:textSize="14dp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_inward"
+                            app:tint="@color/black" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

@@ -36,6 +36,7 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
     public void onBindViewHolder(@NonNull StaticRvViewHolder holder, int position) {
         StaticRvModel currentItem = items.get(position);
         holder.imageView.setImageResource(currentItem.getImage());
+        holder.numberView.setText(currentItem.getNumber());
         holder.textView.setText(currentItem.getText());
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +60,14 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
 
     public static class StaticRvViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
+        TextView numberView;
         ImageView imageView;
         LinearLayout linearLayout;
 
         public StaticRvViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.static_rv_im);
+            numberView = itemView.findViewById(R.id.static_rv_number);
             textView = itemView.findViewById(R.id.static_rv_text);
             linearLayout = itemView.findViewById(R.id.linearLayout);
 

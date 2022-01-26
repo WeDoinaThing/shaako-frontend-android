@@ -16,8 +16,21 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/patientinfo" />
+
+    <TextView
+        android:id="@+id/static_rv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/nunito"
+        android:textFontWeight="600"
+        android:text="69"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="48sp" />
 
     <TextView
         android:id="@+id/static_rv_text"
@@ -27,9 +40,9 @@
         android:layout_margin="3dp"
         android:fontFamily="@font/nunito"
         android:text="pizza"
+        android:textColor="@color/black"
+        android:textFontWeight="500"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textSize="14sp" />
-
-
+        android:textSize="16sp" />
 </LinearLayout>
