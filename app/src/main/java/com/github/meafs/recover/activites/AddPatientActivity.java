@@ -1,7 +1,10 @@
 package com.github.meafs.recover.activites;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +22,9 @@ import com.github.meafs.recover.viewmodels.PatientViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AddPatientActivity extends AppCompatActivity {
 
@@ -32,6 +37,8 @@ public class AddPatientActivity extends AppCompatActivity {
     private final ArrayList<PatientModel> arrayList = new ArrayList<>();
     private String size;
     private Button button;
+    private String CHWid;
+    private String CHWRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,16 @@ public class AddPatientActivity extends AppCompatActivity {
         }
 
         System.out.println("Size: " + size);
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+
+        SharedPreferences pref = getSharedPreferences("CHW", Context.MODE_PRIVATE);
+
+        CHWid = pref.getString("chwId", "");
+        CHWRegion = pref.getString("chwRegion", "");
+
+        System.out.println("Model: " + "Id: " + CHWid + "Region: " + CHWRegion);
 
         Spinner spinner1 = findViewById(R.id.weightspinner);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
@@ -97,11 +114,11 @@ public class AddPatientActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (size != null) {
+                if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText())) {
                     jsonResult.addProperty("id", String.valueOf(Integer.parseInt(size) + 1));
-                    jsonResult.addProperty("added_by", "replace with CHW UUID");
-                    jsonResult.addProperty("date_added", "date patient was added");
-                    jsonResult.addProperty("region", "village/mouja other info");
+                    jsonResult.addProperty("added_by", CHWid);
+                    jsonResult.addProperty("date_added", formatter.format(date));
+                    jsonResult.addProperty("region", CHWRegion);
                     jsonResult.addProperty("name", name.getText().toString());
                     jsonResult.addProperty("sex", sex);
                     jsonResult.addProperty("dob", dob.getText().toString());
@@ -111,23 +128,18 @@ public class AddPatientActivity extends AppCompatActivity {
                     jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
                     jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
 
-
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
-                            patientViewModel.addPatientDone().observe(AddPatientActivity.this, new Observer<String>() {
-                                @Override
-                                public void onChanged(String s) {
-                                    if (s.equals("Done")) {
-                                        System.out.println(s);
-                                        Toast.makeText(getApplicationContext(), "Doneeee!!", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Error!!!!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                    patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
+                    patientViewModel.addPatientDone().observe(AddPatientActivity.this, new Observer<String>() {
+                        @Override
+                        public void onChanged(String s) {
+                            if (s.equals("Done")) {
+                                System.out.println(s);
+                                Toast.makeText(getApplicationContext(), "Doneeee!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Error!!!!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }, 5000);
+                    });
                 } else {
                     Toast.makeText(AddPatientActivity.this, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
                 }

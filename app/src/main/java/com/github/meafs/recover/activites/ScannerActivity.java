@@ -47,7 +47,7 @@ public class ScannerActivity extends AppCompatActivity {
                                     public void onChanged(CHWModel chwModel) {
                                         if (chwModel != null && chwModel.getName() != null) {
                                             mCodeScanner.releaseResources();
-                                            SaveData(result.getText());
+                                            SaveData(result.getText(), chwModel.getId(), chwModel.getRegion());
                                             startActivity(new Intent(ScannerActivity.this, MainActivity.class));
                                             Toast.makeText(ScannerActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                                         } else {
@@ -77,10 +77,12 @@ public class ScannerActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public void SaveData(String token) {
+    public void SaveData(String token, String chwId, String chwRegion) {
         sharedPreferences = getSharedPreferences("CHW", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("authToken", token);
+        editor.putString("chwId", chwId);
+        editor.putString("chwRegion", chwRegion);
         editor.apply();
 
     }
