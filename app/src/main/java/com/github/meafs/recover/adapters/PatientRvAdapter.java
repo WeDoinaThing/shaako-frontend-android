@@ -1,5 +1,6 @@
 package com.github.meafs.recover.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -40,7 +41,7 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(final PatientRvViewHolder holder, int position) {
+    public void onBindViewHolder(final PatientRvViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.mIcon.setText(pData.get(position).getName().substring(0, 1));
         holder.mName.setText(pData.get(position).getName());
         holder.mArea.setText(pData.get(position).getRegion());
@@ -69,6 +70,9 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
                 mIntent.putExtra("area", holder.mArea.getText().toString());
                 mIntent.putExtra("priority", holder.mPriority.getText().toString());
 //                mIntent.putExtra("time", holder.mEmailTime.getText().toString());
+                mIntent.putExtra("age", pData.get(position).getDob());
+                mIntent.putExtra("weight", pData.get(position).getWeight());
+                mIntent.putExtra("sex", pData.get(position).getSex());
                 mIntent.putExtra("icon", holder.mIcon.getText().toString());
                 mIntent.putExtra("colorIcon", color);
                 mContext.startActivity(mIntent);
