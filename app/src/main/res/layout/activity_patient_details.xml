@@ -179,6 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="F"
+                    android:id="@+id/gender"
                     android:textColor="#fff"
                     android:textSize="22dp"
                     android:textStyle="bold" />
