@@ -22,22 +22,22 @@
             android:layout_height="wrap_content"
             android:background="@null">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:id="@+id/toolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                app:layout_scrollFlags="scroll|enterAlways|snap"-->
+<!--                app:popupTheme="@style/AppTheme.PopupOverlay">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_gravity="center"
-                    android:id="@+id/toolbar_title"
-                    android:textAppearance="@style/toolbarTitleTextAppearance"
-                    android:fontFamily="@font/alba"/>
-            </androidx.appcompat.widget.Toolbar>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/app_name"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:id="@+id/toolbar_title"-->
+<!--                    android:textAppearance="@style/toolbarTitleTextAppearance"-->
+<!--                    android:fontFamily="@font/alba"/>-->
+<!--            </androidx.appcompat.widget.Toolbar>-->
 
         </com.google.android.material.appbar.AppBarLayout>
 

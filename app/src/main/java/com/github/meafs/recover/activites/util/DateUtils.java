@@ -29,16 +29,16 @@ import java.util.TimeZone;
  */
 public final class DateUtils {
 
-    private DateUtils(){/*Utility class*/}
+    private DateUtils() {/*Utility class*/}
 
     /**
      * Returns current date with hour,minutes,seconds all set to zero
      */
-    public static Date getCurrentDateWithoutTime(){
+    public static Date getCurrentDateWithoutTime() {
         final Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY,0);
-        cal.set(Calendar.MINUTE,0);
-        cal.set(Calendar.SECOND,0);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
     }
@@ -46,12 +46,12 @@ public final class DateUtils {
     /**
      * Returns yesterday date, with hour,minutes,seconds all set to zero
      */
-    public static Date getYesterdayDateWithoutTime(){
+    public static Date getYesterdayDateWithoutTime() {
         final Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
-        cal.set(Calendar.HOUR_OF_DAY,0);
-        cal.set(Calendar.MINUTE,0);
-        cal.set(Calendar.SECOND,0);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
         /*final long oneDay = 86_400_000; // Number of milli seconds in 1 day
@@ -70,27 +70,25 @@ public final class DateUtils {
      *
      * @param date1 first date
      * @param date2 second date
-     *
      * @return difference in number of days
      */
     public static long subtractDates(Date date1, Date date2) {
-        if(date2 == null){
+        if (date2 == null) {
             //probably the first time the task has been created
             return 0L;
         }
-        return (date1.getTime() - date2.getTime())/ (1000 * 60 * 60 * 24);
+        return (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24);
     }
 
     /**
      * return Date object when hour, minute and am/pm is specified
      *
-     * @param hour hour of the day
+     * @param hour    hour of the day
      * @param minutes minutes
-     * @param marker denoting am or pm
-     *
+     * @param marker  denoting am or pm
      * @return a Date object by parsing above arguments
      */
-    public static Date getFormattedTime(int hour,int minutes,int seconds, String marker){
+    public static Date getFormattedTime(int hour, int minutes, int seconds, String marker) {
         StringBuilder time = new StringBuilder();
         time.append(hour).append(":").append(minutes).append(":").append(seconds).append(" ").append(marker);
         DateFormat format = new SimpleDateFormat("h:mm:ss a");
@@ -103,11 +101,11 @@ public final class DateUtils {
         }
     }
 
-    public static Date getFormattedTime(int hour,int minutes,int seconds){
+    public static Date getFormattedTime(int hour, int minutes, int seconds) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,hour);
-        calendar.set(Calendar.MINUTE,minutes);
-        calendar.set(Calendar.SECOND,seconds);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minutes);
+        calendar.set(Calendar.SECOND, seconds);
         return calendar.getTime();
     }
 
@@ -116,11 +114,10 @@ public final class DateUtils {
      * string should be in format h:mm a
      *
      * @param time a date object containing the time only part
-     *
      * @return a string if time isn't null else return nul
      */
     public static String getFormattedTime(Date time) {
-        if(time == null) return "Time";
+        if (time == null) return "Time";
         Calendar cal = Calendar.getInstance();
         cal.setTime(time);
         int hour = cal.get(Calendar.HOUR_OF_DAY);
@@ -133,14 +130,14 @@ public final class DateUtils {
         } else if (hour == 0) {
             hour += 12;
             timeSet = "pm";
-        } else if (hour == 12){
+        } else if (hour == 12) {
             timeSet = "PM";
-        }else{
+        } else {
             timeSet = "am";
         }
 
         return new StringBuilder().append(hour).append(":")
-                .append(minutes < 10? "0"+minutes : minutes).append(" ").append(timeSet).toString();
+                .append(minutes < 10 ? "0" + minutes : minutes).append(" ").append(timeSet).toString();
     }
 
 
@@ -157,9 +154,9 @@ public final class DateUtils {
      * Set HOUR = 0, MINUTE = 0, SECONDS = 0, MILLISECOND = 0 from calendar
      */
     private static void removeTimeAttributesFromDate(Calendar calendar) {
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
     }
 
@@ -168,15 +165,15 @@ public final class DateUtils {
      *
      * @return true if both dates are equal
      */
-     public static boolean areSameDate(Date firstDate, Date secondDate){
-         Calendar cal1 = Calendar.getInstance();
-         Calendar cal2 = Calendar.getInstance();
-         cal1.setTime(firstDate);
-         cal2.setTime(secondDate);
+    public static boolean areSameDate(Date firstDate, Date secondDate) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(firstDate);
+        cal2.setTime(secondDate);
 
-         return cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
-                 cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) &&
-                 cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
-     }
+        return cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) &&
+                cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+    }
 
 }

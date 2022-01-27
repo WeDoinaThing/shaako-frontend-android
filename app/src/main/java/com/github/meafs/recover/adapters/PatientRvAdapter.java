@@ -23,8 +23,8 @@ import java.util.Random;
 
 public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> {
 
-    private List<PatientRvModel> pData;
-    private Context mContext;
+    private final List<PatientRvModel> pData;
+    private final Context mContext;
 
     public PatientRvAdapter(Context mContext, List<PatientRvModel> pData) {
         this.pData = pData;

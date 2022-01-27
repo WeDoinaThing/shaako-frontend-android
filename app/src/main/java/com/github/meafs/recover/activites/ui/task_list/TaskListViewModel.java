@@ -34,12 +34,11 @@ import java.util.List;
  */
 public class TaskListViewModel extends AndroidViewModel {
 
-    private TasksRepository tasksRepository;
+    private final TasksRepository tasksRepository;
 
     private LiveData<List<TaskEntity>> taskList;
 
     private int numberOfTask;
-
 
 
     public TaskListViewModel(@NonNull Application application) {
@@ -54,7 +53,9 @@ public class TaskListViewModel extends AndroidViewModel {
         taskList = tasksRepository.getTasks();
     }
 
-    /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Getters and setters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~**/
+    /**
+     * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Getters and setters ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     **/
 
     public LiveData<List<TaskEntity>> getTaskList() {
         return taskList;

@@ -5,11 +5,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.github.meafs.recover.activites.util.DateUtils;
 import com.github.meafs.recover.activites.model.Task;
-import java.util.Date;
+import com.github.meafs.recover.activites.util.DateUtils;
 
-;
+import java.util.Date;
 
 /**
  * Model class for a Task. Read {@link Task} for documentation
@@ -76,12 +75,12 @@ public class TaskEntity implements Task {
         return minutes;
     }
 
-    public long getMinutesInMilliSeconds(){
-        return minutes*60*1000;
-    }
-
     public void setMinutes(int minutes) {
         this.minutes = minutes;
+    }
+
+    public long getMinutesInMilliSeconds() {
+        return minutes * 60 * 1000;
     }
 
     @Override
@@ -98,13 +97,13 @@ public class TaskEntity implements Task {
         return time;
     }
 
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     @Override
     public String getTimeStr() {
         return DateUtils.getFormattedTime(this.time);
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 
     @Override

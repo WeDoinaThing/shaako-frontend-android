@@ -69,7 +69,7 @@ public class TaskListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("TASKLISTACTIVITY","got here!!!");
+        Log.i("TASKLISTACTIVITY", "got here!!!");
 
         init();
         setupLayoutWithDataBinding();
@@ -78,8 +78,6 @@ public class TaskListActivity extends AppCompatActivity {
         setupTaskRecyclerView();
         setupClickListener();
         observeDataFromViewModel();
-        Log.i("TASKLISTACTIVITY","got here!!! 222222");
-
     }
 
     @Override
@@ -105,51 +103,12 @@ public class TaskListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.list_menu, menu);
-//        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.action_share_app));
-//        shareActionProvider.setShareIntent(getShareIntent());
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_feedback:
-//                sendFeedbackViaMail();
-//                return true;
-//            case R.id.action_about:
-//                callAboutActivity();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
-//    private Intent getShareIntent() {
-//        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//        shareIntent.setType("text/plain");
-//        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
-//        String shareMessage = getString(R.string.share_message);
-//        shareMessage = shareMessage + "\n\nhttps://play.google.com/store/apps/details?id=" + this.getApplicationContext().getPackageName() + " \n\n";
-//        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-//        return shareIntent;
-//    }
-//
-//    private void sendFeedbackViaMail() {
-//        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "sanjeevy133@email.address", null));
-//        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
-//        intent.putExtra(Intent.EXTRA_TEXT, "Hi Streaky team, ");
-//        startActivity(Intent.createChooser(intent, ""));
-//    }
-//
-//    private void callAboutActivity() {
-//        startActivity(new Intent(this, MainActivity.class));
-//    }
-    
-    private void init(){
+    private void init() {
         // Obtain the ViewModel component.
-        taskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel.class); 
+        taskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel.class);
     }
 
     private void setupLayoutWithDataBinding() {

@@ -38,7 +38,7 @@ import com.github.meafs.recover.activites.util.StreakyPreferences;
  * ViewModel used in {@link ConfigureTaskActivity}
  * if creatingNewTask = true, insert a new task
  * else update an existing task
- *
+ * <p>
  * fixme : Is mixing  inserting new task and updating an existing new task functionality into one is good pattern?
  * fixme : If it's ok what should be the name of this entire class (right now : ConfigurationTask) ?
  */
@@ -49,12 +49,12 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
 
     private LiveData<TaskEntity> task; //task to be configured
     private String configurationMode;
-    private TasksRepository taskRepository;
-    private MutableLiveData<Integer> statusFinishActivity;// Set it to 1 to notify activity to finish itself
-    private MutableLiveData<String> time; //Will store formatted string h:mm a from TimePickerDialog, to show changes in UI
-    private MutableLiveData<String> validationErrorMsg; //Will show validation message AddTaskActivity
-    private MutableLiveData<String> minutesForTask; //Have to use this variable to avoid showing default 0 value in EditText, once user click ok button, it will be saved into the task
-    private Context mContext;
+    private final TasksRepository taskRepository;
+    private final MutableLiveData<Integer> statusFinishActivity;// Set it to 1 to notify activity to finish itself
+    private final MutableLiveData<String> time; //Will store formatted string h:mm a from TimePickerDialog, to show changes in UI
+    private final MutableLiveData<String> validationErrorMsg; //Will show validation message AddTaskActivity
+    private final MutableLiveData<String> minutesForTask; //Have to use this variable to avoid showing default 0 value in EditText, once user click ok button, it will be saved into the task
+    private final Context mContext;
 
     public ConfigureTaskViewModel(@NonNull Application application) {
         super(application);
@@ -73,15 +73,15 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
      *
      * @param taskId == -1 => Creating new task else Editing an existing task
      */
-    public void setConfigurationMode(int taskId){
-        if (taskId== -1) {
+    public void setConfigurationMode(int taskId) {
+        if (taskId == -1) {
             //Create a new task
             configurationMode = INSERT_MODE;
             MutableLiveData<TaskEntity> emptyTask = new MutableLiveData<>();
             emptyTask.setValue(new TaskEntity());
             task = emptyTask;
             //time.setValue(mContext.getString(R.string.time_tag));
-        }else{
+        } else {
             //Edit an existing task
             configurationMode = EDIT_MODE;
             task = taskRepository.getTaskById(taskId);
@@ -93,29 +93,29 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
      * OnClick function bind to Button[@+id/mbtn_save_task] in activity_add_task.xml
      * fixme : This code is becoming very chaotic, clean it
      */
-    public void onClickSave(View view){
-        if(validateTask()){
-            try{
+    public void onClickSave(View view) {
+        if (validateTask()) {
+            try {
                 task.getValue().setMinutes(Integer.parseInt(minutesForTask.getValue()));
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 e.printStackTrace();
                 task.getValue().setMinutes(0); //set default to zero
             }
             formatInputText();
 
-            if(INSERT_MODE.equals(configurationMode)){
+            if (INSERT_MODE.equals(configurationMode)) {
                 //Insert a new task
                 setDefaultParameters();
                 taskRepository.insertTask(task.getValue());
-            }else{
+            } else {
                 //Update an existing task
                 taskRepository.updateTasks(task.getValue());
             }
             if (task.getValue().isShowNotification()) {
                 // REMAINDER: Since we are setting id just above, we need to call this line always after setting id
-                NotificationUtils.scheduleAlarmToTriggerNotification(mContext,task.getValue());
-            }else{
-                NotificationUtils.cancelAlarmToTriggerNotification(mContext,task.getValue());
+                NotificationUtils.scheduleAlarmToTriggerNotification(mContext, task.getValue());
+            } else {
+                NotificationUtils.cancelAlarmToTriggerNotification(mContext, task.getValue());
             }
 
             // FIXME: 10/23/2018 This should be managed from TaskRepository, once the operation has been performed successfully, It should set the status from there
@@ -138,7 +138,7 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
      */
     private void setDefaultParameters() {
         task.getValue().setId(StreakyPreferences.getNextUniqueId(mContext));
-        task.getValue().setLastDate(DateUtils.getYesterdayDateWithoutTime());;
+        task.getValue().setLastDate(DateUtils.getYesterdayDateWithoutTime());
         task.getValue().setCurrentStreak(0);
     }
 
@@ -146,7 +146,6 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
      * Helper function to check validity of inputs and
      * check if fields are not null, minute field can be left blank,
      * if minute field left blank set it to 0 by default
-     *
      *
      * @return true => if all inputs in {@link ConfigureTaskActivity} are not null and valid
      */
@@ -156,12 +155,12 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
             return false;
         }
 
-        if(task.getValue().getTime() == null ){
+        if (task.getValue().getTime() == null) {
             validationErrorMsg.setValue(mContext.getString(R.string.task_time_empty_error));
             return false;
         }
 
-        if(task.getValue().getLocation() == null || "".equals(task.getValue().getLocation())){
+        if (task.getValue().getLocation() == null || "".equals(task.getValue().getLocation())) {
             validationErrorMsg.setValue(mContext.getString(R.string.task_location_empty_error));
             return false;
         }
@@ -169,7 +168,9 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
         return true;
     }
 
-    /**========================================== Getters and setters =========================================**/
+    /**
+     * ========================================== Getters and setters =========================================
+     **/
 
     public LiveData<TaskEntity> getTask() {
         return task;
@@ -191,7 +192,7 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
      * Used to consume event only one time,
      * this will avoid firing of same event,
      * if configuration change
-     *
+     * <p>
      * but also if snackbar is visible and configuration change happen, it won't be shown
      */
     public void consumedErrorMessage() {

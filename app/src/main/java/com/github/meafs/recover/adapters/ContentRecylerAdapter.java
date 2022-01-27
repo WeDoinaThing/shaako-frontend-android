@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAdapter.ViewHolder> {
 
     private ArrayList<ContentModel> list = new ArrayList<>();
-    private Context context;
+    private final Context context;
     private FetchThumbnail fetchThumbnail;
 
     public ContentRecylerAdapter(ArrayList<ContentModel> list, Context context) {
@@ -76,10 +76,10 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private CardView cardView;
-        private ImageView imageView;
-        private TextView title;
-        private TextView details;
+        private final CardView cardView;
+        private final ImageView imageView;
+        private final TextView title;
+        private final TextView details;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

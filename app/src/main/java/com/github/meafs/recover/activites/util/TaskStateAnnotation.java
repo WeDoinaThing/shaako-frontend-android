@@ -31,7 +31,7 @@ public class TaskStateAnnotation {
     public static final int TASK_COMPLETED = 735; //task has been completed for this day
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({TASK_STOPPED,TASK_STARTED,TASK_PAUSED,TASK_RESUMED,TASK_COMPLETED})
+    @IntDef({TASK_STOPPED, TASK_STARTED, TASK_PAUSED, TASK_RESUMED, TASK_COMPLETED})
     public @interface TaskState {
     }
 }

@@ -1,10 +1,10 @@
 package com.github.meafs.recover.models;
 
 public class StaticRvModel {
-    private int image;
-    private String number;
-    private String text;
-    private String colorResource;
+    private final int image;
+    private final String number;
+    private final String text;
+    private final String colorResource;
 
     public StaticRvModel(int image, String number, String text, String colorResource) {
         this.image = image;

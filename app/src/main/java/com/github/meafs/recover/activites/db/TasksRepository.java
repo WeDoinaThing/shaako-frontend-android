@@ -33,7 +33,7 @@ import java.util.concurrent.Executor;
  * Repository handling the operation with tasks
  * This class act as in intermediate between ViewModel
  * and network/database layer
- * 
+ * <p>
  * TODO: 9/30/2018 Find how to correctly do database operation off the ui thread, and implement it
  * TODO: 9/30/2018 Implement other database operation, mentioned in {@link TasksDao}
  * FIXME: 16/10/2018 Remove all async task with a single entity(could be Executor)
@@ -42,7 +42,7 @@ public class TasksRepository {
 
     private static TasksRepository sInstance = null;
 
-    private TasksDao mTasksDao;
+    private final TasksDao mTasksDao;
     //To execute operation off the UI thread
     private Executor executor;
 
@@ -70,7 +70,7 @@ public class TasksRepository {
     /**
      * Gets tasks from local data source (SQLite)
      */
-    public LiveData<List<TaskEntity>> getTasks(){
+    public LiveData<List<TaskEntity>> getTasks() {
         return mTasksDao.getTasks();
     }
 
@@ -80,7 +80,7 @@ public class TasksRepository {
      * @param taskId id of the task
      * @return single task wrapped in LiveData
      */
-    public LiveData<TaskEntity> getTaskById(int taskId){
+    public LiveData<TaskEntity> getTaskById(int taskId) {
         return mTasksDao.getTaskById(taskId);
     }
 
@@ -91,9 +91,28 @@ public class TasksRepository {
         new InsertAsyncTask(mTasksDao).execute(task);
     }
 
+    /**
+     * Update the list of task
+     */
+    public void updateTasks(TaskEntity... tasks) {
+        new UpdateAllAsyncTask(mTasksDao).execute(tasks);
+    }
+
+    public void incrementStreak(int taskId, Date currentDate) {
+        new IncrementStreakAsyncTask(mTasksDao).execute(new TaskEntity(taskId, "", "", 0, false, null, currentDate));
+
+    }
+
+    /**
+     * Delete a task given task id
+     */
+    public void deleteTask(TaskEntity task) {
+        new DeleteTaskAsyncTask(mTasksDao).execute(task);
+    }
+
     private static class InsertAsyncTask extends AsyncTask<TaskEntity, Void, Void> {
 
-        private TasksDao mAsyncTasksDao;
+        private final TasksDao mAsyncTasksDao;
 
         InsertAsyncTask(TasksDao dao) {
             mAsyncTasksDao = dao;
@@ -107,16 +126,9 @@ public class TasksRepository {
         }
     }
 
-    /**
-     * Update the list of task
-     */
-    public void updateTasks(TaskEntity... tasks) {
-        new UpdateAllAsyncTask(mTasksDao).execute(tasks);
-    }
-
     private static class UpdateAllAsyncTask extends AsyncTask<TaskEntity, Void, Void> {
 
-        private TasksDao mAsyncTasksDao;
+        private final TasksDao mAsyncTasksDao;
 
         UpdateAllAsyncTask(TasksDao dao) {
             mAsyncTasksDao = dao;
@@ -130,13 +142,9 @@ public class TasksRepository {
         }
     }
 
-    public void incrementStreak(int taskId, Date currentDate) {
-        new IncrementStreakAsyncTask(mTasksDao).execute(new TaskEntity(taskId,"","",0,false,null,currentDate));
-
-    }
     private static class IncrementStreakAsyncTask extends AsyncTask<TaskEntity, Void, Void> {
 
-        private TasksDao mAsyncTasksDao;
+        private final TasksDao mAsyncTasksDao;
 
         IncrementStreakAsyncTask(TasksDao dao) {
             mAsyncTasksDao = dao;
@@ -145,21 +153,14 @@ public class TasksRepository {
 
         @Override
         protected Void doInBackground(TaskEntity... tasks) {
-            mAsyncTasksDao.incrementStreak(tasks[0].getId(),tasks[0].getLastDate());
+            mAsyncTasksDao.incrementStreak(tasks[0].getId(), tasks[0].getLastDate());
             return null;
         }
     }
 
-    /**
-     * Delete a task given task id
-     */
-    public void deleteTask(TaskEntity task){
-        new DeleteTaskAsyncTask(mTasksDao).execute(task);
-    }
-
     private static class DeleteTaskAsyncTask extends AsyncTask<TaskEntity, Void, Void> {
 
-        private TasksDao mAsyncTasksDao;
+        private final TasksDao mAsyncTasksDao;
 
         DeleteTaskAsyncTask(TasksDao dao) {
             mAsyncTasksDao = dao;

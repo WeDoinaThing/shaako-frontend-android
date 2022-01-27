@@ -96,7 +96,7 @@ public class UserFragment extends Fragment {
             }
         });
         ArrayList<StaticRvModel> item = new ArrayList<>();
-        item.add(new StaticRvModel(R.drawable.coursefin, "69", "courses finished","#3498DB"));
+        item.add(new StaticRvModel(R.drawable.coursefin, "69", "courses finished", "#3498DB"));
         item.add(new StaticRvModel(R.drawable.score, "100", "points earned", "#E74C3C"));
         item.add(new StaticRvModel(R.drawable.schedule, "5", "scheduled appointment", "#F39C12"));
         item.add(new StaticRvModel(R.drawable.success, "56%", "of monthly target met", "#1ABC9C"));

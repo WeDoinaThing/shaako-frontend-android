@@ -75,7 +75,7 @@ public interface TasksDao {
     /**
      * Increment the streak by 1 and set lastDate to be current date, and reset elapsed time to be zero for next day
      *
-     * @param taskId    id of the task
+     * @param taskId      id of the task
      * @param currentDate today's date
      */
     @Query("UPDATE tasks SET currentStreak = currentStreak + 1, lastDate = :currentDate, elapsedTimeInMilliSeconds = 0 WHERE id = :taskId")

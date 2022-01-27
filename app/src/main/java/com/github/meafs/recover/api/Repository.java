@@ -20,8 +20,8 @@ public class Repository {
     public static final String Base_URL = "http://194.163.148.43/";
     private final MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<CHWModel> userResponceLiveData = new MutableLiveData();
-    private ApiService apiService;
-    private String authtoken;
+    private final ApiService apiService;
+    private final String authtoken;
 
 
     public Repository(String authToken) {

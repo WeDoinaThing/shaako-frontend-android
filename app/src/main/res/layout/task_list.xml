@@ -9,5 +9,5 @@
     android:paddingTop="@dimen/list_gutter"
     android:paddingBottom="@dimen/fab_height"
     android:scrollbarStyle="outsideOverlay"
-    tools:context=".ui.task_list.TaskListActivity"
+    tools:context=".activites.ui.task_list.TaskListActivity"
     tools:listitem="@layout/task_list_content" />

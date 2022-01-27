@@ -20,7 +20,7 @@ public class CosmosDBRepository {
     public static final String DB_URI = "https://timaginecup-test.documents.azure.com/";
     private final MutableLiveData<List<Document>> patientResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> addPatientResponceLiveData = new MutableLiveData<>();
-    private ApiService apiService;
+    private final ApiService apiService;
     private String authString;
 
     public CosmosDBRepository() {

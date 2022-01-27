@@ -5,10 +5,10 @@ import android.content.Context;
 import androidx.appcompat.app.AlertDialog;
 
 public class Alert {
-    private Context context;
-    private String alertMessage;
-    private String accept;
-    private String deny;
+    private final Context context;
+    private final String alertMessage;
+    private final String accept;
+    private final String deny;
     private AlertDialog.Builder alertBuilder;
 
     public Alert(Context context, String alertMessage, String accept, String deny) {

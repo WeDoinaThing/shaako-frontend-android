@@ -43,31 +43,31 @@ public final class NotificationUtils {
     private NotificationUtils() {
     }
 
-    public static void scheduleAlarmToTriggerNotification(Context context, TaskEntity taskEntity){
+    public static void scheduleAlarmToTriggerNotification(Context context, TaskEntity taskEntity) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        if(alarmManager == null) return;
+        if (alarmManager == null) return;
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(taskEntity.getTime());
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, createPendingIntentForAlarm(context,taskEntity));
+                AlarmManager.INTERVAL_DAY, createPendingIntentForAlarm(context, taskEntity));
     }
 
-    public static void cancelAlarmToTriggerNotification(Context context, TaskEntity taskEntity){
+    public static void cancelAlarmToTriggerNotification(Context context, TaskEntity taskEntity) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager!= null) {
-            alarmManager.cancel(createPendingIntentForAlarm(context,taskEntity));
+        if (alarmManager != null) {
+            alarmManager.cancel(createPendingIntentForAlarm(context, taskEntity));
         }
     }
 
 
-    private static PendingIntent createPendingIntentForAlarm(Context context, TaskEntity taskEntity){
+    private static PendingIntent createPendingIntentForAlarm(Context context, TaskEntity taskEntity) {
         Intent intent = new Intent(context.getApplicationContext(), NotificationPublisher.class);
         intent.putExtra(NotificationPublisher.NOTIFICATION_ID, taskEntity.getId());
-        intent.putExtra(NotificationPublisher.NOTIFICATION, generateNotification(context,taskEntity));
+        intent.putExtra(NotificationPublisher.NOTIFICATION, generateNotification(context, taskEntity));
         return PendingIntent.getBroadcast(
                 context.getApplicationContext(), taskEntity.getId(), intent, 0);
     }
@@ -106,7 +106,7 @@ public final class NotificationUtils {
         // 3. Set up main Intent for notification.
         Intent detailActivity = new Intent(context, ConfigureTaskActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putInt("item_id",taskEntity.getId());
+        bundle.putInt("item_id", taskEntity.getId());
         detailActivity.putExtras(bundle);
         detailActivity.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

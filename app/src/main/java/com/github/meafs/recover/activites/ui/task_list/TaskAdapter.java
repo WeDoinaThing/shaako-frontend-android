@@ -39,8 +39,6 @@ import java.util.List;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private final TaskListActivity mParentActivity;
-    private List<TaskEntity> mValues;
-    private int[] backgrounds;
     private final View.OnClickListener mOnClickListener = view -> {
         Task item = (TaskEntity) view.getTag();
 
@@ -51,6 +49,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         context.startActivity(intent);
 
     };
+    private final List<TaskEntity> mValues;
+    private final int[] backgrounds;
 
     public TaskAdapter(TaskListActivity parent,
                        List<TaskEntity> items) {
@@ -98,6 +98,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         return mValues != null ? mValues.size() : 0;
     }
 
+    /**
+     * replace current taskList with new list
+     * <p>
+     * TODO : Find effective way to replace content of recyclerview , Use DiffUtil
+     */
+    public void setData(List<TaskEntity> taskList) {
+        if (taskList == null) return;
+
+        mValues.clear();
+        mValues.addAll(taskList);
+        this.notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView mTitleTextView;
         final TextView mStreakTextView;
@@ -120,18 +133,5 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         public void onClick(View v) {
             mParentActivity.convertTextToSpeech((String) soundImageButton.getTag());
         }
-    }
-
-    /**
-     * replace current taskList with new list
-     * <p>
-     * TODO : Find effective way to replace content of recyclerview , Use DiffUtil
-     */
-    public void setData(List<TaskEntity> taskList) {
-        if (taskList == null) return;
-
-        mValues.clear();
-        mValues.addAll(taskList);
-        this.notifyDataSetChanged();
     }
 }

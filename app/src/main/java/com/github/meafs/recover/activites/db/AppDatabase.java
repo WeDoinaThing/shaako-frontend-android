@@ -36,11 +36,9 @@ import com.github.meafs.recover.activites.db.entity.TaskEntity;
 @TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static AppDatabase INSTANCE;
-
-    private static final String DATABASE_NAME ="streak_db";
-
+    private static final String DATABASE_NAME = "streak_db";
     private static final Object sLock = new Object();
+    private static AppDatabase INSTANCE;
 
     public static AppDatabase getInstance(Context context) {
         synchronized (sLock) {

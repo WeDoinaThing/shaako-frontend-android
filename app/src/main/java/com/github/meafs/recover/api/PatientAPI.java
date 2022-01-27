@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.util.Base64;
 
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -12,10 +13,10 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public class PatientAPI {
-    private static String key = "xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==";
-    private String databaseId;
-    private String containerId;
-    private String method;
+    private static final String key = "xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==";
+    private final String databaseId;
+    private final String containerId;
+    private final String method;
 
     public PatientAPI(String databaseId, String containerId, String method) {
         this.databaseId = databaseId;
@@ -50,7 +51,7 @@ public class PatientAPI {
         Mac mac = Mac.getInstance("HMACSHA256");
         mac.init(new SecretKeySpec(masterKeyBytes, "HMACSHA256"));
 
-        String signature = Base64.encodeToString(mac.doFinal(getStirngToSign().toLowerCase().getBytes("UTF-8")), Base64.NO_WRAP);
+        String signature = Base64.encodeToString(mac.doFinal(getStirngToSign().toLowerCase().getBytes(StandardCharsets.UTF_8)), Base64.NO_WRAP);
 
         String authHeader = URLEncoder.encode("type=master&ver=1.0&sig=" + signature, "UTF-8");
 

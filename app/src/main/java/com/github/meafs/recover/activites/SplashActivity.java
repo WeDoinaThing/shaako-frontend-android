@@ -23,7 +23,6 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        ;
 
         SharedPreferences pref = getSharedPreferences("CHW", Context.MODE_PRIVATE);
 

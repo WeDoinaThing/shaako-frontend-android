@@ -38,11 +38,11 @@ public class NotificationBootReceiver extends BroadcastReceiver {
 
             List<TaskEntity> tasks = repository.getTasks().getValue();
 
-            if(tasks == null) return;
+            if (tasks == null) return;
 
             for (TaskEntity task : tasks) {
-                if(task.isShowNotification()){
-                    NotificationUtils.scheduleAlarmToTriggerNotification(context,task);
+                if (task.isShowNotification()) {
+                    NotificationUtils.scheduleAlarmToTriggerNotification(context, task);
                 }
             }
         }

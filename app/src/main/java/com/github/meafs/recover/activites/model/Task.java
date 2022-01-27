@@ -98,7 +98,6 @@ public interface Task {
      * Return elapsed time, if user started the task, and pause it and close the task,
      * it will be only valid if lastDate will be equal to yesterday date,
      * which means the value stored in elapseTime is of today's progress
-     *
      */
     long getElapsedTimeInMilliSeconds();
 

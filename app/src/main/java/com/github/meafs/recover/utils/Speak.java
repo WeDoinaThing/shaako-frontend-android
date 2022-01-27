@@ -5,7 +5,7 @@ import android.speech.tts.TextToSpeech;
 
 
 public class Speak {
-    private Context context;
+    private final Context context;
     private Speak tts;
 
     public Speak(Context context) {

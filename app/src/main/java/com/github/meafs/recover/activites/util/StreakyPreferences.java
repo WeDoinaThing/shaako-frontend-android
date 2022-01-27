@@ -34,7 +34,9 @@ public class StreakyPreferences {
     public static int getNextUniqueId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         int id = sharedPreferences.getInt(PREFERENCE_LAST_UNIQUE_ID, 0) + 1;
-        if (id == Integer.MAX_VALUE) { id = 0; }
+        if (id == Integer.MAX_VALUE) {
+            id = 0;
+        }
         sharedPreferences.edit().putInt(PREFERENCE_LAST_UNIQUE_ID, id).apply();
         return id;
     }
