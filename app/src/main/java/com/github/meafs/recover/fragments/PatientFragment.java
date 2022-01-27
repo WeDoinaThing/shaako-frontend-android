@@ -1,5 +1,6 @@
 package com.github.meafs.recover.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.AddPatientActivity;
 import com.github.meafs.recover.adapters.PatientRvAdapter;
 import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.viewmodels.PatientViewModel;
@@ -29,6 +32,7 @@ public class PatientFragment extends Fragment {
     private PatientViewModel patientViewModel;
     private ArrayList<Document> arrayList = new ArrayList<>();
     private ProgressBar progressBar;
+    private CardView cardView;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -63,6 +67,7 @@ public class PatientFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_patient, container, false);
         progressBar = view.findViewById(R.id.progressBar2);
+        cardView = view.findViewById(R.id.add_card1);
 
         patientRvAdapter = new PatientRvAdapter(getContext(), arrayList);
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
@@ -81,15 +86,18 @@ public class PatientFragment extends Fragment {
             }
         });
 
-//        ArrayList <PatientRvModel> item = new ArrayList<>();
-//        item.add(new PatientRvModel("nazia","ctg","high"));
-//        item.add(new PatientRvModel("pazia2","ctg2","high2"));
-//        item.add(new PatientRvModel("kazia3","ctg3","high3"));
-//        item.add(new PatientRvModel("hazia4","ctg4","high4"));
-
         recyclerView = view.findViewById(R.id.patient_rv_layout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(patientRvAdapter);
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(view.getContext(), AddPatientActivity.class);
+                mIntent.putExtra("size", String.valueOf(arrayList.size()));
+                startActivity(mIntent);
+            }
+        });
 
         return view;
     }
