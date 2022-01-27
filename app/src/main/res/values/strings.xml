@@ -63,6 +63,7 @@
     <string name="how_to_help">You can help us make this app better by sending any suggestion or feedback from the menu option in front screen. The app is open source on github and you can contribute there. <a href="https://github.com/alexakasanjeev/streak-counter">Github link</a></string>
     <string name="task_not_completed">Not done</string>
     <string name="task_completed">You\'re on fire today</string>
+    <string name="add_patient">Add Patient</string>
     <plurals name="numberOfMinute">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>

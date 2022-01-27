@@ -40,7 +40,7 @@ public class CosmosDBRepository {
 
 
     public void getPatientDataFromApi() {
-        PatientAPI patientAPI = new PatientAPI("imadatabaseid", "imcontainerid", "get");
+        PatientAPI patientAPI = new PatientAPI("newdatabaseid", "newcontainerid", "get");
         try {
             authString = patientAPI
                     .generateAuthHeader("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==");

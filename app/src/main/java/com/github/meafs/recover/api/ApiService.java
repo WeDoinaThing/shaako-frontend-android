@@ -29,7 +29,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @GET("dbs/imadatabaseid/colls/imcontainerid/docs")
+    @GET("dbs/newdatabaseid/colls/newcontainerid/docs")
     Call<PatientModel> getPatientData(@Header("Authorization") String token, @Header("x-ms-date") String date);
 
     // For search
@@ -37,7 +37,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/imadatabaseid/colls/imcontainerid/docs")
+    @POST("dbs/newdatabaseid/colls/newcontainerid/docs")
     Call<AddPatientModel> getIndividualPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Body String query);
 
     // For adding new user
