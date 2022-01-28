@@ -5,6 +5,9 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url 'https://jitpack.io' }
         jcenter()
+        maven {
+            url "https://atlas.microsoft.com/sdk/android"
+        }
     }
 }
 rootProject.name = "Recover"

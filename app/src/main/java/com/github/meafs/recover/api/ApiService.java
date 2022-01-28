@@ -3,6 +3,7 @@ package com.github.meafs.recover.api;
 import com.github.meafs.recover.models.AddPatientModel;
 import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.models.MapsResultModel;
 import com.github.meafs.recover.models.PatientModel;
 import com.google.gson.JsonObject;
 
@@ -48,4 +49,7 @@ public interface ApiService {
     })
     @POST("dbs/newdatabaseid/colls/newcontainerid/docs")
     Call<PatientModel> addPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Body JsonObject json);
+
+    @GET("search/poi/json?api-version=1.0&query=hospital&radius=100000")
+    Call<MapsResultModel> getHospitals(@Query("subscription-key") String authToken, @Query("lat") String Latitude, @Query("lon") String Longitude);
 }

@@ -134,9 +134,9 @@ public class AddPatientActivity extends AppCompatActivity {
                         public void onChanged(String s) {
                             if (s.equals("Done")) {
                                 System.out.println(s);
-                                Toast.makeText(getApplicationContext(), "Doneeee!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Error!!!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
