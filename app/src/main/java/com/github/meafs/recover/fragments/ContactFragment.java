@@ -6,6 +6,7 @@ import static com.azure.android.maps.control.options.PopupOptions.content;
 import static com.azure.android.maps.control.options.PopupOptions.position;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +14,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
-import com.azure.android.maps.control.AzureMap;
 import com.azure.android.maps.control.AzureMaps;
 import com.azure.android.maps.control.MapControl;
 import com.azure.android.maps.control.MapMath;
 import com.azure.android.maps.control.Popup;
 import com.azure.android.maps.control.data.Position;
 import com.azure.android.maps.control.events.OnFeatureClick;
-import com.azure.android.maps.control.events.OnReady;
 import com.azure.android.maps.control.layer.BubbleLayer;
 import com.azure.android.maps.control.options.AnchorType;
 import com.azure.android.maps.control.source.DataSource;
 import com.github.meafs.recover.R;
-import com.mapbox.geojson.Feature;
+import com.github.meafs.recover.models.LocationData;
+import com.github.meafs.recover.utils.PoiToFeature;
+import com.github.meafs.recover.viewmodels.MapsViewModel;
 import com.mapbox.geojson.Point;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +46,9 @@ public class ContactFragment extends Fragment {
         AzureMaps.setSubscriptionKey("qdC7dOIpHs7Hngg1ucQTfeQwVRV3km7lkoXpaK9xhEU");
     }
 
-    MapControl mapControl;
+    private MapControl mapControl;
+    private MapsViewModel mapsViewModel;
+    private ArrayList<LocationData> locdata = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -93,72 +101,71 @@ public class ContactFragment extends Fragment {
 
         mapControl = view.findViewById(R.id.mapcontrol);
 
-        //Create a data source and add it to the map.
-        DataSource source = new DataSource();
+        mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
+        mapsViewModel.init();
 
-//Create a point feature.
-        Feature feature = Feature.fromGeometry(Point.fromLngLat(-122.33, 47.64));
+        new Handler().postDelayed(() -> {
 
-//Add a property to the feature.
-        feature.addStringProperty("title", "Hello World!");
-        Feature feature2 = Feature.fromGeometry(Point.fromLngLat(-124.33, 49.64));
+            mapsViewModel.getLocationResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<LocationData>>() {
+                @Override
+                public void onChanged(List<LocationData> locationData) {
+                    locdata.addAll(locationData);
+                }
+            });
 
-//Add a property to the feature.
-        feature2.addStringProperty("title", "yes");
+            if (locdata.size() != 0) {
+                System.out.println(locdata.get(0).getPlaceName() + locdata.get(0).getLattitude() + locdata.get(0).getLongitude());
 
-//Create a point feature, pass in the metadata properties, and add it to the data source.
-        source.add(feature);
-        source.add(feature2);
+                DataSource source = new DataSource();
+
+                PoiToFeature poiToFeature = new PoiToFeature(locdata);
+
+                for (int i = 0; i < locdata.size(); i++) {
+                    source.add(poiToFeature.getFeature(i));
+                    System.out.println(poiToFeature.getFeature(i).toString());
+                }
+
+                mapControl.onCreate(savedInstanceState);
+                BubbleLayer layer = new BubbleLayer(source);
+                Popup popup = new Popup();
 
 
-        mapControl.onCreate(savedInstanceState);
-        BubbleLayer layer = new BubbleLayer(source);
-        Popup popup = new Popup();
+                mapControl.onReady(azureMap -> {
+                    azureMap.sources.add(source);
+                    azureMap.layers.add(layer);
+                    azureMap.popups.add(popup);
+
+                    azureMap.events.add((OnFeatureClick) (features) -> {
+
+                        View customView = LayoutInflater.from(view.getContext()).inflate(R.layout.popup_text, null);
 
 
-        mapControl.onReady(azureMap -> {
-            azureMap.sources.add(source);
-            azureMap.layers.add(layer);
-            azureMap.popups.add(popup);
+                        for (int i = 0; i < locdata.size(); i++) {
 
-            azureMap.events.add((OnFeatureClick) (features) -> {
-                //Retrieve the title property of the feature as a string.
-                String msg = features.get(0).getStringProperty("title");
+                            TextView tv = customView.findViewById(R.id.message);
+                            tv.setText(String.format("%s",
+                                    poiToFeature.getFeature(i).getStringProperty("title")
+                            ));
 
-                //Do something with the message.
+                            Position pos = MapMath.getPosition((Point) poiToFeature.getFeature(i).geometry());
 
-                View customView = LayoutInflater.from(view.getContext()).inflate(R.layout.popup_text, null);
+                            popup.setOptions(
+                                    position(pos),
+                                    anchor(AnchorType.BOTTOM),
+                                    content(customView)
+                            );
+                            popup.open();
+                        }
 
-                //Display the name and entity type information of the feature into the text view of the popup layout.
-                TextView tv = customView.findViewById(R.id.message);
-                tv.setText(String.format("%s",
-                        feature.getStringProperty("title")
-//                            feature.getStringProperty("EntityType")
-                ));
+                        return false;
+                    }, layer.getId());
 
-                //Get the position of the clicked feature.
-                Position pos = MapMath.getPosition((Point) feature.geometry());
+                });
 
-                //Set the options on the popup.
-                popup.setOptions(
-                        //Set the popups position.
-                        position(pos),
-
-                        //Set the anchor point of the popup content.
-                        anchor(AnchorType.BOTTOM),
-
-                        //Set the content of the popup.
-                        content(customView)
-                );
-
-                //Open the popup.
-                popup.open();
-
-                //Return a boolean indicating if event should be consumed or continue bubble up.
-                return false;
-            }, layer.getId());
-
-        });
+            } else {
+                Toast.makeText(view.getContext(), "Error!!", Toast.LENGTH_SHORT).show();
+            }
+        }, 10000);
 
         return view;
     }
