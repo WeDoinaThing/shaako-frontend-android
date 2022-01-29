@@ -1,5 +1,10 @@
 package com.github.meafs.recover.api;
 
+import static com.github.meafs.recover.utils.Constants.ContainerId;
+import static com.github.meafs.recover.utils.Constants.CosmosDBPrimaryKey;
+import static com.github.meafs.recover.utils.Constants.CosmosDBURI;
+import static com.github.meafs.recover.utils.Constants.DatabaseId;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,7 +22,6 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CosmosDBRepository {
-    public static final String DB_URI = "https://timaginecup-test.documents.azure.com/";
     private final MutableLiveData<List<Document>> patientResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> addPatientResponceLiveData = new MutableLiveData<>();
     private final ApiService apiService;
@@ -31,7 +35,7 @@ public class CosmosDBRepository {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         apiService = new retrofit2.Retrofit.Builder()
-                .baseUrl(DB_URI)
+                .baseUrl(CosmosDBURI)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
@@ -40,10 +44,10 @@ public class CosmosDBRepository {
 
 
     public void getPatientDataFromApi() {
-        PatientAPI patientAPI = new PatientAPI("newdatabaseid", "newcontainerid", "get");
+        PatientAPI patientAPI = new PatientAPI(DatabaseId, ContainerId, "get");
         try {
             authString = patientAPI
-                    .generateAuthHeader("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==");
+                    .generateAuthHeader(CosmosDBPrimaryKey);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,10 +70,10 @@ public class CosmosDBRepository {
     }
 
     public void postPatientDataFromApi(String partitionSize, JsonObject jsonObject) {
-        PatientAPI patientAPI = new PatientAPI("newdatabaseid", "newcontainerid", "post");
+        PatientAPI patientAPI = new PatientAPI(DatabaseId, ContainerId, "post");
         try {
             authString = patientAPI
-                    .generateAuthHeader("xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==");
+                    .generateAuthHeader(CosmosDBPrimaryKey);
         } catch (Exception e) {
             e.printStackTrace();
         }

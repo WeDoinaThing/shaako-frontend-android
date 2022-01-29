@@ -1,5 +1,8 @@
 package com.github.meafs.recover.api;
 
+import static com.github.meafs.recover.utils.Constants.ContainerId;
+import static com.github.meafs.recover.utils.Constants.DatabaseId;
+
 import com.github.meafs.recover.models.AddPatientModel;
 import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
@@ -30,7 +33,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @GET("dbs/newdatabaseid/colls/newcontainerid/docs")
+    @GET("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<PatientModel> getPatientData(@Header("Authorization") String token, @Header("x-ms-date") String date);
 
     // For search
@@ -38,16 +41,15 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/newdatabaseid/colls/newcontainerid/docs")
+    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<AddPatientModel> getIndividualPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Body String query);
 
     // For adding new user
     @Headers({
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
-//            "Content-Type: application/json"
     })
-    @POST("dbs/newdatabaseid/colls/newcontainerid/docs")
+    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<PatientModel> addPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Body JsonObject json);
 
     @GET("search/poi/json?api-version=1.0&query=hospital&radius=100000")
