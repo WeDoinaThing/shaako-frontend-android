@@ -1,5 +1,7 @@
 package com.github.meafs.recover.api;
 
+import static com.github.meafs.recover.utils.Constants.BackendURI;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -17,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Repository {
 
-    public static final String Base_URL = "http://194.163.148.43/";
     private final MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<CHWModel> userResponceLiveData = new MutableLiveData();
     private final ApiService apiService;
@@ -31,7 +32,7 @@ public class Repository {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         apiService = new retrofit2.Retrofit.Builder()
-                .baseUrl(Base_URL)
+                .baseUrl(BackendURI)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

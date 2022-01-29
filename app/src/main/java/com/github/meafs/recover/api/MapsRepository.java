@@ -1,5 +1,8 @@
 package com.github.meafs.recover.api;
 
+import static com.github.meafs.recover.utils.Constants.AzureMapsToken;
+import static com.github.meafs.recover.utils.Constants.AzureMapsURI;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -18,7 +21,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MapsRepository {
 
-    public static final String Base_URL = "https://atlas.microsoft.com/";
     private final ApiService apiService;
     private final MutableLiveData<List<LocationData>> locationLiveDataList = new MutableLiveData<>();
     private final MutableLiveData<LocationData> individualLocation = new MutableLiveData<>();
@@ -31,7 +33,7 @@ public class MapsRepository {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         apiService = new retrofit2.Retrofit.Builder()
-                .baseUrl(Base_URL)
+                .baseUrl(AzureMapsURI)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
@@ -39,7 +41,9 @@ public class MapsRepository {
     }
 
     public void getMapsData() {
-        apiService.getHospitals("qdC7dOIpHs7Hngg1ucQTfeQwVRV3km7lkoXpaK9xhEU", "24.8949", "91.8687").enqueue(new Callback<MapsResultModel>() {
+
+        // Provide lat and long from user location
+        apiService.getHospitals(AzureMapsToken, "24.8949", "91.8687").enqueue(new Callback<MapsResultModel>() {
             @Override
             public void onResponse(Call<MapsResultModel> call, Response<MapsResultModel> response) {
                 if (response.body() != null) {

@@ -1,9 +1,7 @@
 package com.github.meafs.recover.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.ContentActivity;
 import com.github.meafs.recover.activites.ui.task_list.TaskListActivity;
-import com.github.meafs.recover.activites.AddPatientActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
 import com.github.meafs.recover.models.StaticRvModel;
 

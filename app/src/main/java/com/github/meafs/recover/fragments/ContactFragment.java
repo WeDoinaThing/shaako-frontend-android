@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class ContactFragment extends Fragment {
     private MapControl mapControl;
     private MapsViewModel mapsViewModel;
     private ArrayList<LocationData> locdata = new ArrayList<>();
+    private ProgressBar progressBar;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -98,6 +100,7 @@ public class ContactFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
+        progressBar = view.findViewById(R.id.progressBar2);
 
         mapControl = view.findViewById(R.id.mapcontrol);
 
@@ -162,10 +165,12 @@ public class ContactFragment extends Fragment {
 
                 });
 
+                progressBar.setVisibility(View.GONE);
+
             } else {
                 Toast.makeText(view.getContext(), "Error!!", Toast.LENGTH_SHORT).show();
             }
-        }, 10000);
+        }, 3000);
 
         return view;
     }
