@@ -42,6 +42,9 @@ public class Document {
     @SerializedName("patient_history")
     @Expose
     private String patientHistory;
+    @SerializedName("contact")
+    @Expose
+    private String contact;
     @SerializedName("_rid")
     @Expose
     private String rid;
@@ -194,4 +197,11 @@ public class Document {
         this.ts = ts;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 }

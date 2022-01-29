@@ -53,6 +53,10 @@ public class PatientDetails extends AppCompatActivity {
             mAge.setText(String.valueOf(getAge(mBundle.getString("age"))));
             mWeight.setText(mBundle.getString("weight"));
             mSex.setText(getFirstLetter(mBundle.getString("sex")));
+
+            // TODO: Show contact
+//            mBundle.getString("contact");
+
 //            mEmailDetails.setText(mBundle.getString("details"));
 //            mEmailTime.setText(mBundle.getString("time"));
         }

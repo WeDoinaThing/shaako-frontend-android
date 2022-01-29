@@ -1,7 +1,5 @@
 package com.github.meafs.recover.activites;
 
-import static android.view.View.*;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -38,6 +35,7 @@ public class AddPatientActivity extends AppCompatActivity {
     private TextInputEditText name;
     private TextInputEditText dob;
     private TextInputEditText weight;
+    private TextInputEditText contact;
     private PatientViewModel patientViewModel;
     private final ArrayList<PatientModel> arrayList = new ArrayList<>();
     private String size;
@@ -56,6 +54,7 @@ public class AddPatientActivity extends AppCompatActivity {
         dob = findViewById(R.id.patietdate);
         weight = findViewById(R.id.patientWeight);
         button = findViewById(R.id.addPatient);
+        contact = findViewById(R.id.patientContact);
 
         Bundle mBundle = getIntent().getExtras();
         if (mBundle != null) {
@@ -117,12 +116,12 @@ public class AddPatientActivity extends AppCompatActivity {
         JsonObject jsonResult = new JsonObject();
 
         toolbar.setNavigationOnClickListener(
-                view-> redirectMain()
+                view -> redirectMain()
         );
 
         button.setOnClickListener(view -> {
 
-            if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText())) {
+            if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText()) && !TextUtils.isEmpty(contact.getText())) {
                 jsonResult.addProperty("id", String.valueOf(Integer.parseInt(size) + 1));
                 jsonResult.addProperty("added_by", CHWid);
                 jsonResult.addProperty("date_added", formatter.format(date));
@@ -135,6 +134,7 @@ public class AddPatientActivity extends AppCompatActivity {
                 jsonResult.addProperty("height", "optional patient height");
                 jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
                 jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
+                jsonResult.addProperty("contact", contact.getText().toString());
 
                 patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
                 patientViewModel.addPatientDone().observe(AddPatientActivity.this, new Observer<String>() {
@@ -163,9 +163,9 @@ public class AddPatientActivity extends AppCompatActivity {
         redirectMain();
     }
 
-    public void redirectMain(){
+    public void redirectMain() {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putExtra("redirect","Patient");
+        intent.putExtra("redirect", "Patient");
         startActivity(intent);
     }
 }

@@ -64,6 +64,7 @@
     <string name="task_not_completed">Not done</string>
     <string name="task_completed">You\'re on fire today</string>
     <string name="add_patient">Add Patient</string>
+    <string name="phone_number">Phone number</string>
     <plurals name="numberOfMinute">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
