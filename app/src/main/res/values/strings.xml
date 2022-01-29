@@ -11,9 +11,9 @@
     </string-array>
 
     <!--     Add translations later -->
-    <string name="user">CHW</string>
+    <string name="user">Dashboard</string>
     <string name="patient">Patient</string>
-    <string name="contact">Contact</string>
+    <string name="contact">Locate</string>
     <string name="base_url">Set it later</string>
     <string name="training_contents">Training Contents</string>
     <string name="title_activity_chwprofile">CHWProfileActivity</string>

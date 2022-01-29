@@ -29,8 +29,10 @@ public class PatientHistoryAdapter extends RecyclerView.Adapter<PatientHistoryAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final String history = history_list.get(position);
-        holder.historyDetails.setText(history.split("\\|")[0].trim());
-        holder.date.setText(history.split("\\|")[1].trim());
+        if(history.split("\\|").length>1) {
+            holder.historyDetails.setText(history.split("\\|")[0].trim());
+            holder.date.setText(history.split("\\|")[1].trim());
+        }
     }
 
     @Override

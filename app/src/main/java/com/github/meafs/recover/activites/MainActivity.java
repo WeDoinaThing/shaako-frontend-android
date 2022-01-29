@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             item -> {
                 bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_person_inactive);
                 bottomNavigation.getMenu().findItem(R.id.patient).setIcon(R.drawable.ic_outline_patient_add);
-                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_outline_contact);
+                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_map_inactive);
                 switch (item.getItemId()) {
                     case R.id.user:
                         openFragment(UserFragment.newInstance("", ""));
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.contact:
                         openFragment(ContactFragment.newInstance("", ""));
-                        item.setIcon(R.drawable.ic_contact);
+                        item.setIcon(R.drawable.ic_map_active);
                         return true;
                 }
                 return false;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 openFragment(UserFragment.newInstance("",""));
             }
             else if(getIntent().getStringExtra("redirect").equals("Contact")){
-                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_contact);
+                bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_map_active);
                 openFragment(ContactFragment.newInstance("",""));
             }
         } else{

@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.38385416666666666" />
         <entry key="../../.gradle/caches/transforms-3/ea030ec8957954f564a3b5a8ec794cd7/transformed/jetified-onboarder-1.0.4/res/drawable/rounded_button.xml" value="0.22239583333333332" />
+        <entry key="../../Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2328125" />
         <entry key="app/src/main/res/drawable/button_drawable_complementary.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.22239583333333332" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/layout/category_card.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/categoty_card.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/content_card.xml" value="0.20923913043478262" />
+        <entry key="app/src/main/res/layout/dropdown_menu_item.xml" value="2.111842105263158" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />

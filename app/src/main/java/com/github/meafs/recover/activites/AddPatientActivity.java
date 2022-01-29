@@ -7,8 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -72,10 +74,11 @@ public class AddPatientActivity extends AppCompatActivity {
         CHWRegion = pref.getString("chwRegion", "");
 
         System.out.println("Model: " + "Id: " + CHWid + "Region: " + CHWRegion);
-
         Spinner spinner1 = findViewById(R.id.weightspinner);
+
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.units, android.R.layout.simple_spinner_item);
+
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -91,22 +94,14 @@ public class AddPatientActivity extends AppCompatActivity {
             }
         });
 
-        Spinner spinner2 = findViewById(R.id.gender);
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.genders, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(adapter2);
-        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                sex = String.valueOf(adapterView.getItemAtPosition(i));
-                System.out.println(sex);
-            }
+        ArrayAdapter<CharSequence> sexAdapter = ArrayAdapter.createFromResource(this,
+                R.array.genders, R.layout.dropdown_menu_item);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.sex_dropdown);
+        autoCompleteTextView.setAdapter(sexAdapter);
 
-            }
+        autoCompleteTextView.setOnItemClickListener((adapterView, view, i, l) -> {
+                sex = (String) adapterView.getItemAtPosition(i);
         });
 
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
@@ -120,7 +115,6 @@ public class AddPatientActivity extends AppCompatActivity {
         );
 
         button.setOnClickListener(view -> {
-
             if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText()) && !TextUtils.isEmpty(contact.getText())) {
                 jsonResult.addProperty("id", String.valueOf(Integer.parseInt(size) + 1));
                 jsonResult.addProperty("added_by", CHWid);
@@ -152,8 +146,6 @@ public class AddPatientActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(AddPatientActivity.this, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
             }
-
-
         });
     }
 

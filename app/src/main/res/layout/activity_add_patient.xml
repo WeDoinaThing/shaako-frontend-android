@@ -72,7 +72,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="date"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:focusable="false"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,35 +100,36 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/lin1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
-            android:weightSum="6"
-            app:layout_constraintTop_toBottomOf="@+id/contact">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/lin1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:weightSum="6"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/contact">-->
 
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lin1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="2dp"
-                android:layout_weight="4"
-                android:text="Sex:"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/gender"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="2" />
-        </LinearLayout>
+                android:hint="Sex"
+                app:startIconDrawable="@drawable/ic_sex"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/contact"
+                >
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/sex_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:id="@+id/lin2"
