@@ -96,4 +96,9 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/colorAccentTransparent</item>
     </style>
+
+    <style name="ShapeAppearanceOverlayExtended" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
 </resources>

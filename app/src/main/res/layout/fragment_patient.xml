@@ -1,68 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.PatientFragment">
 
-    <ScrollView
+    <RelativeLayout
+        android:id="@+id/patient_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fab_background"
+            android:backgroundTint="@color/lighterSecondaryColor"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/lightSecondaryColor"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Monthly Statistics"
+                    android:textColor="@color/black"
+                    android:textFontWeight="500"
+                    android:textSize="24sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Visited"
+                        android:textColor="@color/grey"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/visited_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="--"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="600"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Schedules Met"
+                        android:textColor="@color/grey"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/scheduled_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="--"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="600"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Total"
+                        android:textColor="@color/grey"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/patient_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="--"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="600"
+                        android:textSize="40sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@id/patient_dashboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <RelativeLayout
             android:id="@+id/dashbottom"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/scroll_stats"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-
             >
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/add_card1"
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="50dp"
-                app:cardPreventCornerOverlap="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/gradient_1"
-                    android:minHeight="100dp"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:id="@+id/textViewSub1Title"
-                        style="@style/viewParent.headerText.HomeCardTitle"
-                        android:layout_marginStart="10dp"
-                        android:text="Add Patient" />
-
-                    <TextView
-                        style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_below="@id/textViewSub1Title"
-                        android:layout_centerVertical="true"
-                        android:text="Register a new patient!" />
-
-                    <ImageView
-                        style="@style/homeCardImage"
-                        android:maxHeight="70dp"
-                        android:src="@drawable/addpatient" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:id="@+id/pSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/add_card1"
-                android:background="@drawable/search_bg">
-
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/fab_background"
+                android:backgroundTint="@color/grey_200"
+                android:paddingVertical="8dp">
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -71,55 +161,69 @@
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/search_img" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/search_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="55dp"
-                    android:text="Search"
+                    android:background="@null"
+                    android:fontFamily="@font/nunito"
+                    android:hint="Search"
                     android:textColor="#03082b"
-                    android:textSize="18dp" />
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/arrow_bottom" />
-
+                    android:textSize="18sp" />
             </RelativeLayout>
-
             <ScrollView
                 android:id="@+id/patients_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/pSearch">
-
+                android:layout_below="@id/pSearch"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
                     <ProgressBar
                         android:id="@+id/progressBar2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/patient_rv_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
+                        android:paddingBottom="64dp"
                         android:layout_marginEnd="10dp"
                         app:layout_constraintVertical_bias="0" />
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
-    </ScrollView>
-
-</FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:elevation="0dp"
+        app:elevation="0dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/add_card1"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:backgroundTint="@color/secondaryColor"
+            android:shadowRadius="0"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            android:textFontWeight="700"
+            android:text="Add Patient"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_add"/>
+    </LinearLayout>
+</RelativeLayout>

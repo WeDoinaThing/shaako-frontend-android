@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -94,7 +96,7 @@ class PatientRvViewHolder extends RecyclerView.ViewHolder {
     TextView mArea;
     TextView mPriority;
     ImageView mFire;
-    RelativeLayout rv_layout;
+    ConstraintLayout rv_layout;
 
     PatientRvViewHolder(View itemView) {
         super(itemView);

@@ -7,11 +7,11 @@
     <item
         android:id="@+id/patient"
         android:enabled="true"
-        android:icon="@drawable/ic_outline_person_add"
+        android:icon="@drawable/ic_outline_patient_add"
         android:title="@string/patient" />
     <item
         android:id="@+id/contact"
         android:enabled="true"
-        android:icon="@drawable/ic_contact"
+        android:icon="@drawable/ic_outline_contact"
         android:title="@string/contact" />
 </menu>
