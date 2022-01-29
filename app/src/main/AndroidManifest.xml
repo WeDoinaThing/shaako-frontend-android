@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.SymptomScreen"
+            android:exported="false" />
+        <activity
+            android:name=".activites.DiseaseScreeningActivity"
+            android:exported="false" />
+        <activity
             android:name=".activites.AddPatientActivity"
             android:exported="true" />
         <activity
@@ -53,12 +59,15 @@
         <activity
             android:name=".activites.SettingActivity"
             android:exported="true" />
-        <activity android:name=".activites.ui.task_list.TaskListActivity"
-            android:exported="true"/>
-        <activity android:name=".activites.ui.configure_task.ConfigureTaskActivity"
-            android:exported="true"/>
-        <activity android:name=".activites.ui.detail_task.TaskDetailActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".activites.ui.task_list.TaskListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activites.ui.configure_task.ConfigureTaskActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activites.ui.detail_task.TaskDetailActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

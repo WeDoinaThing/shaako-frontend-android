@@ -24,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CosmosDBRepository {
     private final MutableLiveData<List<Document>> patientResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<String> addPatientResponceLiveData = new MutableLiveData<>();
+    private final MutableLiveData<String> addDiseaseResponceLiveData = new MutableLiveData<>();
     private final ApiService apiService;
     private String authString;
 
@@ -95,6 +96,33 @@ public class CosmosDBRepository {
         });
     }
 
+    public void addDiseaseScreenData(String partitionKey, String id, JsonObject jsonObject) {
+        PatientAPI patientAPI = new PatientAPI(DatabaseId, ContainerId, "patch");
+        try {
+            authString = patientAPI
+                    .generateAuthHeader(CosmosDBPrimaryKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        apiService.diseaseScreen(authString, patientAPI.getDate(), partitionKey, id, jsonObject).enqueue(new Callback<Document>() {
+            @Override
+            public void onResponse(Call<Document> call, Response<Document> response) {
+                if (response.body() != null && response.code() == 201) {
+                    addDiseaseResponceLiveData.postValue("Done");
+                } else {
+                    addDiseaseResponceLiveData.postValue("Failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Document> call, Throwable t) {
+                addDiseaseResponceLiveData.postValue(null);
+            }
+        });
+
+    }
+
 
     public LiveData<List<Document>> getPatientResponseLiveData() {
         return patientResponceLiveData;
@@ -103,5 +131,10 @@ public class CosmosDBRepository {
     public LiveData<String> addPatientResponseLiveData() {
         return addPatientResponceLiveData;
     }
+
+    public LiveData<String> addDiseaseResponseLiveData() {
+        return addDiseaseResponceLiveData;
+    }
+
 
 }

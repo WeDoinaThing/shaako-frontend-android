@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.activites.SymptomScreen;
 import com.github.meafs.recover.activites.ui.task_list.TaskListActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
 import com.github.meafs.recover.models.StaticRvModel;
@@ -83,7 +84,7 @@ public class UserFragment extends Fragment {
         trainingContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), ContentActivity.class));
+                startActivity(new Intent(getContext(), SymptomScreen.class));
             }
         });
         dummbutton.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,7 @@ import static com.github.meafs.recover.utils.Constants.DatabaseId;
 import com.github.meafs.recover.models.AddPatientModel;
 import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.models.MapsResultModel;
 import com.github.meafs.recover.models.PatientModel;
 import com.google.gson.JsonObject;
@@ -17,7 +18,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -41,7 +44,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
+    @POST("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<AddPatientModel> getIndividualPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Body String query);
 
     // For adding new user
@@ -49,9 +52,17 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
+    @POST("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<PatientModel> addPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Body JsonObject json);
 
     @GET("search/poi/json?api-version=1.0&query=hospital&radius=100000")
     Call<MapsResultModel> getHospitals(@Query("subscription-key") String authToken, @Query("lat") String Latitude, @Query("lon") String Longitude);
+
+    @Headers({
+            "Accept: application/json",
+            "x-ms-version: 2018-12-31",
+            "Content-Type: application/json_patch+json"
+    })
+    @PATCH("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs/{id}")
+    Call<Document> diseaseScreen(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Path("id") String id, @Body JsonObject json);
 }
