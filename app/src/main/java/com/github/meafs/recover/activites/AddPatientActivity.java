@@ -1,7 +1,10 @@
 package com.github.meafs.recover.activites;
 
+import static android.view.View.*;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -19,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.PatientModel;
 import com.github.meafs.recover.viewmodels.PatientViewModel;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.JsonObject;
 
@@ -39,12 +44,14 @@ public class AddPatientActivity extends AppCompatActivity {
     private Button button;
     private String CHWid;
     private String CHWRegion;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_patient);
 
+        toolbar = findViewById(R.id.toolbar);
         name = findViewById(R.id.patientName);
         dob = findViewById(R.id.patietdate);
         weight = findViewById(R.id.patientWeight);
@@ -109,43 +116,56 @@ public class AddPatientActivity extends AppCompatActivity {
 
         JsonObject jsonResult = new JsonObject();
 
+        toolbar.setNavigationOnClickListener(
+                view-> redirectMain()
+        );
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        button.setOnClickListener(view -> {
 
-                if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText())) {
-                    jsonResult.addProperty("id", String.valueOf(Integer.parseInt(size) + 1));
-                    jsonResult.addProperty("added_by", CHWid);
-                    jsonResult.addProperty("date_added", formatter.format(date));
-                    jsonResult.addProperty("region", CHWRegion);
-                    jsonResult.addProperty("name", name.getText().toString());
-                    jsonResult.addProperty("sex", sex);
-                    jsonResult.addProperty("dob", dob.getText().toString());
-                    jsonResult.addProperty("bgroup", "optional blood group info");
-                    jsonResult.addProperty("weight", weight.getText().toString() + unit);
-                    jsonResult.addProperty("height", "optional patient height");
-                    jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
-                    jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
+            if (size != null && !TextUtils.isEmpty(name.getText()) && !TextUtils.isEmpty(dob.getText()) && !TextUtils.isEmpty(weight.getText())) {
+                jsonResult.addProperty("id", String.valueOf(Integer.parseInt(size) + 1));
+                jsonResult.addProperty("added_by", CHWid);
+                jsonResult.addProperty("date_added", formatter.format(date));
+                jsonResult.addProperty("region", CHWRegion);
+                jsonResult.addProperty("name", name.getText().toString());
+                jsonResult.addProperty("sex", sex);
+                jsonResult.addProperty("dob", dob.getText().toString());
+                jsonResult.addProperty("bgroup", "optional blood group info");
+                jsonResult.addProperty("weight", weight.getText().toString() + unit);
+                jsonResult.addProperty("height", "optional patient height");
+                jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
+                jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
 
-                    patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
-                    patientViewModel.addPatientDone().observe(AddPatientActivity.this, new Observer<String>() {
-                        @Override
-                        public void onChanged(String s) {
-                            if (s.equals("Done")) {
-                                System.out.println(s);
-                                Toast.makeText(getApplicationContext(), "Done!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
-                            }
+                patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
+                patientViewModel.addPatientDone().observe(AddPatientActivity.this, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        if (s.equals("Done")) {
+                            System.out.println(s);
+                            Toast.makeText(getApplicationContext(), "Patient Added.", Toast.LENGTH_SHORT).show();
+                            redirectMain();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
                         }
-                    });
-                } else {
-                    Toast.makeText(AddPatientActivity.this, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
-                }
-
-
+                    }
+                });
+            } else {
+                Toast.makeText(AddPatientActivity.this, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
             }
+
+
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        redirectMain();
+    }
+
+    public void redirectMain(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("redirect","Patient");
+        startActivity(intent);
     }
 }
