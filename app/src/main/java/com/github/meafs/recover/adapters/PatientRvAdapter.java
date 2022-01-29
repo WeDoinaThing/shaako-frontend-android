@@ -77,6 +77,8 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
                 mIntent.putExtra("sex", pData.get(position).getSex());
                 mIntent.putExtra("icon", holder.mIcon.getText().toString());
                 mIntent.putExtra("colorIcon", color);
+                mIntent.putExtra("comorbidity", pData.get(position).getComorbidity());
+                mIntent.putExtra("history", pData.get(position).getPatientHistory());
                 mContext.startActivity(mIntent);
             }
         });
