@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.models.QuizModel;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class Repository {
 
     private final MutableLiveData<List<ContentModel>> contentResponceLiveData = new MutableLiveData<>();
     private final MutableLiveData<CHWModel> userResponceLiveData = new MutableLiveData();
+    private final MutableLiveData<List<QuizModel>> quizResponceLiveData = new MutableLiveData();
     private final ApiService apiService;
     private final String authtoken;
 
@@ -79,8 +81,25 @@ public class Repository {
                 });
     }
 
-    public void getPatientData() {
+    public void getQuizData() {
+        apiService.getQuiz(authtoken).enqueue(new Callback<List<QuizModel>>() {
+            @Override
+            public void onResponse(Call<List<QuizModel>> call, Response<List<QuizModel>> response) {
+                if (response.body() != null && response.code() == 200) {
+                    quizResponceLiveData.postValue(response.body());
+                    System.out.println(response.body());
+                } else {
+                    quizResponceLiveData.postValue(null);
+                    System.out.println("Null");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<QuizModel>> call, Throwable t) {
+                quizResponceLiveData.postValue(null);
+                System.out.println("Failed");
+            }
+        });
     }
 
 
@@ -90,5 +109,9 @@ public class Repository {
 
     public LiveData<CHWModel> getUserLiveData() {
         return userResponceLiveData;
+    }
+
+    public LiveData<List<QuizModel>> getQuizList() {
+        return quizResponceLiveData;
     }
 }

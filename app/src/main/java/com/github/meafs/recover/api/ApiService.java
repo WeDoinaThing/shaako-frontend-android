@@ -8,6 +8,7 @@ import com.github.meafs.recover.models.CHWModel;
 import com.github.meafs.recover.models.ContentModel;
 import com.github.meafs.recover.models.MapsResultModel;
 import com.github.meafs.recover.models.PatientModel;
+import com.github.meafs.recover.models.QuizModel;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -28,6 +29,9 @@ public interface ApiService {
     @GET("/ngo_admin/verify_access_token")
     Call<CHWModel> getUser(@Query("token") String authToken);
 
+    @GET("/ngo_admin/get_quiz")
+    Call<List<QuizModel>> getQuiz(@Query("token") String authToken);
+
     // Set headers
     @Headers({
             "Accept: application/json",
@@ -41,7 +45,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
+    @POST("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<AddPatientModel> getIndividualPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Body String query);
 
     // For adding new user
@@ -49,7 +53,7 @@ public interface ApiService {
             "Accept: application/json",
             "x-ms-version: 2018-12-31",
     })
-    @POST("dbs/"+ DatabaseId + "/colls/" + ContainerId + "/docs")
+    @POST("dbs/" + DatabaseId + "/colls/" + ContainerId + "/docs")
     Call<PatientModel> addPatient(@Header("Authorization") String token, @Header("x-ms-date") String date, @Header("x-ms-documentdb-partitionkey") String partitionKey, @Body JsonObject json);
 
     @GET("search/poi/json?api-version=1.0&query=hospital&radius=100000")
