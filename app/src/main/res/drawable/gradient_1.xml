@@ -27,10 +27,8 @@
     <!-- Teal love : linear-gradient(to right, #aaffa9, #11ffbd);-->
     <!-- Ash :  linear-gradient(to right, #606c88, #3f4c6b);-->
     <gradient
-        android:angle="180"
-        android:endColor="#FBAB7E"
-        android:startColor="#F7CE68"
+        android:angle="270"
+        android:endColor="#ffffff"
+        android:startColor="@color/lightSecondaryColor"
         android:type="linear" />
-
-    <corners android:radius="10dp"/>
 </shape>
