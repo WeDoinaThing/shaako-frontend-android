@@ -5,6 +5,7 @@ import static com.azure.android.maps.control.options.PopupOptions.anchor;
 import static com.azure.android.maps.control.options.PopupOptions.content;
 import static com.azure.android.maps.control.options.PopupOptions.position;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -94,6 +95,7 @@ public class ContactFragment extends Fragment {
         }
     }
 
+    @SuppressLint("FragmentLiveDataObserve")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -109,7 +111,7 @@ public class ContactFragment extends Fragment {
 
         new Handler().postDelayed(() -> {
 
-            mapsViewModel.getLocationResponseLiveData().observe(getViewLifecycleOwner(), new Observer<List<LocationData>>() {
+            mapsViewModel.getLocationResponseLiveData().observe(this, new Observer<List<LocationData>>() {
                 @Override
                 public void onChanged(List<LocationData> locationData) {
                     locdata.addAll(locationData);
@@ -168,10 +170,20 @@ public class ContactFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
 
             } else {
-                Toast.makeText(view.getContext(), "Error!!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(view.getContext(), "Error!!", Toast.LENGTH_SHORT).show();
+                System.out.println("Error!!");
             }
-        }, 3000);
+        }, 5000);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mapControl != null) {
+            mapControl.onDestroy();
+        }
+        super.onDestroy();
+
     }
 }
