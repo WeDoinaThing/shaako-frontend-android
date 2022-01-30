@@ -23,7 +23,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-<!--    ADDED FOR NOTIF SCHEDULE STUFF-->
+    <!--    ADDED FOR NOTIF SCHEDULE STUFF-->
     <string name="channel_name" translatable="false">@string/app_name</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -73,7 +73,6 @@
         <item quantity="one">You lost streak in</item>
         <item quantity="other">You lost streaks in</item>
     </plurals>
-
 
 
 </resources>

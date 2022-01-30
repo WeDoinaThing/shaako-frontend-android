@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.activites.QuizActivity;
 import com.github.meafs.recover.activites.ui.task_list.TaskListActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
 import com.github.meafs.recover.models.StaticRvModel;
@@ -36,6 +38,7 @@ public class UserFragment extends Fragment {
     private Button dummbutton;
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
+    private ConstraintLayout quizCardView;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -80,18 +83,13 @@ public class UserFragment extends Fragment {
         trainingContent = view.findViewById(R.id.train_card);
         quizcontent = view.findViewById(R.id.quizcard);
         dummbutton = view.findViewById(R.id.dummy);
-        trainingContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ContentActivity.class));
-            }
-        });
-        dummbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), TaskListActivity.class));
-            }
-        });
+
+        quizCardView = view.findViewById(R.id.quiz_card);
+
+        trainingContent.setOnClickListener(view1 -> startActivity(new Intent(getContext(), ContentActivity.class)));
+        dummbutton.setOnClickListener(view12 -> startActivity(new Intent(getContext(), TaskListActivity.class)));
+        quizCardView.setOnClickListener(view2 -> startActivity(new Intent(getContext(), QuizActivity.class)));
+
         ArrayList<StaticRvModel> item = new ArrayList<>();
         item.add(new StaticRvModel(R.drawable.coursefin, "69", "courses finished", "#3498DB"));
         item.add(new StaticRvModel(R.drawable.score, "100", "points earned", "#E74C3C"));
