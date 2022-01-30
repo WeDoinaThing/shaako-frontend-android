@@ -11,6 +11,7 @@ import com.github.meafs.recover.R;
 import com.github.meafs.recover.fragments.ContactFragment;
 import com.github.meafs.recover.fragments.PatientFragment;
 import com.github.meafs.recover.fragments.UserFragment;
+import com.github.meafs.recover.utils.FontHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        FontHelper.adjustFontScale(MainActivity.this, getResources().getConfiguration());
         bottomNavigation = findViewById(R.id.bottomNavigationView);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         redirect();
@@ -53,25 +55,24 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    public void redirect(){
-        if(getIntent().hasExtra("redirect")) {
-            if(getIntent().getStringExtra("redirect").equals("Patient")){
+    public void redirect() {
+        if (getIntent().hasExtra("redirect")) {
+            if (getIntent().getStringExtra("redirect").equals("Patient")) {
                 bottomNavigation.getMenu().findItem(R.id.patient).setIcon(R.drawable.ic_patient);
-                openFragment(PatientFragment.newInstance("",""));
-            }
-            else if(getIntent().getStringExtra("redirect").equals("CHW")){
+                openFragment(PatientFragment.newInstance("", ""));
+            } else if (getIntent().getStringExtra("redirect").equals("CHW")) {
                 bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_baseline_person_24);
-                openFragment(UserFragment.newInstance("",""));
-            }
-            else if(getIntent().getStringExtra("redirect").equals("Contact")){
+                openFragment(UserFragment.newInstance("", ""));
+            } else if (getIntent().getStringExtra("redirect").equals("Contact")) {
                 bottomNavigation.getMenu().findItem(R.id.contact).setIcon(R.drawable.ic_map_active);
-                openFragment(ContactFragment.newInstance("",""));
+                openFragment(ContactFragment.newInstance("", ""));
             }
-        } else{
+        } else {
             bottomNavigation.getMenu().findItem(R.id.user).setIcon(R.drawable.ic_baseline_person_24);
             openFragment(UserFragment.newInstance("", ""));
         }
     }
+
     @Override
     public void onBackPressed() {
 
