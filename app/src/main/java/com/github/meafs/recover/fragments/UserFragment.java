@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.ContentActivity;
+import com.github.meafs.recover.activites.DiseaseScreeningActivity;
 import com.github.meafs.recover.activites.QuizActivity;
 import com.github.meafs.recover.activites.ui.task_list.TaskListActivity;
 import com.github.meafs.recover.adapters.StaticRvAdapter;
@@ -87,7 +88,7 @@ public class UserFragment extends Fragment {
         quizCardView = view.findViewById(R.id.quiz_card);
 
         trainingContent.setOnClickListener(view1 -> startActivity(new Intent(getContext(), ContentActivity.class)));
-        dummbutton.setOnClickListener(view12 -> startActivity(new Intent(getContext(), TaskListActivity.class)));
+        dummbutton.setOnClickListener(view12 -> startActivity(new Intent(getContext(), DiseaseScreeningActivity.class)));
         quizCardView.setOnClickListener(view2 -> startActivity(new Intent(getContext(), QuizActivity.class)));
 
         ArrayList<StaticRvModel> item = new ArrayList<>();
