@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,20 +23,20 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/intro_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/nunito"
+                        android:paddingStart="16dp"
                         android:text="@string/highlights"
                         android:textColor="@color/black"
-                        android:textSize="24sp"
-                        android:fontFamily="@font/nunito"
-                        android:layout_marginTop="10dp"
                         android:textFontWeight="700"
-                        android:paddingStart="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@id/static_rv_layout"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/static_rv_layout"
@@ -77,7 +78,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Training Courses"
+                            android:text="@string/training_courses"
                             android:textColor="#000"
                             android:textFontWeight="700"
                             android:textSize="25dp" />
@@ -127,7 +128,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/nunito"
-                            android:text="Quiz"
+                            android:text="@string/quiz"
                             android:textColor="#000"
                             android:textFontWeight="700"
                             android:textSize="25dp" />
@@ -157,15 +158,16 @@
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <Button
+                    android:id="@+id/dummy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/dummy"
-                    android:text="tasklist"
-                    />
+                    android:text="tasklist" />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

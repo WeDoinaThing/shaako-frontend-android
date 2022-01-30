@@ -2,6 +2,7 @@ package com.github.meafs.recover.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -12,10 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.SearchView;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,16 +22,15 @@ import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.AddPatientActivity;
 import com.github.meafs.recover.adapters.PatientRvAdapter;
 import com.github.meafs.recover.models.Document;
+import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.PatientViewModel;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 
-public class PatientFragment extends Fragment {
+public class PatientFragment extends Fragment implements TextToSpeech.OnInitListener {
 
     private RecyclerView recyclerView;
     private PatientRvAdapter patientRvAdapter;
@@ -54,6 +51,7 @@ public class PatientFragment extends Fragment {
     private TextView tvScheduledAmount;
 
     private EditText etSearchText;
+    private TextToSpeech engine;
 
     public PatientFragment() {
     }
@@ -86,6 +84,9 @@ public class PatientFragment extends Fragment {
         tvScheduledAmount = view.findViewById(R.id.scheduled_amount);
         tvVisitedAmount = view.findViewById(R.id.visited_amount);
         etSearchText = view.findViewById(R.id.search_text);
+        engine = new TextToSpeech(view.getContext(), this);
+
+        Speak speak = new Speak(view.getContext());
 
         extendedFloatingActionButton = view.findViewById(R.id.add_card1);
 
@@ -114,6 +115,7 @@ public class PatientFragment extends Fragment {
         recyclerView.setAdapter(patientRvAdapter);
 
         extendedFloatingActionButton.setOnClickListener(view1 -> {
+            speak.speak(engine, extendedFloatingActionButton.getText().toString());
             Intent mIntent = new Intent(view1.getContext(), AddPatientActivity.class);
             mIntent.putExtra("size", String.valueOf(arrayList.size()));
             startActivity(mIntent);
@@ -140,16 +142,25 @@ public class PatientFragment extends Fragment {
 
     public void filter(String text) {
         visibleArrayList.clear();
-        if(text.isEmpty()){
+        if (text.isEmpty()) {
             visibleArrayList.addAll(arrayList);
-        } else{
+        } else {
             text = text.toLowerCase();
-            for(Document item: arrayList){
-                if(item.getName().toLowerCase().contains(text)){
+            for (Document item : arrayList) {
+                if (item.getName().toLowerCase().contains(text)) {
                     visibleArrayList.add(item);
                 }
             }
         }
         patientRvAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
     }
 }
