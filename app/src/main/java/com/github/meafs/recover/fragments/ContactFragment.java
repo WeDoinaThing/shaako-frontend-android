@@ -4,6 +4,7 @@ package com.github.meafs.recover.fragments;
 import static com.azure.android.maps.control.options.PopupOptions.anchor;
 import static com.azure.android.maps.control.options.PopupOptions.content;
 import static com.azure.android.maps.control.options.PopupOptions.position;
+import static com.github.meafs.recover.utils.Constants.AzureMapsToken;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -45,7 +46,7 @@ import java.util.List;
 public class ContactFragment extends Fragment {
 
     static {
-        AzureMaps.setSubscriptionKey("qdC7dOIpHs7Hngg1ucQTfeQwVRV3km7lkoXpaK9xhEU");
+        AzureMaps.setSubscriptionKey(AzureMapsToken);
     }
 
     private MapControl mapControl;
