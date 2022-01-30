@@ -1,12 +1,12 @@
 package com.github.meafs.recover.utils;
 
 public interface Constants {
-    String CosmosDBURI = "https://timaginecup-test.documents.azure.com/";
-    String DatabaseId = "newdatabaseid";
-    String ContainerId = "newcontainerid";
-    String CosmosDBPrimaryKey = "xwu06IODbACkMxfVePHQ4j1JZIXp1gAXO9JS622VLFwYuV1VWq96HgesTIVzW1YRteRnz8TEbQIjaCzfhr3MFA==";
+    String CosmosDBURI = "https://imcup-pdb.documents.azure.com:443/";
+    String DatabaseId = "ic_pat_db";
+    String ContainerId = "ic_pat_list";
+    String CosmosDBPrimaryKey = "YLrLTAFvDgkY1uEWVW7hxofumSeZqRD3E1kNzf9PGk0v3U1fRwg1a9kX33UPHJbiDEDQflwLQ8GEsBUTFE3mTQ==";
     String AzureMapsURI = "https://atlas.microsoft.com/";
-    String AzureMapsToken = "qdC7dOIpHs7Hngg1ucQTfeQwVRV3km7lkoXpaK9xhEU";
+    String AzureMapsToken = "VhrlX_FU5SGJjXCy0sYfOULpcQMrViOUMz6ntZ94OtI";
     String BackendURI = "http://194.163.148.43/";
 
 }
