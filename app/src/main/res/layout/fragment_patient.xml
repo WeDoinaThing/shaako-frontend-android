@@ -222,7 +222,7 @@
             app:elevation="0dp"
             app:borderWidth="0dp"
             android:textFontWeight="700"
-            android:text="Add Patient"
+            android:text="@string/add_patient"
             android:textColor="@color/white"
             app:icon="@drawable/ic_add"/>
     </LinearLayout>
