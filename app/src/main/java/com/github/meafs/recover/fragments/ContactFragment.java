@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ public class ContactFragment extends Fragment {
     private MapsViewModel mapsViewModel;
     private ArrayList<LocationData> locdata = new ArrayList<>();
     private ProgressBar progressBar;
+    private Button button;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -106,6 +108,10 @@ public class ContactFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar2);
 
         mapControl = view.findViewById(R.id.mapcontrol);
+
+        button = view.findViewById(R.id.dial);
+
+        button.setOnClickListener(view1 -> Toast.makeText(view1.getContext(), "This will dial an emergency number", Toast.LENGTH_SHORT).show());
 
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
         mapsViewModel.init();

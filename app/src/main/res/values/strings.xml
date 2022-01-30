@@ -67,6 +67,7 @@
     <string name="phone_number">Phone number</string>
     <string name="training_courses">Training Courses</string>
     <string name="quiz">Quiz</string>
+    <string name="call_a_hospital">Emergency Dial</string>
     <plurals name="numberOfMinute">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
