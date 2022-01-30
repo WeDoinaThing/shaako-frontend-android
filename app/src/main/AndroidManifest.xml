@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.DiseaseScreeningActivity"
+            android:exported="false" />
+        <activity
             android:name=".activites.QuizRunnerActivity"
             android:exported="false" />
         <activity
