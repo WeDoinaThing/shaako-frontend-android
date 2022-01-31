@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recover</string>
+    <string name="app_name">Shaako</string>
     <string-array name="units">
         <item>kgs</item>
         <item>lbs</item>
