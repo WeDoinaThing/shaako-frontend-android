@@ -42,7 +42,7 @@ public class QuizRunnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz_runner);
         binding.setQuizRunnerActivity(this);
-        binding.btnBack.setOnClickListener(view -> new Intent(this, QuizActivity.class));
+        binding.btnBack.setOnClickListener(view -> startActivity(new Intent(this, QuizActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)));
         index = 0;
         correctAnswers = 0;
 
