@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class PatientDetails extends AppCompatActivity {
     TextView mAge;
     TextView mWeight;
     TextView mSex;
+    TextView mContact;
     TextView noComorbidity;
     TextView mVisited;
     Button btDiseaseScreen;
@@ -61,6 +63,7 @@ public class PatientDetails extends AppCompatActivity {
         mAge = findViewById(R.id.pdAge);
         mWeight = findViewById(R.id.pdWeight);
         mSex = findViewById(R.id.gender);
+        mContact = findViewById(R.id.contact);
         chipGroup = findViewById(R.id.chip_group);
         noComorbidity = findViewById(R.id.pdComorblist);
         mVisited = findViewById(R.id.pdViscount);
@@ -78,6 +81,7 @@ public class PatientDetails extends AppCompatActivity {
             mAge.setText(String.valueOf(getAge(mBundle.getString("age"))));
             mWeight.setText(mBundle.getString("weight"));
             mSex.setText(getFirstLetter(mBundle.getString("sex")));
+            mContact.setText(mBundle.getString("contact"));
 
             // TODO: Show contact
 //            mBundle.getString("contact");
@@ -102,6 +106,11 @@ public class PatientDetails extends AppCompatActivity {
             }
         });
 
+        mContact.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:"+mContact.getText().toString()));
+            startActivity(intent);
+        });
         btDiseaseScreen.setOnClickListener(view -> startActivity(new Intent(this, DiseaseScreeningActivity.class)));
         setComorbidityChips();
         setHistoryDetails();

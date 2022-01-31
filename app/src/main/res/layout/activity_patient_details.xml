@@ -184,6 +184,34 @@
                     android:fontFamily="@font/nunito"
                     android:textSize="18dp"/>
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact:"
+                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawableTint="@color/grey_600"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/nunito"
+                    android:textFontWeight="600"
+                    android:textSize="18dp"
+                    />
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="0169696969"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="18dp"/>
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

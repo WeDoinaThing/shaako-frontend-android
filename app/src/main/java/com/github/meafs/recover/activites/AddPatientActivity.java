@@ -132,11 +132,11 @@ public class AddPatientActivity extends AppCompatActivity {
                 jsonResult.addProperty("name", name.getText().toString());
                 jsonResult.addProperty("sex", sex);
                 jsonResult.addProperty("dob", dob.getText().toString());
-                jsonResult.addProperty("bgroup", "optional blood group info");
+                jsonResult.addProperty("bgroup", "O+");
                 jsonResult.addProperty("weight", weight.getText().toString() + unit);
-                jsonResult.addProperty("height", "optional patient height");
-                jsonResult.addProperty("comorbidity", "optional patient history of diabetes, heart disease, pregnancy, breathing issues, hypertension");
-                jsonResult.addProperty("patient_history", "dictionary with date as key, and patient notes as value");
+                jsonResult.addProperty("height", "");
+                jsonResult.addProperty("comorbidity", "");
+                jsonResult.addProperty("patient_history", "");
                 jsonResult.addProperty("contact", contact.getText().toString());
 
                 patientViewModel.addPatient(String.valueOf(Integer.parseInt(size)), jsonResult);
