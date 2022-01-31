@@ -1,10 +1,12 @@
 package com.github.meafs.recover.activites;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +38,7 @@ public class PatientDetails extends AppCompatActivity {
     TextView mSex;
     TextView noComorbidity;
     TextView mVisited;
+    Button btDiseaseScreen;
     ChipGroup chipGroup;
 
     RecyclerView rvHistory;
@@ -62,6 +65,7 @@ public class PatientDetails extends AppCompatActivity {
         noComorbidity = findViewById(R.id.pdComorblist);
         mVisited = findViewById(R.id.pdViscount);
         rvHistory = findViewById(R.id.pd_rv_layout);
+        btDiseaseScreen = findViewById(R.id.disease_screening);
 
         mVisited.setText(getVisitedText(20));
 
@@ -98,6 +102,7 @@ public class PatientDetails extends AppCompatActivity {
             }
         });
 
+        btDiseaseScreen.setOnClickListener(view -> startActivity(new Intent(this, DiseaseScreeningActivity.class)));
         setComorbidityChips();
         setHistoryDetails();
     }

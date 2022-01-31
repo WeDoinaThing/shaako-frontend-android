@@ -37,7 +37,6 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
     private static final String ARG_PARAM2 = "param2";
     private ConstraintLayout trainingContent;
     private RelativeLayout quizcontent;
-    private Button dummbutton;
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
     private ConstraintLayout quizCardView;
@@ -85,7 +84,6 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         trainingContent = view.findViewById(R.id.train_card);
         quizcontent = view.findViewById(R.id.quizcard);
-        dummbutton = view.findViewById(R.id.dummy);
 
         quizCardView = view.findViewById(R.id.quiz_card);
         engine = new TextToSpeech(view.getContext(), this);
@@ -98,7 +96,6 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
         });
 
 
-        dummbutton.setOnClickListener(view12 -> startActivity(new Intent(getContext(), DiseaseScreeningActivity.class)));
         quizCardView.setOnClickListener(view1 -> {
             speak.speak(engine, getContext().getResources().getString(R.string.quiz));
             startActivity(new Intent(getContext(), QuizActivity.class));

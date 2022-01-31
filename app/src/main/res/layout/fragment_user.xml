@@ -158,17 +158,6 @@
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/dummy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="tasklist" />
-            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
