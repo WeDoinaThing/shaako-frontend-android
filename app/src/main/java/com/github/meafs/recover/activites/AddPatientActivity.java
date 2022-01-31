@@ -1,17 +1,21 @@
 package com.github.meafs.recover.activites;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,12 +32,16 @@ import com.google.gson.JsonObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddPatientActivity extends AppCompatActivity {
+    private static final String TAG="AddPatientActivity";
+    private final Calendar calendar= Calendar.getInstance();
 
     private String sex;
     private String unit;
+    private Date date;
     private TextInputEditText name;
     private TextInputEditText dob;
     private TextInputEditText weight;
@@ -66,7 +74,6 @@ public class AddPatientActivity extends AppCompatActivity {
         System.out.println("Size: " + size);
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
 
         SharedPreferences pref = getSharedPreferences("CHW", Context.MODE_PRIVATE);
 
@@ -103,6 +110,8 @@ public class AddPatientActivity extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener((adapterView, view, i, l) -> {
                 sex = (String) adapterView.getItemAtPosition(i);
         });
+
+        setupDatePicker();
 
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
         patientViewModel.init();
@@ -149,6 +158,25 @@ public class AddPatientActivity extends AppCompatActivity {
         });
     }
 
+    private void setDate(int day, int month, int year){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DATE, day);
+        date = calendar.getTime();
+    }
+
+    private void setupDatePicker(){
+        DatePickerDialog.OnDateSetListener date = (datePicker, year, month, day) -> {
+            setDate(day,month,year);
+            String dateString = day+"/"+ (month + 1) +"/"+year;
+            dob.setText(dateString);
+        };
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            dob.setOnClickListener(view -> new DatePickerDialog(this, date, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show());
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
