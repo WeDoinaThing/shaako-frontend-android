@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class QuizRunnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz_runner);
         binding.setQuizRunnerActivity(this);
+        binding.btnBack.setOnClickListener(view -> new Intent(this, QuizActivity.class));
         index = 0;
         correctAnswers = 0;
 

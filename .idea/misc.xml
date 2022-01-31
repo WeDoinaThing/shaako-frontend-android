@@ -54,7 +54,10 @@
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/rv_item_quiz.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/task_list.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/task_list_content.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.19791666666666666" />

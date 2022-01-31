@@ -67,6 +67,7 @@
                 android:layout_margin="20dp"
                 android:orientation="vertical"
                 android:visibility="gone"
+                tools:visibility="visible"
                 >
                 <ImageView
                     android:layout_width="64dp"
@@ -124,6 +125,15 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="18dp"
                     tools:text="You've got 2 out 5 answers correct."
+                    />
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="Go back to quiz"
+                    android:shadowRadius="0"
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
