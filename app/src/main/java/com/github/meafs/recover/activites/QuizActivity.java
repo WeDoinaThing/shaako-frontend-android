@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.databinding.ActivityQuizBinding;
 import com.github.meafs.recover.models.QuizModel;
 import com.github.meafs.recover.viewmodels.QuizViewModel;
 
@@ -22,45 +24,37 @@ public class QuizActivity extends AppCompatActivity {
     ArrayList<String> quizList;
     QuizViewModel quizViewModel;
 
+    private ActivityQuizBinding binding;
+
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_quiz);
+        binding.setQuizActivity(this);
+        binding.toolbar.setNavigationOnClickListener(view-> startActivity(new Intent(this, MainActivity.class)));
         quizList = new ArrayList<>();
 
-        Button placeholderButton = findViewById(R.id.placeholder_button);
-        SharedPreferences pref = getSharedPreferences("CHW", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("CHW", Context.MODE_PRIVATE);
+        fetchQuiz();
 
+//        placeholderButton.setOnClickListener(view -> {
+//            Intent intent = new Intent(this, QuizRunnerActivity.class);
+//            intent.putStringArrayListExtra("quizStrings", quizList);
+//            startActivity(intent);
+//        });
+    }
+
+    private void fetchQuiz(){
         quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
-        quizViewModel.init(pref.getString("authToken", ""));
+        quizViewModel.init(sharedPreferences.getString("authToken", ""));
 
-        quizViewModel.getQuizResponseLiveData().observe(this, new Observer<List<QuizModel>>() {
-            @Override
-            public void onChanged(List<QuizModel> quizModels) {
-                if (quizModels.size() != 0) {
-                    for (int i = 0; i < quizModels.size(); i++) {
-                        quizList.addAll(quizModels.get(i).getQuizzes());
-                    }
+        quizViewModel.getQuizResponseLiveData().observe(this, quizModels -> {
+            if (quizModels.size() != 0) {
+                for (int i = 0; i < quizModels.size(); i++) {
+                    quizList.addAll(quizModels.get(i).getQuizzes());
                 }
             }
         });
-//        exampleQuiz = new ArrayList<>();
-//        generateQuiz();
-
-        placeholderButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, QuizRunnerActivity.class);
-            intent.putStringArrayListExtra("quizStrings", quizList);
-            startActivity(intent);
-        });
-    }
-
-    private void generateQuiz() {
-        String quiz1 = "What's Bugsnax?; Bug, Snack, Both, None; 1";
-        String quiz2 = "Who's Kero Kero Bonito?; Sarah, Bonito, Both, None; 3";
-        String quiz3 = "Is it true?; True, False; 2";
-        exampleQuiz.add(quiz1);
-        exampleQuiz.add(quiz2);
-        exampleQuiz.add(quiz3);
     }
 }
