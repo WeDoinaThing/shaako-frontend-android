@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.PatientDetails;
 import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.models.PatientRvModel;
+import com.github.meafs.recover.utils.Speak;
 
 import java.util.List;
 import java.util.Random;
@@ -29,8 +31,15 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
 
     private final List<Document> pData;
     private final Context mContext;
+    private TextToSpeech ttsObject;
 
-    public PatientRvAdapter(Context mContext, List<Document> pData) {
+    public PatientRvAdapter(Context mContext, List<Document> pData, TextToSpeech ttsObject) {
+        this.pData = pData;
+        this.mContext = mContext;
+        this.ttsObject = ttsObject;
+    }
+
+    public PatientRvAdapter(List<Document> pData, Context mContext) {
         this.pData = pData;
         this.mContext = mContext;
     }
@@ -67,6 +76,10 @@ public class PatientRvAdapter extends RecyclerView.Adapter<PatientRvViewHolder> 
         holder.rv_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Speak speak = new Speak(view.getContext());
+                speak.speak(ttsObject, holder.mName.getText().toString());
+
                 Intent mIntent = new Intent(mContext, PatientDetails.class);
                 mIntent.putExtra("name", holder.mName.getText().toString());
                 mIntent.putExtra("area", holder.mArea.getText().toString());

@@ -2,6 +2,7 @@ package com.github.meafs.recover.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.QuizRunnerActivity;
 import com.github.meafs.recover.models.QuizModel;
+import com.github.meafs.recover.utils.Speak;
 
 import java.util.ArrayList;
 
-public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHolder>{
-    private ArrayList<QuizModel>quizModels;
+public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHolder> {
+    private ArrayList<QuizModel> quizModels;
     private Context context;
+    private TextToSpeech ttsObject;
 
-    public QuizListAdapter(ArrayList<QuizModel> quizModels, Context context){
+    public QuizListAdapter(ArrayList<QuizModel> quizModels, Context context, TextToSpeech ttsObject) {
+        this.quizModels = quizModels;
+        this.context = context;
+        this.ttsObject = ttsObject;
+    }
+
+    public QuizListAdapter(ArrayList<QuizModel> quizModels, Context context) {
         this.quizModels = quizModels;
         this.context = context;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,8 +50,10 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
         final QuizModel quizModel = quizModels.get(position);
         holder.textView.setText(quizModel.getTitle());
         holder.constraintLayout.setOnClickListener(view -> {
+//            Speak speak = new Speak(context);
+//            speak.speak(ttsObject, holder.textView.getText().toString());
             Intent intent = new Intent(context, QuizRunnerActivity.class);
-            intent.putStringArrayListExtra("quizStrings",new ArrayList<>(quizModel.getQuizzes()));
+            intent.putStringArrayListExtra("quizStrings", new ArrayList<>(quizModel.getQuizzes()));
             context.startActivity(intent);
         });
     }
@@ -54,6 +66,7 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
         public ConstraintLayout constraintLayout;
+
         public ViewHolder(View itemView) {
             super(itemView);
             this.textView = itemView.findViewById(R.id.quiz_name);

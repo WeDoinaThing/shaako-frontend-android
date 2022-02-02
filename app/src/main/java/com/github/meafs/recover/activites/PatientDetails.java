@@ -83,11 +83,6 @@ public class PatientDetails extends AppCompatActivity {
             mSex.setText(getFirstLetter(mBundle.getString("sex")));
             mContact.setText(mBundle.getString("contact"));
 
-            // TODO: Show contact
-//            mBundle.getString("contact");
-
-//            mEmailDetails.setText(mBundle.getString("details"));
-//            mEmailTime.setText(mBundle.getString("time"));
 
             String comorbidities = mBundle.getString("comorbidity");
             if (!comorbidities.isEmpty())

@@ -1,6 +1,10 @@
 package com.github.meafs.recover.fragments;
 
 
+import static com.azure.android.maps.control.options.AnimationOptions.animationDuration;
+import static com.azure.android.maps.control.options.AnimationOptions.animationType;
+import static com.azure.android.maps.control.options.CameraOptions.center;
+import static com.azure.android.maps.control.options.CameraOptions.zoom;
 import static com.azure.android.maps.control.options.PopupOptions.anchor;
 import static com.azure.android.maps.control.options.PopupOptions.content;
 import static com.azure.android.maps.control.options.PopupOptions.position;
@@ -29,6 +33,7 @@ import com.azure.android.maps.control.data.Position;
 import com.azure.android.maps.control.events.OnFeatureClick;
 import com.azure.android.maps.control.layer.BubbleLayer;
 import com.azure.android.maps.control.options.AnchorType;
+import com.azure.android.maps.control.options.AnimationType;
 import com.azure.android.maps.control.source.DataSource;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.LocationData;
@@ -146,6 +151,14 @@ public class ContactFragment extends Fragment {
                     azureMap.sources.add(source);
                     azureMap.layers.add(layer);
                     azureMap.popups.add(popup);
+
+
+                    azureMap.setCamera(
+                            center(Point.fromLngLat(91.8687, 24.8949)),
+                            zoom(8),
+                            animationType(AnimationType.FLY),
+                            animationDuration(3000)
+                    );
 
                     azureMap.events.add((OnFeatureClick) (features) -> {
 
