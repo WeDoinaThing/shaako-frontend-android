@@ -90,7 +90,8 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
 
         extendedFloatingActionButton = view.findViewById(R.id.add_card1);
 
-        patientRvAdapter = new PatientRvAdapter(getContext(), visibleArrayList);
+        patientRvAdapter = new PatientRvAdapter(getContext(), visibleArrayList, engine);
+
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
         patientViewModel.init();
 

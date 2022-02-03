@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.ContentModel;
 import com.github.meafs.recover.utils.FetchThumbnail;
+import com.github.meafs.recover.utils.Speak;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,13 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
     private ArrayList<ContentModel> list = new ArrayList<>();
     private final Context context;
     private FetchThumbnail fetchThumbnail;
+    private TextToSpeech ttsObject;
+
+    public ContentRecylerAdapter(ArrayList<ContentModel> list, Context context, TextToSpeech ttsObject) {
+        this.list = list;
+        this.context = context;
+        this.ttsObject = ttsObject;
+    }
 
     public ContentRecylerAdapter(ArrayList<ContentModel> list, Context context) {
         this.list = list;
@@ -56,6 +65,10 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//                Speak speak = new Speak(context);
+//                speak.speak(ttsObject, list.get(position).getFields().getTitle());
+
                 Intent youtube = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).getFields().getAssociatedLink()));
                 context.startActivity(youtube);
 

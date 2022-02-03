@@ -48,6 +48,9 @@ public class ContentModel {
         @SerializedName("details")
         @Expose
         private String details;
+        @SerializedName("tags")
+        @Expose
+        private String tags;
         @SerializedName("associated_link")
         @Expose
         private String associatedLink;
@@ -75,6 +78,14 @@ public class ContentModel {
 
         public void setDetails(String details) {
             this.details = details;
+        }
+
+        public String getTags() {
+            return tags;
+        }
+
+        public void setTags(String tags) {
+            this.tags = tags;
         }
 
         public String getAssociatedLink() {

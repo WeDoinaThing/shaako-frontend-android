@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -21,14 +22,16 @@ import com.github.meafs.recover.viewmodels.ContentViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private ContentViewModel contentViewModel;
     private ArrayList<ContentModel> list;
     private RecyclerView recyclerView;
     private MaterialToolbar toolbar;
     private ProgressBar progressBar;
+    private TextToSpeech engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,5 +75,14 @@ public class ContentActivity extends AppCompatActivity {
             }
 
         }, 3000);
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
     }
 }

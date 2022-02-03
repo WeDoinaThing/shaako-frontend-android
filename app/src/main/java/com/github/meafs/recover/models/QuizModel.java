@@ -17,6 +17,9 @@ public class QuizModel {
     @SerializedName("quizzes")
     @Expose
     private List<String> quizzes = null;
+    @SerializedName("tags")
+    @Expose
+    private String tags;
 
     public Integer getId() {
         return id;
@@ -40,6 +43,14 @@ public class QuizModel {
 
     public void setQuizzes(List<String> quizzes) {
         this.quizzes = quizzes;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
 }
