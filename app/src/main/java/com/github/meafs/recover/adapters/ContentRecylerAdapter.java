@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAdapter.ViewHolder> {
+public abstract class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAdapter.ViewHolder> {
 
     private ArrayList<ContentModel> list = new ArrayList<>();
     private final Context context;
@@ -67,12 +67,13 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
 
         holder.title.setText(list.get(position).getFields().getTitle());
         String[] tags = list.get(position).getFields().getTags().split(",");
+        holder.chipGroup.removeAllViews();
         for (String tag : tags) {
-
             Chip chip = new Chip(context);
             ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(context, null,0,R.style.MaterialComponents_Chip_Thin);
             chip.setChipDrawable(chipDrawable);
             chip.setText(tag.trim());
+            chip.setOnClickListener(view -> chipClicks(tag));
             holder.chipGroup.addView(chip);
         }
         fetchThumbnail = new FetchThumbnail(list.get(position).getFields().getAssociatedLink());
@@ -81,19 +82,12 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
                 .into(holder.imageView);
 
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Speak speak = new Speak(context);
-                speak.speak(ttsObject, list.get(position).getFields().getTitle());
-
-//                Intent youtube = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).getFields().getAssociatedLink()));
-//                context.startActivity(youtube);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("contentModel", list.get(position));
-                context.startActivity(new Intent(context, ContentRunnerActivity.class).putExtras(bundle));
-            }
+        holder.cardView.setOnClickListener(view -> {
+            Speak speak = new Speak(context);
+            speak.speak(ttsObject, list.get(position).getFields().getTitle());
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("contentModel", list.get(position));
+            context.startActivity(new Intent(context, ContentRunnerActivity.class).putExtras(bundle));
         });
 
     }
@@ -107,6 +101,8 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
         this.list = list;
         notifyDataSetChanged();
     }
+
+    public abstract void chipClicks(String chipText);
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -123,4 +119,5 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
             imageView = itemView.findViewById(R.id.thumbnail);
         }
     }
+
 }

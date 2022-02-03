@@ -6,8 +6,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.ContentRecylerAdapter;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.ContentViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -28,11 +33,15 @@ import java.util.Locale;
 public class ContentActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private ContentViewModel contentViewModel;
-    private ArrayList<ContentModel> list;
     private RecyclerView recyclerView;
     private MaterialToolbar toolbar;
     private ProgressBar progressBar;
     private TextToSpeech engine;
+    private ContentRecylerAdapter contentRecylerAdapter;
+    private EditText etSearchText;
+
+    private ArrayList<ContentModel> arrayList = new ArrayList<>();
+    private ArrayList<ContentModel> visibleArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +54,31 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
         contentViewModel.init(pref.getString("authToken", ""));
         toolbar = findViewById(R.id.toolbar);
         progressBar = findViewById(R.id.progressBar);
+        etSearchText = findViewById(R.id.search_text);
 
         toolbar.setNavigationOnClickListener(view -> startActivity(new Intent(ContentActivity.this, MainActivity.class)));
 
         recyclerView = findViewById(R.id.recylerview);
-        list = new ArrayList<>();
         engine = new TextToSpeech(ContentActivity.this, this);
         Speak speak = new Speak(ContentActivity.this);
 
+        contentRecylerAdapter = new ContentRecylerAdapter(visibleArrayList, ContentActivity.this, engine) {
+
+            @Override
+            public void chipClicks(String chipText) {
+                etSearchText.setText(chipText);
+                etSearchText.setSelection(chipText.length());
+                filter(chipText);
+            }
+        };
+        contentRecylerAdapter.setList(visibleArrayList);
+
         contentViewModel.getContentResponseLiveData().observe(this, contactModels -> {
             if (contactModels != null && contactModels.size() != 0) {
-                list.addAll(contactModels);
+                arrayList.addAll(contactModels);
+                filter("");
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
             } else {
                 Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_LONG).show();
                 speak.speak(engine, getResources().getString(R.string.noInternet));
@@ -63,24 +86,25 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
 
         });
 
-        new Handler().postDelayed(() -> {
-            System.out.println(list.size());
-            try {
-                ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, ContentActivity.this, engine);
-                contentRecylerAdapter.setList(list);
+        recyclerView.setAdapter(contentRecylerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ContentActivity.this));
 
-                progressBar.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-
-                recyclerView.setAdapter(contentRecylerAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ContentActivity.this));
-            } catch (Exception e) {
-                Toast.makeText(ContentActivity.this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
-                speak.speak(engine, getResources().getString(R.string.noInternet));
+        etSearchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
-        }, 3000);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override
@@ -91,4 +115,22 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
             engine.setPitch(1);
         }
     }
+
+    public void filter(String text) {
+        visibleArrayList.clear();
+        if (text.isEmpty()) {
+            visibleArrayList.addAll(arrayList);
+        } else {
+            text = text.toLowerCase();
+            for (ContentModel item : arrayList) {
+                if (item.getFields().getTitle().toLowerCase().contains(text)) {
+                    visibleArrayList.add(item);
+                } else if (item.getFields().getTags().toLowerCase().contains(text)) {
+                    visibleArrayList.add(item);
+                }
+            }
+        }
+        contentRecylerAdapter.notifyDataSetChanged();
+    }
+
 }

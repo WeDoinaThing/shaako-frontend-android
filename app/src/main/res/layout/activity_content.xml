@@ -29,10 +29,42 @@
             android:textSize="22sp" />
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <RelativeLayout
+        android:id="@+id/pSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/fab_background"
+        android:backgroundTint="@color/grey_200"
+        android:paddingVertical="8dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/search_img" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/search_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="55dp"
+            android:background="@null"
+            android:fontFamily="@font/nunito"
+            android:hint="Search"
+            android:textColor="#03082b"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/pSearch"
         android:orientation="vertical">
 
         <ProgressBar
