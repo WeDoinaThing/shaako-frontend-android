@@ -9,24 +9,26 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:src="@mipmap/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@id/text_under_logo"
+        android:layout_height="128dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.388"/>
 
     <TextView
         android:id="@+id/text_under_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito"
-        android:text="@string/app_name"
+        android:fontFamily="@font/kohinoorbangla"
+        android:text="সাঁকো"
         android:textColor="@color/black"
         android:textFontWeight="600"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
+        app:layout_constraintTop_toTopOf="@id/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
