@@ -14,7 +14,10 @@ public class FetchThumbnail {
     }
 
     public String getThumbnailUrl() {
-        return outputUrl + getVideoId(inputUrl) + "/0.jpg";
+        return outputUrl + getVideoId(inputUrl) + "/mqdefault.jpg";
+    }
+    public String getHDThumbnailUrl() {
+        return outputUrl + getVideoId(inputUrl) + "/maxresdefault.jpg";
     }
 
     public String getVideoId(@NonNull String videoUrl) {

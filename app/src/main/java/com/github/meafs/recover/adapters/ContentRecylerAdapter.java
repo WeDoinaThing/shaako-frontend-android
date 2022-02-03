@@ -3,8 +3,12 @@ package com.github.meafs.recover.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +21,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.ContentRunnerActivity;
 import com.github.meafs.recover.models.ContentModel;
 import com.github.meafs.recover.utils.FetchThumbnail;
 import com.github.meafs.recover.utils.Speak;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAdapter.ViewHolder> {
 
@@ -56,11 +66,20 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.title.setText(list.get(position).getFields().getTitle());
-        holder.details.setText(list.get(position).getFields().getDetails());
+        String[] tags = list.get(position).getFields().getTags().split(",");
+        for (String tag : tags) {
+
+            Chip chip = new Chip(context);
+            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(context, null,0,R.style.MaterialComponents_Chip_Thin);
+            chip.setChipDrawable(chipDrawable);
+            chip.setText(tag.trim());
+            holder.chipGroup.addView(chip);
+        }
         fetchThumbnail = new FetchThumbnail(list.get(position).getFields().getAssociatedLink());
         Glide.with(context)
                 .load(fetchThumbnail.getThumbnailUrl())
                 .into(holder.imageView);
+
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +88,11 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
                 Speak speak = new Speak(context);
                 speak.speak(ttsObject, list.get(position).getFields().getTitle());
 
-                Intent youtube = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).getFields().getAssociatedLink()));
-                context.startActivity(youtube);
-
+//                Intent youtube = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).getFields().getAssociatedLink()));
+//                context.startActivity(youtube);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("contentModel", list.get(position));
+                context.startActivity(new Intent(context, ContentRunnerActivity.class).putExtras(bundle));
             }
         });
 
@@ -90,16 +111,16 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final CardView cardView;
-        private final ImageView imageView;
         private final TextView title;
-        private final TextView details;
+        private final ChipGroup chipGroup;
+        private final ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.contentcard);
-            imageView = itemView.findViewById(R.id.thumbnail);
             title = itemView.findViewById(R.id.title);
-            details = itemView.findViewById(R.id.details);
+            chipGroup = itemView.findViewById(R.id.chip_group);
+            imageView = itemView.findViewById(R.id.thumbnail);
         }
     }
 }
