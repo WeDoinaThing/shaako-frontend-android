@@ -28,23 +28,26 @@ public class OnBoardingActivity extends AhoyOnboarderActivity {
         AhoyOnboarderCard card2 = new AhoyOnboarderCard("Document", "Diagnose and document patients automatically", R.drawable.ic_second);
         AhoyOnboarderCard card3 = new AhoyOnboarderCard("Find", "Find emergency contacts to nearby hospitals and pharmacies", R.drawable.ic_third);
         AhoyOnboarderCard card4 = new AhoyOnboarderCard("Prepare", "Prepare, prevent, provide\n", R.drawable.four);
+        AhoyOnboarderCard card5 = new AhoyOnboarderCard("Get Started", "Scan QR Code provided by NGO Admin to Sign in!", R.drawable.qr_placeholder);
 
         setCardVariables(card1);
         setCardVariables(card2);
         setCardVariables(card3);
         setCardVariables(card4);
+        setCardVariables(card5);
 
         List<AhoyOnboarderCard> pages = new ArrayList<>();
         pages.add(card1);
         pages.add(card2);
         pages.add(card3);
         pages.add(card4);
+        pages.add(card5);
 
         setGradientBackground();
         Typeface face = ResourcesCompat.getFont(this, R.font.nunito_regular);
         setFont(face);
         setOnboardPages(pages);
-        setFinishButtonTitle("Get Started");
+        setFinishButtonTitle("Scan");
         setFinishButtonDrawableStyle(ContextCompat.getDrawable(this, R.drawable.button_rounded));
     }
 
