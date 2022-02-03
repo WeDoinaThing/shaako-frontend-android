@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.PatientHistoryAdapter;
 import com.github.meafs.recover.utils.Speak;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -47,6 +48,7 @@ public class PatientDetails extends AppCompatActivity implements TextToSpeech.On
     ChipGroup chipGroup;
 
     RecyclerView rvHistory;
+    private MaterialToolbar toolbar;
 
     private ArrayList<String> comorbidityList;
     private ArrayList<String> historyList;
@@ -57,8 +59,12 @@ public class PatientDetails extends AppCompatActivity implements TextToSpeech.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_details);
 
+        toolbar = findViewById(R.id.toolbar);
         comorbidityList = new ArrayList<>();
         historyList = new ArrayList<>();
+        toolbar.setNavigationOnClickListener(view -> {
+            super.onBackPressed();
+        });
 
         mIcon = findViewById(R.id.pdIcon);
         mName = findViewById(R.id.pdName);
