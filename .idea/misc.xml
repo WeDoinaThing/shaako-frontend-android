@@ -13,7 +13,6 @@
         <entry key="app/src/main/res/drawable/first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/gradient_1.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/gradient_1_rounded.xml" value="0.2585" />
-        <entry key="app/src/main/res/drawable/gradient_2.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/gradient_3_rounded.xml" value="0.304" />
         <entry key="app/src/main/res/drawable/gradient_4.xml" value="0.304" />
         <entry key="app/src/main/res/drawable/gradient_disabled.xml" value="0.2585" />
@@ -23,7 +22,6 @@
         <entry key="app/src/main/res/drawable/ic_dob.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/ic_first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2328125" />
-        <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.2435" />
         <entry key="app/src/main/res/drawable/ic_patient.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/ic_quiz.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/ic_second.xml" value="0.22239583333333332" />
@@ -35,13 +33,12 @@
         <entry key="app/src/main/res/drawable/semi_transparent_background.xml" value="0.304" />
         <entry key="app/src/main/res/drawable/static_rv_bg.xml" value="0.304" />
         <entry key="app/src/main/res/drawable/static_rv_selected_bg.xml" value="0.304" />
-        <entry key="app/src/main/res/drawable/thin_button.xml" value="0.1995" />
         <entry key="app/src/main/res/drawable/training_background.xml" value="0.198" />
         <entry key="app/src/main/res/font/kohinoorbangla.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/font/nunito.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_patient.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
-        <entry key="app/src/main/res/layout/activity_content_runner.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/activity_content_runner.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/layout/activity_disease_screening.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_patient_details.xml" value="0.3697916666666667" />
@@ -56,7 +53,7 @@
         <entry key="app/src/main/res/layout/cardview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/category_card.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/categoty_card.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/content_card.xml" value="0.3641025641025641" />
+        <entry key="app/src/main/res/layout/content_card.xml" value="0.20923913043478262" />
         <entry key="app/src/main/res/layout/dropdown_menu_item.xml" value="2.111842105263158" />
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.22" />
@@ -64,7 +61,6 @@
         <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.3697916666666667" />
-        <entry key="app/src/main/res/layout/thin_chip_layout.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.19791666666666666" />
