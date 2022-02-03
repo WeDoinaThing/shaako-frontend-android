@@ -13,6 +13,7 @@ import static com.github.meafs.recover.utils.Constants.AzureMapsToken;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,20 +37,23 @@ import com.azure.android.maps.control.options.AnchorType;
 import com.azure.android.maps.control.options.AnimationType;
 import com.azure.android.maps.control.source.DataSource;
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.ContentRunnerActivity;
 import com.github.meafs.recover.models.LocationData;
 import com.github.meafs.recover.utils.PoiToFeature;
+import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.MapsViewModel;
 import com.mapbox.geojson.Point;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ContactFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactFragment extends Fragment {
+public class ContactFragment extends Fragment implements TextToSpeech.OnInitListener {
 
     static {
         AzureMaps.setSubscriptionKey(AzureMapsToken);
@@ -60,6 +64,7 @@ public class ContactFragment extends Fragment {
     private ArrayList<LocationData> locdata = new ArrayList<>();
     private ProgressBar progressBar;
     private Button button;
+    private TextToSpeech engine;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -116,6 +121,9 @@ public class ContactFragment extends Fragment {
 
         button = view.findViewById(R.id.dial);
 
+        engine = new TextToSpeech(view.getContext(), this);
+        Speak speak = new Speak(view.getContext());
+
         button.setOnClickListener(view1 -> Toast.makeText(view1.getContext(), "This will dial an emergency number", Toast.LENGTH_SHORT).show());
 
         mapsViewModel = ViewModelProviders.of(this).get(MapsViewModel.class);
@@ -126,7 +134,12 @@ public class ContactFragment extends Fragment {
             mapsViewModel.getLocationResponseLiveData().observe(this, new Observer<List<LocationData>>() {
                 @Override
                 public void onChanged(List<LocationData> locationData) {
-                    locdata.addAll(locationData);
+                    if (locationData != null) {
+                        locdata.addAll(locationData);
+                    } else {
+                        Toast.makeText(view.getContext(), view.getResources().getString(R.string.noInternet), Toast.LENGTH_LONG).show();
+                        speak.speak(engine, view.getResources().getString(R.string.noInternet));
+                    }
                 }
             });
 
@@ -205,5 +218,14 @@ public class ContactFragment extends Fragment {
         }
         super.onDestroy();
 
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
     }
 }
