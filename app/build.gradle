@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation files('libs/randomClassifier.jar')
     def arch_version = "2.0.0-beta01"
 
     implementation 'androidx.appcompat:appcompat:1.4.0'

@@ -5,25 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.UserFragment">
-
+    <Button
+        android:id="@+id/useless_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disease Screening"
+        />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <ScrollView
                 android:id="@+id/scroll_stats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/lightSecondaryColor">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:id="@+id/intro_text"
                         android:layout_width="match_parent"
@@ -37,7 +38,6 @@
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@id/static_rv_layout"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/static_rv_layout"
                         android:layout_width="match_parent"
@@ -50,7 +50,6 @@
                         app:layout_constraintVertical_bias="0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
-
             <LinearLayout
                 android:id="@+id/chw_button_holders"
                 android:layout_width="match_parent"
@@ -58,20 +57,18 @@
                 android:layout_below="@id/scroll_stats"
                 android:orientation="vertical"
                 android:weightSum="4">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/train_card"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/education_background_pink">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="parent">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -82,7 +79,6 @@
                             android:textColor="#000"
                             android:textFontWeight="700"
                             android:textSize="25dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,14 +88,12 @@
                             android:textColor="#000"
                             android:textSize="18sp" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent">
-
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -107,15 +101,14 @@
                             app:tint="@color/black" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/quiz_card"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@drawable/quiz_background"
                     android:scaleType="centerCrop">
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -132,7 +125,6 @@
                             android:textColor="#000"
                             android:textFontWeight="700"
                             android:textSize="25dp" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -142,14 +134,12 @@
                             android:textColor="#000"
                             android:textSize="18sp" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent">
-
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -95,6 +95,7 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
             startActivity(new Intent(getContext(), ContentActivity.class));
         });
 
+        view.findViewById(R.id.useless_button).setOnClickListener(view1 -> startActivity(new Intent(getContext(), DiseaseScreeningActivity.class)));
 
         quizCardView.setOnClickListener(view1 -> {
             speak.speak(engine, getContext().getResources().getString(R.string.quiz));
