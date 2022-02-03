@@ -101,4 +101,17 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">20dp</item>
     </style>
+
+    <style name="MaterialComponents_Chip_Thin" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="chipMinHeight">24dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2_Thin</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialComponents.Chip_Thin</item>
+    </style>
+    <style name="ShapeAppearanceOverlay.MaterialComponents.Chip_Thin" parent="">
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="TextAppearance.MaterialComponents.Body2_Thin" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

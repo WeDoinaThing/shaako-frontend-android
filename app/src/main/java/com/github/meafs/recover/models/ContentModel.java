@@ -3,7 +3,9 @@ package com.github.meafs.recover.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ContentModel {
+import java.io.Serializable;
+
+public class ContentModel implements Serializable {
 
     @SerializedName("model")
     @Expose
@@ -40,7 +42,7 @@ public class ContentModel {
     }
 
 
-    public class Fields {
+    public class Fields implements Serializable{
 
         @SerializedName("title")
         @Expose
