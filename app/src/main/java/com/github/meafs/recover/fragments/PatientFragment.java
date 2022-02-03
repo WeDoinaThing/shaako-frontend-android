@@ -107,7 +107,8 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
                 tvPatientAmount.setText(String.valueOf(0));
                 tvVisitedAmount.setText(String.valueOf(0));
                 tvScheduledAmount.setText(String.valueOf(0));
-                Toast.makeText(view.getContext(), "Please connect to the internet!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), view.getResources().getString(R.string.noInternet), Toast.LENGTH_LONG).show();
+                speak.speak(engine, view.getResources().getString(R.string.noInternet));
             }
         });
 

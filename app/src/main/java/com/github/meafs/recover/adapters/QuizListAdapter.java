@@ -50,8 +50,8 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
         final QuizModel quizModel = quizModels.get(position);
         holder.textView.setText(quizModel.getTitle());
         holder.constraintLayout.setOnClickListener(view -> {
-//            Speak speak = new Speak(context);
-//            speak.speak(ttsObject, holder.textView.getText().toString());
+            Speak speak = new Speak(context);
+            speak.speak(ttsObject, holder.textView.getText().toString());
             Intent intent = new Intent(context, QuizRunnerActivity.class);
             intent.putStringArrayListExtra("quizStrings", new ArrayList<>(quizModel.getQuizzes()));
             context.startActivity(intent);

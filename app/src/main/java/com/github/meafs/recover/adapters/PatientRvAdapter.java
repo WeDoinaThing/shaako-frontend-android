@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.PatientDetails;
 import com.github.meafs.recover.models.Document;
-import com.github.meafs.recover.models.PatientRvModel;
 import com.github.meafs.recover.utils.Speak;
 
 import java.util.List;

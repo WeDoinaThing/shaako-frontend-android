@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.ContentRecylerAdapter;
 import com.github.meafs.recover.models.ContentModel;
+import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.ContentViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -49,12 +50,15 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
 
         recyclerView = findViewById(R.id.recylerview);
         list = new ArrayList<>();
+        engine = new TextToSpeech(ContentActivity.this, this);
+        Speak speak = new Speak(ContentActivity.this);
 
         contentViewModel.getContentResponseLiveData().observe(this, contactModels -> {
             if (contactModels != null && contactModels.size() != 0) {
                 list.addAll(contactModels);
             } else {
-                Toast.makeText(this, "Please connect to the internet!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_LONG).show();
+                speak.speak(engine, getResources().getString(R.string.noInternet));
             }
 
         });
@@ -62,7 +66,7 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
         new Handler().postDelayed(() -> {
             System.out.println(list.size());
             try {
-                ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, ContentActivity.this);
+                ContentRecylerAdapter contentRecylerAdapter = new ContentRecylerAdapter(list, ContentActivity.this, engine);
                 contentRecylerAdapter.setList(list);
 
                 progressBar.setVisibility(View.GONE);
@@ -71,7 +75,9 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
                 recyclerView.setAdapter(contentRecylerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ContentActivity.this));
             } catch (Exception e) {
-                Toast.makeText(ContentActivity.this, "Error! Please connect to internet!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ContentActivity.this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+                speak.speak(engine, getResources().getString(R.string.noInternet));
+
             }
 
         }, 3000);

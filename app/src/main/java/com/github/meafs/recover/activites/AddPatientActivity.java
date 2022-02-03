@@ -7,15 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.PatientModel;
+import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.PatientViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,10 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
-public class AddPatientActivity extends AppCompatActivity {
-    private static final String TAG="AddPatientActivity";
-    private final Calendar calendar= Calendar.getInstance();
+public class AddPatientActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+    private static final String TAG = "AddPatientActivity";
+    private final Calendar calendar = Calendar.getInstance();
 
     private String sex;
     private String unit;
@@ -53,6 +53,7 @@ public class AddPatientActivity extends AppCompatActivity {
     private String CHWid;
     private String CHWRegion;
     private MaterialToolbar toolbar;
+    private TextToSpeech engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class AddPatientActivity extends AppCompatActivity {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         SharedPreferences pref = getSharedPreferences("CHW", Context.MODE_PRIVATE);
+        engine = new TextToSpeech(AddPatientActivity.this, this);
+        Speak speak = new Speak(AddPatientActivity.this);
 
         CHWid = pref.getString("chwId", "");
         CHWRegion = pref.getString("chwRegion", "");
@@ -108,7 +111,7 @@ public class AddPatientActivity extends AppCompatActivity {
         autoCompleteTextView.setAdapter(sexAdapter);
 
         autoCompleteTextView.setOnItemClickListener((adapterView, view, i, l) -> {
-                sex = (String) adapterView.getItemAtPosition(i);
+            sex = (String) adapterView.getItemAtPosition(i);
         });
 
         setupDatePicker();
@@ -145,20 +148,23 @@ public class AddPatientActivity extends AppCompatActivity {
                     public void onChanged(String s) {
                         if (s.equals("Done")) {
                             System.out.println(s);
-                            Toast.makeText(getApplicationContext(), "Patient Added.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.patientAdded), Toast.LENGTH_SHORT).show();
+                            speak.speak(engine, getResources().getString(R.string.patientAdded));
                             redirectMain();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Please check your internet connection!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.noInternet), Toast.LENGTH_LONG).show();
+                            speak.speak(engine, getResources().getString(R.string.noInternet));
                         }
                     }
                 });
             } else {
-                Toast.makeText(AddPatientActivity.this, "Please fill all the fields!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddPatientActivity.this, getResources().getString(R.string.emptyFields), Toast.LENGTH_SHORT).show();
+                speak.speak(engine, getResources().getString(R.string.emptyFields));
             }
         });
     }
 
-    private void setDate(int day, int month, int year){
+    private void setDate(int day, int month, int year) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -166,17 +172,18 @@ public class AddPatientActivity extends AppCompatActivity {
         date = calendar.getTime();
     }
 
-    private void setupDatePicker(){
+    private void setupDatePicker() {
         DatePickerDialog.OnDateSetListener date = (datePicker, year, month, day) -> {
-            setDate(day,month,year);
-            String dateString = day+"/"+ (month + 1) +"/"+year;
+            setDate(day, month, year);
+            String dateString = day + "/" + (month + 1) + "/" + year;
             dob.setText(dateString);
         };
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            dob.setOnClickListener(view -> new DatePickerDialog(this, date, calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show());
+            dob.setOnClickListener(view -> new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -187,5 +194,14 @@ public class AddPatientActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("redirect", "Patient");
         startActivity(intent);
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
     }
 }

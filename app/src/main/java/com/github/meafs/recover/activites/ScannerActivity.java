@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,14 +17,18 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.CHWModel;
+import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.UserViewModel;
 import com.google.zxing.Result;
 
-public class ScannerActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class ScannerActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     private CodeScanner mCodeScanner;
     private UserViewModel userViewModel;
     private SharedPreferences sharedPreferences;
+    private TextToSpeech engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,10 @@ public class ScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
+
+        engine = new TextToSpeech(ScannerActivity.this, this);
+
+        Speak speak = new Speak(ScannerActivity.this);
 
         userViewModel = ViewModelProviders.of(ScannerActivity.this).get(UserViewModel.class);
 
@@ -49,10 +58,12 @@ public class ScannerActivity extends AppCompatActivity {
                                             mCodeScanner.releaseResources();
                                             SaveData(result.getText(), chwModel.getId(), chwModel.getRegion());
                                             startActivity(new Intent(ScannerActivity.this, MainActivity.class));
-                                            Toast.makeText(ScannerActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ScannerActivity.this, getResources().getString(R.string.loginSuccessful), Toast.LENGTH_SHORT).show();
+                                            speak.speak(engine, getResources().getString(R.string.loginSuccessful));
                                         } else {
                                             mCodeScanner.startPreview();
-                                            Toast.makeText(ScannerActivity.this, "Please scan a valid QR code!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ScannerActivity.this, getResources().getString(R.string.invalidQR), Toast.LENGTH_SHORT).show();
+                                            speak.speak(engine, getResources().getString(R.string.invalidQR));
                                         }
                                     }
                                 }
@@ -87,5 +98,13 @@ public class ScannerActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
+    }
 
 }

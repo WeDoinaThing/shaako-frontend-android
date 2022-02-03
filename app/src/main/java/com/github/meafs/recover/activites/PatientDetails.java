@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.PatientHistoryAdapter;
+import com.github.meafs.recover.utils.Speak;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -27,8 +29,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
-public class PatientDetails extends AppCompatActivity {
+public class PatientDetails extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     TextView mIcon;
     TextView mName;
@@ -47,6 +50,7 @@ public class PatientDetails extends AppCompatActivity {
 
     private ArrayList<String> comorbidityList;
     private ArrayList<String> historyList;
+    private TextToSpeech engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,8 @@ public class PatientDetails extends AppCompatActivity {
         mVisited = findViewById(R.id.pdViscount);
         rvHistory = findViewById(R.id.pd_rv_layout);
         btDiseaseScreen = findViewById(R.id.disease_screening);
+
+        engine = new TextToSpeech(PatientDetails.this, this);
 
         mVisited.setText(getVisitedText(20));
 
@@ -103,7 +109,7 @@ public class PatientDetails extends AppCompatActivity {
 
         mContact.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:"+mContact.getText().toString()));
+            intent.setData(Uri.parse("tel:" + mContact.getText().toString()));
             startActivity(intent);
         });
         btDiseaseScreen.setOnClickListener(view -> startActivity(new Intent(this, DiseaseScreeningActivity.class)));
@@ -111,8 +117,8 @@ public class PatientDetails extends AppCompatActivity {
         setHistoryDetails();
     }
 
-    private void setHistoryDetails(){
-        PatientHistoryAdapter patientHistoryAdapter = new PatientHistoryAdapter(historyList);
+    private void setHistoryDetails() {
+        PatientHistoryAdapter patientHistoryAdapter = new PatientHistoryAdapter(historyList, engine);
         rvHistory.setHasFixedSize(true);
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
         rvHistory.setAdapter(patientHistoryAdapter);
@@ -125,6 +131,13 @@ public class PatientDetails extends AppCompatActivity {
                 chip.setText(comorbidity);
                 chip.setTextColor(Color.parseColor("#000000"));
                 chip.setTextSize(16.0f);
+                chip.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Speak speak = new Speak(view.getContext());
+                        speak.speak(engine, comorbidity);
+                    }
+                });
                 chipGroup.addView(chip);
             }
         } else {
@@ -180,4 +193,12 @@ public class PatientDetails extends AppCompatActivity {
         return String.valueOf(visited) + " times";
     }
 
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
+    }
 }

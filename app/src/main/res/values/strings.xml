@@ -76,6 +76,11 @@
         <item quantity="one">You lost streak in</item>
         <item quantity="other">You lost streaks in</item>
     </plurals>
+    <string name="noInternet">Please connect to the internet!!</string>
+    <string name="patientAdded">Patient Added.</string>
+    <string name="emptyFields">Please fill all the fields!!</string>
+    <string name="loginSuccessful">Login Successful!</string>
+    <string name="invalidQR">Please scan a valid QR code!</string>
 
 
 </resources>

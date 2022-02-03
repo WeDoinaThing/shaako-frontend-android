@@ -66,8 +66,8 @@ public class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAd
             @Override
             public void onClick(View view) {
 
-//                Speak speak = new Speak(context);
-//                speak.speak(ttsObject, list.get(position).getFields().getTitle());
+                Speak speak = new Speak(context);
+                speak.speak(ttsObject, list.get(position).getFields().getTitle());
 
                 Intent youtube = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).getFields().getAssociatedLink()));
                 context.startActivity(youtube);
