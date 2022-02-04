@@ -69,4 +69,5 @@ dependencies {
     implementation 'com.gelitenight.waveview:waveview:1.0.0'
     implementation "com.azure.android:azure-maps-control:1.0.0"
     implementation 'com.github.pchmn:MaterialChipsInput:1.0.8'
+    implementation 'com.alespero:expandable-cardview:0.6'
 }
