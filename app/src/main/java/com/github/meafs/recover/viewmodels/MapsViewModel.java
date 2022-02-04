@@ -19,9 +19,9 @@ public class MapsViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void init() {
+    public void init(String latitude, String longitude) {
         MapsRepository repository = new MapsRepository();
-        repository.getMapsData();
+        repository.getMapsData(latitude, longitude);
         locationResponseLiveData = repository.getLocationLiveData();
     }
 

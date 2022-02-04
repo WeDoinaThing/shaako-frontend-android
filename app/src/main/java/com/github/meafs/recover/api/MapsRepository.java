@@ -40,10 +40,10 @@ public class MapsRepository {
                 .create(ApiService.class);
     }
 
-    public void getMapsData() {
+    public void getMapsData(String lat, String lon) {
 
         // Provide lat and long from user location
-        apiService.getHospitals(AzureMapsToken, "24.8949", "91.8687").enqueue(new Callback<MapsResultModel>() {
+        apiService.getHospitals(AzureMapsToken, lat, lon).enqueue(new Callback<MapsResultModel>() {
             @Override
             public void onResponse(Call<MapsResultModel> call, Response<MapsResultModel> response) {
                 if (response.body() != null) {
