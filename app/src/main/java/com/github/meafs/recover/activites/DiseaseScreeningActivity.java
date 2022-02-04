@@ -1,9 +1,10 @@
 package com.github.meafs.recover.activites;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.os.Bundle;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.databinding.ActivityDiseaseScreeningBinding;
 
