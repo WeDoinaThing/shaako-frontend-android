@@ -81,6 +81,8 @@
     <string name="emptyFields">Please fill all the fields!!</string>
     <string name="loginSuccessful">Login Successful!</string>
     <string name="invalidQR">Please scan a valid QR code!</string>
+    <string name="hospital_name">Hospital Name</string>
+    <string name="show_nearby_hospitals">Show nearby hospitals</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.github.meafs.recover.adapters;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,19 +40,12 @@ public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.Static
         holder.imageView.setImageResource(currentItem.getImage());
         holder.numberView.setText(currentItem.getNumber());
         holder.textView.setText(currentItem.getText());
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                row_index = position;
-                notifyDataSetChanged();
-            }
+        holder.linearLayout.setOnClickListener(view -> {
+            row_index = position;
+            notifyDataSetChanged();
         });
-        if (row_index == position) {
-//            holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
-        } else {
-            holder.linearLayout.setBackgroundResource(R.drawable.static_rv_selected_bg);
-            holder.linearLayout.setBackgroundColor(Color.parseColor(currentItem.getColorResource()));
-        }
+        holder.linearLayout.setBackgroundResource(R.drawable.static_rv_bg);
+        holder.linearLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(currentItem.getColorResource())));
     }
 
     @Override
