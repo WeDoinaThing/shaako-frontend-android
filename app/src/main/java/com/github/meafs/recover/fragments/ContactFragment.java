@@ -5,6 +5,7 @@ import static com.github.meafs.recover.utils.Constants.AzureMapsToken;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,15 @@ public class ContactFragment extends Fragment implements TextToSpeech.OnInitList
         });
 
         return view;
+    }
+
+    @Override
+    public void onInit(int i) {
+        if (i == TextToSpeech.SUCCESS) {
+            //Setting speech Language
+            engine.setLanguage(Locale.ENGLISH);
+            engine.setPitch(1);
+        }
     }
 
     @Override

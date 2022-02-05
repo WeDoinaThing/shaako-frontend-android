@@ -70,10 +70,14 @@ public abstract class ContentRecylerAdapter extends RecyclerView.Adapter<Content
         holder.chipGroup.removeAllViews();
         for (String tag : tags) {
             Chip chip = new Chip(context);
-            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(context, null,0,R.style.MaterialComponents_Chip_Thin);
+            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(context, null, 0, R.style.MaterialComponents_Chip_Thin);
             chip.setChipDrawable(chipDrawable);
             chip.setText(tag.trim());
-            chip.setOnClickListener(view -> chipClicks(tag));
+            chip.setOnClickListener(view -> {
+                chipClicks(tag);
+                Speak speak = new Speak(context);
+                speak.speak(ttsObject, tag);
+            });
             holder.chipGroup.addView(chip);
         }
         fetchThumbnail = new FetchThumbnail(list.get(position).getFields().getAssociatedLink());
