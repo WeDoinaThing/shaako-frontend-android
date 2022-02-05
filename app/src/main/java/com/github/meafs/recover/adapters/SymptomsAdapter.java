@@ -1,12 +1,10 @@
 package com.github.meafs.recover.adapters;
 
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +48,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             }
         }
         for (int textViewIndex = 0; textViewIndex < noOfChild; textViewIndex++) {
-            TextView currentTextView = (TextView) holder.linearLayout_childItems.getChildAt(textViewIndex);
+            CheckBox currentTextView = (CheckBox) holder.linearLayout_childItems.getChildAt(textViewIndex);
             currentTextView.setText(dummyParentDataItem.getChildDataItems().get(textViewIndex).getChildName());
         }
     }
@@ -79,29 +77,18 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             for (int indexView = 0; indexView < intMaxNoOfChild; indexView++) {
                 CheckBox checkBox = new CheckBox(context);
                 checkBox.setId(indexView);
-                checkBox.setGravity(Gravity.LEFT);
-                TextView textView = new TextView(context);
-                textView.setId(indexView);
-                textView.setPadding(10, 10, 10, 10);
-                textView.setGravity(Gravity.CENTER);
-//                textView.setBackground(ContextCompat.getDrawable(context, R.drawable.background_sub_module_text));
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                textView.setOnClickListener(this);
-                checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                        @Override
-                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            if (isChecked){
-                                Toast.makeText(context, "" + textView.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(context, "UNCHECKED "+ textView.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    if (isChecked){
+                                Toast.makeText(context, "" + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
                     }
+                    else {
+                                Toast.makeText(context, "UNCHECKED "+ checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
                 );
                 linearLayout_childItems.setOrientation(LinearLayout.VERTICAL);
                 linearLayout_childItems.addView(checkBox, layoutParams);
-                linearLayout_childItems.addView(textView, layoutParams);
             }
             textView_parentName.setOnClickListener(this);
 
