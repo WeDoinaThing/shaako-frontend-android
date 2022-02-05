@@ -3,6 +3,7 @@ package com.github.meafs.recover.activites;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class DiseaseScreeningActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
+    private Button floatingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,8 @@ public class DiseaseScreeningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disease_screening);
         mContext = DiseaseScreeningActivity.this;
         mRecyclerView = findViewById(R.id.recyclerView);
-        SymptomsAdapter recyclerDataAdapter = new SymptomsAdapter(getDummyDataToPass());
+        floatingButton = findViewById(R.id.disease_selection_done);
+        SymptomsAdapter recyclerDataAdapter = new SymptomsAdapter(getDummyDataToPass(), floatingButton);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(recyclerDataAdapter);
         mRecyclerView.setHasFixedSize(true);
