@@ -51,14 +51,14 @@ public class DiseaseScreeningActivity extends AppCompatActivity {
             String text = throatANdChest.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Throat and Chest", childDataItems));
+        arrDummyData.add(new SymptomCategories("Throat and Chest",R.drawable.throatandchest ,childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < skinAndNails.size();i++){
             String text = skinAndNails.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Skin and Nails", childDataItems));
+        arrDummyData.add(new SymptomCategories("Skin and Nails",R.drawable.rash , childDataItems));
 
         /////////
         childDataItems = new ArrayList<>();
@@ -66,49 +66,49 @@ public class DiseaseScreeningActivity extends AppCompatActivity {
             String text = stomachAndAppetite.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Stomach and Appetite", childDataItems));
+        arrDummyData.add(new SymptomCategories("Stomach and Appetite",R.drawable.digestion , childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < face.size();i++){
             String text = face.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Facial Features", childDataItems));
+        arrDummyData.add(new SymptomCategories("Facial Features",R.drawable.freckles ,childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < muscleLimbsBonesVessels.size();i++){
             String text = muscleLimbsBonesVessels.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Muscles, Limbs, Bones and Vessels", childDataItems));
+        arrDummyData.add(new SymptomCategories("Muscles, Limbs, Bones and Vessels", R.drawable.muscle ,childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < excretions.size();i++){
             String text = excretions.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Excretion Related", childDataItems));
+        arrDummyData.add(new SymptomCategories("Excretion Related",R.drawable.kidney , childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < riskFactors.size();i++){
             String text = riskFactors.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Risk Factors", childDataItems));
+        arrDummyData.add(new SymptomCategories("Risk Factors", R.drawable.folder ,childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < mental.size();i++){
             String text = mental.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Psychological Symptoms", childDataItems));
+        arrDummyData.add(new SymptomCategories("Psychological Symptoms", R.drawable.mood ,childDataItems));
         /////////
         childDataItems = new ArrayList<>();
         for (int i = 0; i < others.size();i++){
             String text = others.get(i).toUpperCase().replace("_", " ").split("\\.")[0];
             childDataItems.add(new SymptomChild(text));
         }
-        arrDummyData.add(new SymptomCategories("Throat and Chest", childDataItems));
+        arrDummyData.add(new SymptomCategories("Other External Symptoms",R.drawable.sick , childDataItems));
         return arrDummyData;
     }
 }
