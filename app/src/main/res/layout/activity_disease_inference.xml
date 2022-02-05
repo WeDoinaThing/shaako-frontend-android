@@ -6,24 +6,90 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     tools:context=".activites.DiseaseInference">
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/symptoms_chipGroup"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/symp_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/symptoms_chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_1"
+                style="@style/Widget.MaterialComponents.Chip.Entry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="symptom"
+                app:chipIcon="@drawable/next" />
+            <!-- Chips can be declared here, or added dynamically. -->
+
+        </com.google.android.material.chip.ChipGroup>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_1"
-            style="@style/Widget.MaterialComponents.Chip.Entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:chipIcon="@drawable/next"
-            android:text="symptom"/>
-        <!-- Chips can be declared here, or added dynamically. -->
+        android:layout_below="@+id/symp_card"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
-    </com.google.android.material.chip.ChipGroup>
-</androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/disease1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/disease1_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DISEASE 1"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/disease1_info"
+                android:textAlignment="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/disease2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/disease2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DISEASE 2"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/disease2_info"
+                android:textAlignment="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/disease3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/disease3_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DISEASE 3"
+                android:textAlignment="center" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/disease3_info"
+                android:textAlignment="center"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </RelativeLayout>

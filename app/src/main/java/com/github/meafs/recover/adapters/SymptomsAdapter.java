@@ -23,7 +23,8 @@ import java.util.ArrayList;
 
 public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyViewHolder> {
     private ArrayList<SymptomCategories> dummyParentDataItems;
-    private Button  button;
+    private Button button;
+
     public SymptomsAdapter(ArrayList<SymptomCategories> dummyParentDataItems, Button button) {
         this.dummyParentDataItems = dummyParentDataItems;
         this.button = button;
@@ -91,19 +92,18 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 checkBox.setId(indexView);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    if (isChecked){
+                            if (isChecked) {
                                 Toast.makeText(context, "" + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
-                                symptoms_selection.add(checkBox.getText().toString());
-                        Log.i("SYMPADD", symptoms_selection.toString());
+                                this.symptoms_selection.add(checkBox.getText().toString());
+                                Log.i("SYMPADD", symptoms_selection.toString());
 
-                    }
-                    else {
-                                Toast.makeText(context, "UNCHECKED "+ checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
-                                symptoms_selection.remove(symptoms_selection.size()-1);
-                        Log.i("SYMPREM", symptoms_selection.toString());
+                            } else {
+                                Toast.makeText(context, "UNCHECKED " + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
+                                this.symptoms_selection.remove(symptoms_selection.size() - 1);
+                                Log.i("SYMPREM", symptoms_selection.toString());
 
-                    }
-                }
+                            }
+                        }
                 );
                 linearLayout_childItems.setOrientation(LinearLayout.VERTICAL);
                 linearLayout_childItems.addView(checkBox, layoutParams);
@@ -111,7 +111,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             textView_parentName.setOnClickListener(this);
             Log.i("SYMPPPPPP", symptoms_selection.toString());
             selection_done.setOnClickListener(v -> {
-                Log.d("CLICKED" , symptoms_selection.toString());
+                Log.d("CLICKED", this.symptoms_selection.toString());
                 Intent intent = new Intent(context, DiseaseInference.class);
                 intent.putStringArrayListExtra("SymptomsList", symptoms_selection);
                 v.getContext().startActivity(intent);
