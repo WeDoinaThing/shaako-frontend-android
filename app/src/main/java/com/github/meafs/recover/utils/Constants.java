@@ -7,6 +7,6 @@ public interface Constants {
     String CosmosDBPrimaryKey = "YLrLTAFvDgkY1uEWVW7hxofumSeZqRD3E1kNzf9PGk0v3U1fRwg1a9kX33UPHJbiDEDQflwLQ8GEsBUTFE3mTQ==";
     String AzureMapsURI = "https://atlas.microsoft.com/";
     String AzureMapsToken = "VhrlX_FU5SGJjXCy0sYfOULpcQMrViOUMz6ntZ94OtI";
-    String BackendURI = "http://194.163.148.43/";
+    String BackendURI = "http://shaako-management.azurewebsites.net/";
 
 }

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyViewHolder> {
     private ArrayList<SymptomCategories> dummyParentDataItems;
     private Button button;
+    private ArrayList<String> symptoms_selection = new ArrayList<>();
 
     public SymptomsAdapter(ArrayList<SymptomCategories> dummyParentDataItems, Button button) {
         this.dummyParentDataItems = dummyParentDataItems;
@@ -72,7 +73,6 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
         private ImageView textView_parentLogo;
         private LinearLayout linearLayout_childItems;
         private Button selection_done;
-        public ArrayList<String> symptoms_selection = new ArrayList<>();
 
         MyViewHolder(View itemView, Button button) {
             super(itemView);
@@ -94,13 +94,13 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                             if (isChecked) {
                                 Toast.makeText(context, "" + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
-                                this.symptoms_selection.add(checkBox.getText().toString());
-                                Log.i("SYMPADD", symptoms_selection.toString());
+                                symptoms_selection.add(checkBox.getText().toString());
+                                Log.i("SYMPADD", symptoms_selection.toString() + symptoms_selection.size());
 
                             } else {
                                 Toast.makeText(context, "UNCHECKED " + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
-                                this.symptoms_selection.remove(symptoms_selection.size() - 1);
-                                Log.i("SYMPREM", symptoms_selection.toString());
+                                symptoms_selection.remove(symptoms_selection.size() - 1);
+                                Log.i("SYMPREM", symptoms_selection.toString() + symptoms_selection.size());
 
                             }
                         }
@@ -111,7 +111,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             textView_parentName.setOnClickListener(this);
             Log.i("SYMPPPPPP", symptoms_selection.toString());
             selection_done.setOnClickListener(v -> {
-                Log.d("CLICKED", this.symptoms_selection.toString());
+                Log.d("CLICKED", symptoms_selection.toString());
                 Intent intent = new Intent(context, DiseaseInference.class);
                 intent.putStringArrayListExtra("SymptomsList", symptoms_selection);
                 v.getContext().startActivity(intent);
