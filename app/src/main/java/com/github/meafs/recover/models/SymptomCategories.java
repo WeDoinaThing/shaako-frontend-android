@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 public class SymptomCategories {
     private String parentName;
+    private int logo;
     private ArrayList<SymptomChild> childDataItems;
 
-    public SymptomCategories(String parentName, ArrayList<SymptomChild> childDataItems) {
+    public SymptomCategories(String parentName, int logo, ArrayList<SymptomChild> childDataItems) {
         this.parentName = parentName;
+        this.logo = logo;
         this.childDataItems = childDataItems;
     }
 
@@ -25,5 +27,13 @@ public class SymptomCategories {
 
     public void setChildDataItems(ArrayList<SymptomChild> childDataItems) {
         this.childDataItems = childDataItems;
+    }
+
+    public int getLogo() {
+        return logo;
+    }
+
+    public void setLogo(int logo) {
+        this.logo = logo;
     }
 }

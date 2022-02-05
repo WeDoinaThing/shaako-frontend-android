@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
     public void onBindViewHolder(SymptomsAdapter.MyViewHolder holder, int position) {
         SymptomCategories dummyParentDataItem = dummyParentDataItems.get(position);
         holder.textView_parentName.setText(dummyParentDataItem.getParentName());
+        holder.textView_parentLogo.setImageResource(dummyParentDataItem.getLogo());
         //
         int noOfChildTextViews = holder.linearLayout_childItems.getChildCount();
         for (int index = 0; index < noOfChildTextViews; index++) {
@@ -61,12 +63,14 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Context context;
         private TextView textView_parentName;
+        private ImageView textView_parentLogo;
         private LinearLayout linearLayout_childItems;
 
         MyViewHolder(View itemView) {
             super(itemView);
             context = itemView.getContext();
             textView_parentName = itemView.findViewById(R.id.tv_parentName);
+            textView_parentLogo = itemView.findViewById(R.id.symp_cat);
             linearLayout_childItems = itemView.findViewById(R.id.ll_child_items);
             linearLayout_childItems.setVisibility(View.GONE);
             int intMaxNoOfChild = 0;
