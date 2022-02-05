@@ -104,13 +104,4 @@ public class ContactFragment extends Fragment implements TextToSpeech.OnInitList
             engine.setPitch(1);
         }
     }
-
-    @Override
-    public void onInit(int i) {
-        if (i == TextToSpeech.SUCCESS) {
-            //Setting speech Language
-            engine.setLanguage(Locale.ENGLISH);
-            engine.setPitch(1);
-        }
-    }
 }
