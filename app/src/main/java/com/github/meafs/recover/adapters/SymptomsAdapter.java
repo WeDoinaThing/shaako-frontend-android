@@ -1,9 +1,12 @@
 package com.github.meafs.recover.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,21 +16,23 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.DiseaseInference;
 import com.github.meafs.recover.models.SymptomCategories;
 
 import java.util.ArrayList;
 
 public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyViewHolder> {
     private ArrayList<SymptomCategories> dummyParentDataItems;
-
-    public SymptomsAdapter(ArrayList<SymptomCategories> dummyParentDataItems) {
+    private Button  button;
+    public SymptomsAdapter(ArrayList<SymptomCategories> dummyParentDataItems, Button button) {
         this.dummyParentDataItems = dummyParentDataItems;
+        this.button = button;
     }
 
     @Override
     public SymptomsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.symptom_list, parent, false);
-        return new MyViewHolder(itemView);
+        return new MyViewHolder(itemView, button);
     }
 
     @Override
@@ -65,13 +70,16 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
         private TextView textView_parentName;
         private ImageView textView_parentLogo;
         private LinearLayout linearLayout_childItems;
+        private Button selection_done;
+        public ArrayList<String> symptoms_selection = new ArrayList<>();
 
-        MyViewHolder(View itemView) {
+        MyViewHolder(View itemView, Button button) {
             super(itemView);
             context = itemView.getContext();
             textView_parentName = itemView.findViewById(R.id.tv_parentName);
             textView_parentLogo = itemView.findViewById(R.id.symp_cat);
             linearLayout_childItems = itemView.findViewById(R.id.ll_child_items);
+            selection_done = button;
             linearLayout_childItems.setVisibility(View.GONE);
             int intMaxNoOfChild = 0;
             for (int index = 0; index < dummyParentDataItems.size(); index++) {
@@ -85,9 +93,15 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                     if (isChecked){
                                 Toast.makeText(context, "" + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
+                                symptoms_selection.add(checkBox.getText().toString());
+                        Log.i("SYMPADD", symptoms_selection.toString());
+
                     }
                     else {
                                 Toast.makeText(context, "UNCHECKED "+ checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
+                                symptoms_selection.remove(symptoms_selection.size()-1);
+                        Log.i("SYMPREM", symptoms_selection.toString());
+
                     }
                 }
                 );
@@ -95,6 +109,13 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 linearLayout_childItems.addView(checkBox, layoutParams);
             }
             textView_parentName.setOnClickListener(this);
+            Log.i("SYMPPPPPP", symptoms_selection.toString());
+            selection_done.setOnClickListener(v -> {
+                Log.d("CLICKED" , symptoms_selection.toString());
+                Intent intent = new Intent(context, DiseaseInference.class);
+                intent.putStringArrayListExtra("SymptomsList", symptoms_selection);
+                v.getContext().startActivity(intent);
+            });
 
         }
 
@@ -106,7 +127,14 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 } else {
                     linearLayout_childItems.setVisibility(View.VISIBLE);
                 }
-            } else {
+            }
+//            else if (view.getId() == R.id.disease_selection_done){
+//                System.out.println();
+//                Intent intent = new Intent(view.getContext(), DiseaseInference.class);
+//                intent.putExtra("SymptomsList", symptoms_selection);
+//                view.getContext().startActivity(intent);
+//            }
+            else {
                 TextView textViewClicked = (TextView) view;
                 Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
             }

@@ -7,29 +7,35 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:background="@drawable/gradient_3"
             >
 
                 <TextView
                     android:id="@+id/tv_parentName"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="16dp" />
+                    android:layout_alignParentLeft="true"
+                    android:padding="10dp"
+                    android:fontFamily="@font/nunito"
+                    android:textSize="20dp"
+                    android:text="some symptoms" />
+
                 <ImageView
                     android:id="@+id/symp_cat"
                     android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    />
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/profile" />
 
                 <LinearLayout
                     android:id="@+id/ll_child_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_parentName"
                     android:orientation="vertical">
                 </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 </androidx.cardview.widget.CardView>
