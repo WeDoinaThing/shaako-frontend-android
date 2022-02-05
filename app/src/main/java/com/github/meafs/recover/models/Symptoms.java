@@ -61,6 +61,21 @@ public class Symptoms {
             "dizziness.64"
     ));
 
+
+    public static ArrayList<String> getAll_symptoms() {
+        ArrayList<String> all_symptoms = new ArrayList<>() ;
+        all_symptoms.addAll(throatAndChest);
+        all_symptoms.addAll(skinAndNails);
+        all_symptoms.addAll(stomachAndAppetite);
+        all_symptoms.addAll(face);
+        all_symptoms.addAll(muscleLimbsBonesVessels);
+        all_symptoms.addAll(excretion);
+        all_symptoms.addAll(mental);
+        all_symptoms.addAll(riskFactors);
+        all_symptoms.addAll(others);
+        return all_symptoms;
+    }
+
     public static ArrayList<String> getSkinAndNails() {
         return skinAndNails;
     }

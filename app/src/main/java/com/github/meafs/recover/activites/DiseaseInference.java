@@ -8,10 +8,13 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.models.Symptoms;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DiseaseInference extends AppCompatActivity {
     ArrayList<String> sympoms_selection = new ArrayList<String>();
@@ -58,5 +61,18 @@ public class DiseaseInference extends AppCompatActivity {
 
             chipGroup.addView(chip);
         }
+    }
+
+    private Map<String, String> getIDfromDiseaseName(ArrayList<String> sympoms_selection) {
+        ArrayList<String> all_symptoms = Symptoms.getAll_symptoms();
+        Map <String, String> selection_map = new HashMap<String, String>();
+        for (int i = 0; i< sympoms_selection.size();i++) {
+            String symptom = sympoms_selection.get(i).toLowerCase().replace(" ","_");
+            int pos = all_symptoms.indexOf(symptom);
+            String symptom_id = all_symptoms.get(pos).split("\\.")[1] ;
+            selection_map.put(symptom, symptom_id);
+        }
+
+        return selection_map;
     }
 }
