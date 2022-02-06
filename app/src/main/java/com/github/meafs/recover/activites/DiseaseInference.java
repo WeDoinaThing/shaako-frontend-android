@@ -12,6 +12,7 @@ import com.classifier.randomforestclassifier.RandomForestClassifier;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.models.Diseases;
 import com.github.meafs.recover.models.Symptoms;
+import com.github.meafs.recover.utils.IntegerUtility;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -48,20 +49,6 @@ public class DiseaseInference extends AppCompatActivity {
         runInference();
     }
 
-    private void runInference(){
-        double[] features = new double[132];
-        for (Map.Entry<String, Integer> entry : selectedSymptomMap.entrySet()) {
-            features[entry.getValue()] = 1.0;
-        }
-        RandomForestClassifier randomForestClassifier = new RandomForestClassifier(features);
-        int[] predictions = randomForestClassifier.infer();
-        int[] predictionIndexes = getBestKIndices(predictions, 3);
-
-        tvDisease_1.setText(Diseases.getDisease(predictionIndexes[0]));
-        tvDisease_2.setText(Diseases.getDisease(predictionIndexes[1]));
-        tvDisease_3.setText(Diseases.getDisease(predictionIndexes[2]));
-    }
-
 //    private void addChip(String pItem, ChipGroup pChipGroup) {
 //        Chip lChip = new Chip(this);
 //        lChip.setText(pItem);
@@ -95,6 +82,20 @@ public class DiseaseInference extends AppCompatActivity {
         }
     }
 
+    private void runInference(){
+        double[] features = new double[132];
+        for (Map.Entry<String, Integer> entry : selectedSymptomMap.entrySet()) {
+            features[entry.getValue()] = 1.0;
+        }
+        RandomForestClassifier randomForestClassifier = new RandomForestClassifier(features);
+        int[] predictions = randomForestClassifier.infer();
+        int[] predictionIndexes = IntegerUtility.getBestKIndices(predictions, 3);
+
+        tvDisease_1.setText(Diseases.getDisease(predictionIndexes[0]));
+        tvDisease_2.setText(Diseases.getDisease(predictionIndexes[1]));
+        tvDisease_3.setText(Diseases.getDisease(predictionIndexes[2]));
+    }
+
     private void getIdMapOfSymptoms() {
         Map<String, Integer> symptomsMap = Symptoms.mapSymptoms();
         for (int i = 0; i< sympoms_selection.size();i++) {
@@ -103,27 +104,4 @@ public class DiseaseInference extends AppCompatActivity {
             selectedSymptomMap.put(symptom, symptom_id);
         }
     }
-
-    private int[] getBestKIndices(int[] array, int num) {
-        IndexValuePair[] pairs = new IndexValuePair[array.length];
-        for (int i = 0; i < array.length; i++) {
-            pairs[i] = new IndexValuePair(i, array[i]);
-        }
-        Arrays.sort(pairs, (o1, o2) -> Integer.compare(o2.value, o1.value));
-        int[] result = new int[num];
-        for (int i = 0; i < num; i++) {
-            result[i] = pairs[i].index;
-        }
-        return result;
-    }
-    private static class IndexValuePair {
-        private int index;
-        private int value;
-
-        public IndexValuePair(int index, int value) {
-            this.index = index;
-            this.value = value;
-        }
-    }
-
 }
