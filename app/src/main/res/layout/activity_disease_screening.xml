@@ -7,15 +7,42 @@
     android:layout_height="match_parent"
     tools:context=".activites.DiseaseScreeningActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightSecondaryColor"
+        app:itemIconTint="@color/white"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Disease Screening"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textFontWeight="600"
+            android:textSize="22sp" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="128dp"
+        />
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -27,7 +54,7 @@
         android:fontFamily="@font/nunito"
         android:shadowColor="@color/white"
         android:shadowRadius="0"
-        android:text="Done"
+        android:text="Check Disease"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textFontWeight="700"

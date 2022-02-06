@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.classifier.randomforestclassifier.RandomForestClassifier;
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.models.Diseases;
 import com.github.meafs.recover.models.Symptoms;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -17,14 +20,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DiseaseInference extends AppCompatActivity {
-    ArrayList<String> sympoms_selection = new ArrayList<String>();
+    ArrayList<String> sympoms_selection = new ArrayList<>();
+    Map<String, Integer> selection_map = new HashMap<>();
+    private TextView tvDisease;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease_inference);
-        this.sympoms_selection = getIntent().getStringArrayListExtra("SymptomsList");
+        tvDisease = findViewById(R.id.disease1_name);
+
+        if(getIntent().hasExtra("SymptomsList"))
+            sympoms_selection = getIntent().getStringArrayListExtra("SymptomsList");
+
         setTag("Selections", sympoms_selection);
-        Log.i("SYMPT", this.sympoms_selection.toString());
+        getIdMapOfSymptoms();
+        Integer detectedDisease = runInference();
+        String diseaseString = Diseases.getDisease(detectedDisease);
+        tvDisease.setText(diseaseString);
+    }
+
+    private Integer runInference(){
+        double[] features = new double[132];
+        for (Map.Entry<String, Integer> entry : selection_map.entrySet()) {
+            features[entry.getValue()] = 1.0;
+        }
+        RandomForestClassifier randomForestClassifier = new RandomForestClassifier(features);
+        return randomForestClassifier.infer();
     }
 
 //    private void addChip(String pItem, ChipGroup pChipGroup) {
@@ -51,28 +73,22 @@ public class DiseaseInference extends AppCompatActivity {
             chip.setCloseIconResource(R.drawable.next);
             chip.setCloseIconVisible(true);
             //Added click listener on close icon to remove tag from ChipGroup
-            chip.setOnCloseIconClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tagList.remove(tagName);
-                    chipGroup.removeView(chip);
-                }
+            chip.setOnCloseIconClickListener(v -> {
+                tagList.remove(tagName);
+                chipGroup.removeView(chip);
             });
 
             chipGroup.addView(chip);
         }
     }
 
-    private Map<String, String> getIDfromDiseaseName(ArrayList<String> sympoms_selection) {
+    private void getIdMapOfSymptoms() {
         ArrayList<String> all_symptoms = Symptoms.getAll_symptoms();
-        Map <String, String> selection_map = new HashMap<String, String>();
         for (int i = 0; i< sympoms_selection.size();i++) {
             String symptom = sympoms_selection.get(i).toLowerCase().replace(" ","_");
             int pos = all_symptoms.indexOf(symptom);
-            String symptom_id = all_symptoms.get(pos).split("\\.")[1] ;
+            Integer symptom_id = Integer.valueOf(all_symptoms.get(pos).split("\\.")[1] );
             selection_map.put(symptom, symptom_id);
         }
-
-        return selection_map;
     }
 }

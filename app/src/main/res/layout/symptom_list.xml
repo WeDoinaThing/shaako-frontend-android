@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     app:cardCornerRadius="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_3"
+            android:background="@drawable/gradient_11"
             >
 
                 <TextView
                     android:id="@+id/tv_parentName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:padding="10dp"
+                    android:layout_toLeftOf="@id/symp_cat"
                     android:fontFamily="@font/nunito"
-                    android:textSize="20dp"
-                    android:text="some symptoms" />
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textFontWeight="600"
+                    android:textSize="22sp"
+                    tools:text="some symptoms" />
 
                 <ImageView
                     android:id="@+id/symp_cat"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/profile" />
 
@@ -34,7 +38,10 @@
                     android:id="@+id/ll_child_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_parentName"
+                    android:layout_below="@id/symp_cat"
+                    android:background="@color/white"
+                    android:paddingHorizontal="10dp"
+                    android:paddingBottom="10dp"
                     android:orientation="vertical">
                 </LinearLayout>
         </RelativeLayout>
