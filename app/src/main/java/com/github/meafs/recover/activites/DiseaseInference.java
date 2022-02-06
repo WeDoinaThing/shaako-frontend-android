@@ -20,8 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DiseaseInference extends AppCompatActivity {
-    ArrayList<String> sympoms_selection = new ArrayList<>();
-    Map<String, Integer> selection_map = new HashMap<>();
+    private static final String TAG = "DiseaseInfActivity";
+
+    private ArrayList<String> sympoms_selection = new ArrayList<>();
+    private Map<String, Integer> selectedSymptomMap = new HashMap<>();
     private TextView tvDisease;
 
     @Override
@@ -42,7 +44,7 @@ public class DiseaseInference extends AppCompatActivity {
 
     private Integer runInference(){
         double[] features = new double[132];
-        for (Map.Entry<String, Integer> entry : selection_map.entrySet()) {
+        for (Map.Entry<String, Integer> entry : selectedSymptomMap.entrySet()) {
             features[entry.getValue()] = 1.0;
         }
         RandomForestClassifier randomForestClassifier = new RandomForestClassifier(features);
@@ -83,12 +85,11 @@ public class DiseaseInference extends AppCompatActivity {
     }
 
     private void getIdMapOfSymptoms() {
-        ArrayList<String> all_symptoms = Symptoms.getAll_symptoms();
+        Map<String, Integer> symptomsMap = Symptoms.mapSymptoms();
         for (int i = 0; i< sympoms_selection.size();i++) {
             String symptom = sympoms_selection.get(i).toLowerCase().replace(" ","_");
-            int pos = all_symptoms.indexOf(symptom);
-            Integer symptom_id = Integer.valueOf(all_symptoms.get(pos).split("\\.")[1] );
-            selection_map.put(symptom, symptom_id);
+            Integer symptom_id = symptomsMap.get(symptom);
+            selectedSymptomMap.put(symptom, symptom_id);
         }
     }
 }
