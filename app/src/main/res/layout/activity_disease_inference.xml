@@ -1,32 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".activites.DiseaseInference">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightSecondaryColor"
+        app:itemIconTint="@color/white"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:text="Disease Screening"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textFontWeight="600"
+            android:textSize="22sp" />
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/symp_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/symptoms_chipGroup"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_1"
-                style="@style/Widget.MaterialComponents.Chip.Entry"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="14dp">
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="symptom"
-                app:chipIcon="@drawable/next" />
-            <!-- Chips can be declared here, or added dynamically. -->
-
-        </com.google.android.material.chip.ChipGroup>
+                android:text="Symptoms"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:fontFamily="@font/nunito"
+                android:textFontWeight="600"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                />
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/symptoms_chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--            <com.google.android.material.chip.Chip-->
+                <!--                android:id="@+id/chip_1"-->
+                <!--                style="@style/Widget.MaterialComponents.Chip.Entry"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:text="symptom"-->
+                <!--                app:chipIcon="@drawable/next" />-->
+                <!-- Chips can be declared here, or added dynamically. -->
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -92,4 +132,4 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

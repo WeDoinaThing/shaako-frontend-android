@@ -10,9 +10,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
@@ -67,11 +69,12 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
         return dummyParentDataItems.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyViewHolder extends RecyclerView.ViewHolder{
         private Context context;
         private TextView textView_parentName;
         private ImageView textView_parentLogo;
         private LinearLayout linearLayout_childItems;
+        private CardView cardView;
         private Button selection_done;
 
         MyViewHolder(View itemView, Button button) {
@@ -80,6 +83,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             textView_parentName = itemView.findViewById(R.id.tv_parentName);
             textView_parentLogo = itemView.findViewById(R.id.symp_cat);
             linearLayout_childItems = itemView.findViewById(R.id.ll_child_items);
+            cardView = itemView.findViewById(R.id.card_view);
             selection_done = button;
             linearLayout_childItems.setVisibility(View.GONE);
             int intMaxNoOfChild = 0;
@@ -93,12 +97,10 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                             if (isChecked) {
-                                Toast.makeText(context, "" + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
                                 symptoms_selection.add(checkBox.getText().toString());
                                 Log.i("SYMPADD", symptoms_selection.toString() + symptoms_selection.size());
 
                             } else {
-                                Toast.makeText(context, "UNCHECKED " + checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
                                 symptoms_selection.remove(symptoms_selection.size() - 1);
                                 Log.i("SYMPREM", symptoms_selection.toString() + symptoms_selection.size());
 
@@ -108,7 +110,6 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 linearLayout_childItems.setOrientation(LinearLayout.VERTICAL);
                 linearLayout_childItems.addView(checkBox, layoutParams);
             }
-            textView_parentName.setOnClickListener(this);
             Log.i("SYMPPPPPP", symptoms_selection.toString());
             selection_done.setOnClickListener(v -> {
                 Log.d("CLICKED", symptoms_selection.toString());
@@ -117,29 +118,13 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 v.getContext().startActivity(intent);
             });
 
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.tv_parentName) {
+            cardView.setOnClickListener(view -> {
                 if (linearLayout_childItems.getVisibility() == View.VISIBLE) {
                     linearLayout_childItems.setVisibility(View.GONE);
                 } else {
                     linearLayout_childItems.setVisibility(View.VISIBLE);
                 }
-            }
-//            else if (view.getId() == R.id.disease_selection_done){
-//                System.out.println();
-//                Intent intent = new Intent(view.getContext(), DiseaseInference.class);
-//                intent.putExtra("SymptomsList", symptoms_selection);
-//                view.getContext().startActivity(intent);
-//            }
-            else {
-                TextView textViewClicked = (TextView) view;
-                Toast.makeText(context, "" + textViewClicked.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
+            });
         }
-
-
     }
 }

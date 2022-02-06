@@ -9,7 +9,18 @@
         <entry key="app/src/main/res/drawable/button_drawable_complementary.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/first.xml" value="0.371875" />
-        <entry key="app/src/main/res/drawable/gradient_3.xml" value="0.34375" />
+        <entry key="app/src/main/res/drawable/gradient_1.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_10.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_11.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_2.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_3.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_3_rounded.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_4.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_5.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_6.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_7.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_8.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/gradient_9.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.32685185185185184" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/ic_contact.xml" value="0.32685185185185184" />
@@ -29,6 +40,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/activity_patient_details.xml" value="0.15932117527862208" />
         <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.1347517730496454" />
+        <entry key="app/src/main/res/layout/activity_quiz_runner.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20625" />
