@@ -1,8 +1,8 @@
 package com.github.meafs.recover.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,9 +23,9 @@ import com.github.meafs.recover.models.SymptomCategories;
 import java.util.ArrayList;
 
 public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyViewHolder> {
-    private ArrayList<SymptomCategories> dummyParentDataItems;
-    private Button button;
-    private ArrayList<String> symptoms_selection = new ArrayList<>();
+    private final ArrayList<SymptomCategories> dummyParentDataItems;
+    private final Button button;
+    private final ArrayList<String> symptoms_selection = new ArrayList<>();
 
     public SymptomsAdapter(ArrayList<SymptomCategories> dummyParentDataItems, Button button) {
         this.dummyParentDataItems = dummyParentDataItems;
@@ -69,13 +68,13 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
         return dummyParentDataItems.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
-        private Context context;
-        private TextView textView_parentName;
-        private ImageView textView_parentLogo;
-        private LinearLayout linearLayout_childItems;
-        private CardView cardView;
-        private Button selection_done;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        private final Context context;
+        private final TextView textView_parentName;
+        private final ImageView textView_parentLogo;
+        private final LinearLayout linearLayout_childItems;
+        private final CardView cardView;
+        private final Button selection_done;
 
         MyViewHolder(View itemView, Button button) {
             super(itemView);
@@ -98,11 +97,11 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                             if (isChecked) {
                                 symptoms_selection.add(checkBox.getText().toString());
-                                Log.i("SYMPADD", symptoms_selection.toString() + symptoms_selection.size());
+//                                Log.i("SYMPADD", symptoms_selection.toString() + symptoms_selection.size());
 
                             } else {
                                 symptoms_selection.remove(symptoms_selection.size() - 1);
-                                Log.i("SYMPREM", symptoms_selection.toString() + symptoms_selection.size());
+//                                Log.i("SYMPREM", symptoms_selection.toString() + symptoms_selection.size());
 
                             }
                         }
@@ -110,12 +109,15 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
                 linearLayout_childItems.setOrientation(LinearLayout.VERTICAL);
                 linearLayout_childItems.addView(checkBox, layoutParams);
             }
-            Log.i("SYMPPPPPP", symptoms_selection.toString());
             selection_done.setOnClickListener(v -> {
-                Log.d("CLICKED", symptoms_selection.toString());
-                Intent intent = new Intent(context, DiseaseInference.class);
-                intent.putStringArrayListExtra("SymptomsList", symptoms_selection);
-                v.getContext().startActivity(intent);
+                if (symptoms_selection.size() < 4) {
+                    Toast.makeText(context, "Please select more than 3 symptoms", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(context, DiseaseInference.class);
+                    intent.putStringArrayListExtra("SymptomsList", symptoms_selection);
+                    v.getContext().startActivity(intent);
+                    ((Activity) v.getContext()).finish();
+                }
             });
 
             cardView.setOnClickListener(view -> {

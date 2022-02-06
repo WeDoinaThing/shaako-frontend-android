@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class StaticRvAdapter extends RecyclerView.Adapter<StaticRvAdapter.StaticRvViewHolder> {
 
-    int row_index = -1;
     private final ArrayList<StaticRvModel> items;
+    int row_index = -1;
 
     public StaticRvAdapter(ArrayList<StaticRvModel> items) {
         this.items = items;

@@ -46,15 +46,14 @@ public class ConfigureTaskViewModel extends AndroidViewModel {
 
     public static final String INSERT_MODE = "createNewTaskAndInsert";
     public static final String EDIT_MODE = "editTaskAndUpdate";
-
-    private LiveData<TaskEntity> task; //task to be configured
-    private String configurationMode;
     private final TasksRepository taskRepository;
     private final MutableLiveData<Integer> statusFinishActivity;// Set it to 1 to notify activity to finish itself
     private final MutableLiveData<String> time; //Will store formatted string h:mm a from TimePickerDialog, to show changes in UI
     private final MutableLiveData<String> validationErrorMsg; //Will show validation message AddTaskActivity
     private final MutableLiveData<String> minutesForTask; //Have to use this variable to avoid showing default 0 value in EditText, once user click ok button, it will be saved into the task
     private final Context mContext;
+    private LiveData<TaskEntity> task; //task to be configured
+    private String configurationMode;
 
     public ConfigureTaskViewModel(@NonNull Application application) {
         super(application);

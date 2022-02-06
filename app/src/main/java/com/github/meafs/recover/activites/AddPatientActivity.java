@@ -38,7 +38,7 @@ import java.util.Locale;
 public class AddPatientActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private static final String TAG = "AddPatientActivity";
     private final Calendar calendar = Calendar.getInstance();
-
+    private final ArrayList<PatientModel> arrayList = new ArrayList<>();
     private String sex;
     private String unit;
     private Date date;
@@ -47,7 +47,6 @@ public class AddPatientActivity extends AppCompatActivity implements TextToSpeec
     private TextInputEditText weight;
     private TextInputEditText contact;
     private PatientViewModel patientViewModel;
-    private final ArrayList<PatientModel> arrayList = new ArrayList<>();
     private String size;
     private Button button;
     private String CHWid;

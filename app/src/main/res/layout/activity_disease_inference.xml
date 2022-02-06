@@ -57,79 +57,123 @@
                 android:id="@+id/symptoms_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <!--            <com.google.android.material.chip.Chip-->
-                <!--                android:id="@+id/chip_1"-->
-                <!--                style="@style/Widget.MaterialComponents.Chip.Entry"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:text="symptom"-->
-                <!--                app:chipIcon="@drawable/next" />-->
+
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    android:id="@+id/chip_1"-->
+<!--                    style="@style/Widget.MaterialComponents.Chip.Entry"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="symptom"-->
+<!--                     />-->
                 <!-- Chips can be declared here, or added dynamically. -->
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/chw_button_holders"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/symp_card"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/disease1"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/scroll_stats"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:weightSum="4">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/diagnosis_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#A0F4FF"
+            android:elevation="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center_horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Patient is likely showing the symptoms of"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/disease_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:fontFamily="@font/nunito"
+                    android:gravity="center_horizontal"
+                    android:text="Tuberculosis"
+                    android:textColor="#F88FB3"
+                    android:textFontWeight="700"
+                    android:textSize="25dp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/down_arrow"/>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/disease_information_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#F88FB3"
+            android:visibility="gone"
+            android:elevation="10dp"
+            >
             <TextView
-                android:id="@+id/disease1_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DISEASE 1"
-                android:textAlignment="center" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/disease1_info"
-                android:textAlignment="center"/>
+                android:background="#F88FB3"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito"
+                android:letterSpacing=".1"
+                android:lineSpacingExtra="2dp"
+                android:padding="10dp"
+                android:id="@+id/disease_information"
+                android:text="Expandable disease information"
+                />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/disease2"
+            android:id="@+id/disease_doctor_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#F88FB3"
+            android:visibility="gone"
+            android:elevation="10dp"
+            >
             <TextView
-                android:id="@+id/disease2_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="DISEASE 2"
-                android:textAlignment="center" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/disease2_info"
-                android:textAlignment="center"/>
+                android:background="#FFC107"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito"
+                android:letterSpacing=".1"
+                android:lineSpacingExtra="2dp"
+                android:padding="10dp"
+                android:id="@+id/disease_doctor"
+                android:text="Patient should be see a doctor specializing in throat and chest"
+                />
         </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/disease3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/disease3_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DISEASE 3"
-                android:textAlignment="center" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/disease3_info"
-                android:textAlignment="center"/>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
+        </LinearLayout>
+</ScrollView>
 </LinearLayout>

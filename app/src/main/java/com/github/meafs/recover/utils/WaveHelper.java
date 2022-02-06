@@ -13,10 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WaveHelper {
-    private WaveView mWaveView;
+    private final WaveView mWaveView;
 
     private AnimatorSet mAnimatorSet;
-    private Float score;
+    private final Float score;
+
     public WaveHelper(WaveView waveView, Float score) {
         mWaveView = waveView;
         this.score = score;

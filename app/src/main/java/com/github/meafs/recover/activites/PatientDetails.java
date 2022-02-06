@@ -196,7 +196,7 @@ public class PatientDetails extends AppCompatActivity implements TextToSpeech.On
     }
 
     private String getVisitedText(int visited) {
-        return String.valueOf(visited) + " times";
+        return visited + " times";
     }
 
     @Override

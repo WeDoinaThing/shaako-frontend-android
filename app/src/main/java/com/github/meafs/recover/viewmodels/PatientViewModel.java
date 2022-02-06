@@ -15,8 +15,8 @@ import java.util.List;
 
 public class PatientViewModel extends AndroidViewModel {
 
-    private LiveData<List<Document>> patientResponseLiveData;
     private final CosmosDBRepository repository = new CosmosDBRepository();
+    private LiveData<List<Document>> patientResponseLiveData;
     private LiveData<String> liveData;
 
     public PatientViewModel(@NonNull Application application) {

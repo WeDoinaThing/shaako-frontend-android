@@ -3,12 +3,8 @@ package com.github.meafs.recover.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +26,11 @@ import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public abstract class ContentRecylerAdapter extends RecyclerView.Adapter<ContentRecylerAdapter.ViewHolder> {
 
-    private ArrayList<ContentModel> list = new ArrayList<>();
     private final Context context;
+    private ArrayList<ContentModel> list = new ArrayList<>();
     private FetchThumbnail fetchThumbnail;
     private TextToSpeech ttsObject;
 
