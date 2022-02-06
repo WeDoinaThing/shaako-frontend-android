@@ -2,6 +2,8 @@ package com.github.meafs.recover.models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Symptoms {
     private static final ArrayList<String> skinAndNails = new ArrayList<String>(Arrays.asList(
@@ -62,18 +64,23 @@ public class Symptoms {
     ));
 
 
-    public static ArrayList<String> getAll_symptoms() {
-        ArrayList<String> all_symptoms = new ArrayList<>() ;
-        all_symptoms.addAll(throatAndChest);
-        all_symptoms.addAll(skinAndNails);
-        all_symptoms.addAll(stomachAndAppetite);
-        all_symptoms.addAll(face);
-        all_symptoms.addAll(muscleLimbsBonesVessels);
-        all_symptoms.addAll(excretion);
-        all_symptoms.addAll(mental);
-        all_symptoms.addAll(riskFactors);
-        all_symptoms.addAll(others);
-        return all_symptoms;
+    public static Map<String, Integer> mapSymptoms() {
+        Map<String, Integer> symptomMap = new HashMap<>();
+        ArrayList<String> symptomList = new ArrayList<>() ;
+        symptomList.addAll(throatAndChest);
+        symptomList.addAll(skinAndNails);
+        symptomList.addAll(stomachAndAppetite);
+        symptomList.addAll(face);
+        symptomList.addAll(muscleLimbsBonesVessels);
+        symptomList.addAll(excretion);
+        symptomList.addAll(mental);
+        symptomList.addAll(riskFactors);
+        symptomList.addAll(others);
+
+        for (String symptom: symptomList){
+            symptomMap.put(getNameOfDisease(symptom), getIndexOfDisease(symptom));
+        }
+        return symptomMap;
     }
 
     public static ArrayList<String> getSkinAndNails() {
@@ -114,5 +121,8 @@ public class Symptoms {
 
     public static Integer getIndexOfDisease(String text){
         return Integer.valueOf(text.split("\\.")[1]);
+    }
+    public static String getNameOfDisease(String text){
+        return text.split("\\.")[0];
     }
 }
