@@ -7,12 +7,13 @@ public class Quiz {
     private ArrayList<String> choices;
     private Integer answer;
 
-    public Quiz(String question, ArrayList<String> choices, Integer answer){
+    public Quiz(String question, ArrayList<String> choices, Integer answer) {
         this.question = question;
         this.choices = choices;
         this.answer = answer;
     }
-    public Quiz(){
+
+    public Quiz() {
 
     }
 

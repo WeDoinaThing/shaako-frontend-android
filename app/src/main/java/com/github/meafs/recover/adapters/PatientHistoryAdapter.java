@@ -15,7 +15,7 @@ import com.github.meafs.recover.utils.Speak;
 import java.util.ArrayList;
 
 public class PatientHistoryAdapter extends RecyclerView.Adapter<PatientHistoryAdapter.ViewHolder> {
-    private ArrayList<String> history_list;
+    private final ArrayList<String> history_list;
     private TextToSpeech ttsObject;
 
     public PatientHistoryAdapter(ArrayList<String> history_list) {

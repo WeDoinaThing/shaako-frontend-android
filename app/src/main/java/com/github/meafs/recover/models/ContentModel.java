@@ -42,7 +42,7 @@ public class ContentModel implements Serializable {
     }
 
 
-    public class Fields implements Serializable{
+    public class Fields implements Serializable {
 
         @SerializedName("title")
         @Expose

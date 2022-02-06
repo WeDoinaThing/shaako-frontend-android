@@ -24,7 +24,7 @@ public class MapsRepository {
     private final ApiService apiService;
     private final MutableLiveData<List<LocationData>> locationLiveDataList = new MutableLiveData<>();
     private final MutableLiveData<LocationData> individualLocation = new MutableLiveData<>();
-    private List<LocationData> locationDataList = new ArrayList<>();
+    private final List<LocationData> locationDataList = new ArrayList<>();
 
 
     public MapsRepository() {

@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.ContentRecylerAdapter;
 import com.github.meafs.recover.models.ContentModel;
-import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.utils.Speak;
 import com.github.meafs.recover.viewmodels.ContentViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -40,8 +37,8 @@ public class ContentActivity extends AppCompatActivity implements TextToSpeech.O
     private ContentRecylerAdapter contentRecylerAdapter;
     private EditText etSearchText;
 
-    private ArrayList<ContentModel> arrayList = new ArrayList<>();
-    private ArrayList<ContentModel> visibleArrayList = new ArrayList<>();
+    private final ArrayList<ContentModel> arrayList = new ArrayList<>();
+    private final ArrayList<ContentModel> visibleArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -32,17 +32,15 @@ import java.util.Locale;
 
 public class PatientFragment extends Fragment implements TextToSpeech.OnInitListener {
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
     private PatientRvAdapter patientRvAdapter;
     private PatientViewModel patientViewModel;
-    private ArrayList<Document> arrayList = new ArrayList<>();
-    private ArrayList<Document> visibleArrayList = new ArrayList<>();
+    private final ArrayList<Document> arrayList = new ArrayList<>();
+    private final ArrayList<Document> visibleArrayList = new ArrayList<>();
     private ProgressBar progressBar;
     private ExtendedFloatingActionButton extendedFloatingActionButton;
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
 

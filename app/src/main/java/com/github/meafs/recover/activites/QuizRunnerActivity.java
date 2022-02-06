@@ -1,20 +1,15 @@
 package com.github.meafs.recover.activites;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.DataBindingUtil;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.RadioButton;
-
-import com.anychart.AnyChart;
-import com.anychart.chart.common.dataentry.SingleValueDataSet;
-import com.anychart.charts.CircularGauge;
 import com.gelitenight.waveview.library.WaveView;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.databinding.ActivityQuizRunnerBinding;
@@ -34,8 +29,8 @@ public class QuizRunnerActivity extends AppCompatActivity {
     private Integer index;
 
     private WaveHelper waveHelper;
-    private int mBorderColor = Color.parseColor("#444444");
-    private int mBorderWidth = 0;
+    private final int mBorderColor = Color.parseColor("#444444");
+    private final int mBorderWidth = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,22 +44,22 @@ public class QuizRunnerActivity extends AppCompatActivity {
         parseQuizzes();
     }
 
-    private void evaluateResult(){
+    private void evaluateResult() {
         binding.layoutQuiz.setVisibility(View.GONE);
         binding.layoutScore.setVisibility(View.VISIBLE);
 
-        String correctText = "You've got "+correctAnswers+" out of "+quizArrayList.size()+" answers correct.";
+        String correctText = "You've got " + correctAnswers + " out of " + quizArrayList.size() + " answers correct.";
         binding.tvCorrect.setText(correctText);
 
         Integer percentile = Integer.valueOf(correctAnswers) * 100 / quizArrayList.size();
-        String percentileString = percentile+"%";
+        String percentileString = percentile + "%";
         binding.scoreText.setText(percentileString);
         showAchievedScore(percentile);
     }
 
-    private void showAchievedScore(Integer score){
+    private void showAchievedScore(Integer score) {
         binding.scoreVisualizer.setBorder(mBorderWidth, mBorderColor);
-        Float fScore = Float.valueOf(score)/100.0f;
+        Float fScore = Float.valueOf(score) / 100.0f;
         waveHelper = new WaveHelper(binding.scoreVisualizer, fScore);
         waveHelper.start();
         binding.scoreVisualizer.setShapeType(WaveView.ShapeType.CIRCLE);
@@ -74,38 +69,38 @@ public class QuizRunnerActivity extends AppCompatActivity {
 
     }
 
-    private void renderQuiz(Quiz quiz){
+    private void renderQuiz(Quiz quiz) {
         clearRadioGroup();
         binding.layoutQuiz.setVisibility(View.VISIBLE);
         binding.tvQuestion.setText(quiz.getQuestion());
-        for(String choice: quiz.getChoices()){
-            binding.choiceGroup.addView(getRadioButton(choice, quiz.getChoices().indexOf(choice)+1));
+        for (String choice : quiz.getChoices()) {
+            binding.choiceGroup.addView(getRadioButton(choice, quiz.getChoices().indexOf(choice) + 1));
         }
     }
 
-    private void runQuizzes(Integer index){
+    private void runQuizzes(Integer index) {
         renderQuiz(quizArrayList.get(index));
         Integer correctAnswerIndex = quizArrayList.get(index).getAnswer();
         index++;
         Integer tempIndex = index;
         binding.btSubmitAnswer.setOnClickListener(view -> {
-            if(correctAnswerIndex.equals(binding.choiceGroup.getCheckedRadioButtonId()))
+            if (correctAnswerIndex.equals(binding.choiceGroup.getCheckedRadioButtonId()))
                 correctAnswers++;
 
-            if(tempIndex<quizArrayList.size())
+            if (tempIndex < quizArrayList.size())
                 runQuizzes(tempIndex);
-            else{
+            else {
                 evaluateResult();
             }
         });
     }
 
-    private void parseQuizzes(){
+    private void parseQuizzes() {
         quizArrayList = new ArrayList<>();
 
-        if(getIntent().hasExtra("quizStrings")) {
+        if (getIntent().hasExtra("quizStrings")) {
             ArrayList<String> quizStrings = getIntent().getStringArrayListExtra("quizStrings");
-            for(String quizzes: quizStrings){
+            for (String quizzes : quizStrings) {
                 String[] deconstructQuiz = quizzes.split(";");
                 String question = deconstructQuiz[0];
                 String choices = deconstructQuiz[1];
@@ -117,12 +112,12 @@ public class QuizRunnerActivity extends AppCompatActivity {
                 quizArrayList.add(quiz);
                 runQuizzes(index);
             }
-        }else{
+        } else {
             onBackPressed();
         }
     }
 
-    private RadioButton getRadioButton(String text, Integer index){
+    private RadioButton getRadioButton(String text, Integer index) {
         RadioButton radioButton = new RadioButton(getApplicationContext());
         radioButton.setText(text);
         radioButton.setTextColor(Color.parseColor("#000000"));
@@ -132,7 +127,7 @@ public class QuizRunnerActivity extends AppCompatActivity {
         return radioButton;
     }
 
-    private void clearRadioGroup(){
+    private void clearRadioGroup() {
         binding.choiceGroup.clearCheck();
         binding.choiceGroup.removeAllViews();
     }

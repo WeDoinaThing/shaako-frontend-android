@@ -1,13 +1,13 @@
 package com.github.meafs.recover.utils;
 
 
+import static android.content.Context.WINDOW_SERVICE;
+
 import android.content.Context;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
-
-import static android.content.Context.WINDOW_SERVICE;
 
 public class FontHelper {
     public static void adjustFontScale(Context context, Configuration configuration) {

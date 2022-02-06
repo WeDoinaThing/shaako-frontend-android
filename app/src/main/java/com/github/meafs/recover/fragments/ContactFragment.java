@@ -55,24 +55,21 @@ import java.util.Locale;
 
 public class ContactFragment extends Fragment implements TextToSpeech.OnInitListener {
 
+    private static final int REQUEST_LOCATION = 1;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
     static {
         AzureMaps.setSubscriptionKey(AzureMapsToken);
     }
 
     private MapControl mapControl;
     private MapsViewModel mapsViewModel;
-    private ArrayList<LocationData> locdata = new ArrayList<>();
+    private final ArrayList<LocationData> locdata = new ArrayList<>();
     private ProgressBar progressBar;
     private Button button;
-    private static final int REQUEST_LOCATION = 1;
-
     private LocationManager locationManager;
     private TextToSpeech engine;
-
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
     private String mParam1;
     private String mParam2;
     private Double latitude;

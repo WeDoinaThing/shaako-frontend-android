@@ -1,6 +1,5 @@
 package com.github.meafs.recover.activites;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import com.github.meafs.recover.R;
 import com.github.meafs.recover.fragments.ContactFragment;
 import com.github.meafs.recover.fragments.PatientFragment;
 import com.github.meafs.recover.fragments.UserFragment;
-import com.github.meafs.recover.utils.FontHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

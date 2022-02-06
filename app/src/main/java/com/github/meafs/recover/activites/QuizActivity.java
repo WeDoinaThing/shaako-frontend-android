@@ -25,11 +25,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+    private static final String TAG = "QuizActivity";
     ArrayList<QuizModel> quizModelArrayList;
     QuizViewModel quizViewModel;
-
     private ActivityQuizBinding binding;
-    private static final String TAG = "QuizActivity";
     private SharedPreferences sharedPreferences;
     private TextToSpeech engine;
 

@@ -15,9 +15,10 @@ public class IntegerUtility {
         }
         return result;
     }
+
     private static class IndexValuePair {
-        private int index;
-        private int value;
+        private final int index;
+        private final int value;
 
         public IndexValuePair(int index, int value) {
             this.index = index;

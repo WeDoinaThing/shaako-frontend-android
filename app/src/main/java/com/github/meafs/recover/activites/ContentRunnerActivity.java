@@ -1,15 +1,12 @@
 package com.github.meafs.recover.activites;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
-import android.widget.TextView;
 
-import com.beloo.widget.chipslayoutmanager.util.log.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.bumptech.glide.Glide;
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.databinding.ActivityContentRunnerBinding;
@@ -22,25 +19,26 @@ public class ContentRunnerActivity extends AppCompatActivity {
     private static final String TAG = "ContentRunActivity";
 
     private ActivityContentRunnerBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_content_runner);
         binding.setContentRunnerActivity(this);
 
-        if(getIntent().hasExtra("contentModel")){
+        if (getIntent().hasExtra("contentModel")) {
             ContentModel contentModel = (ContentModel) getIntent().getSerializableExtra("contentModel");
             renderView(contentModel);
         }
     }
 
-    private void renderView(ContentModel contentModel){
+    private void renderView(ContentModel contentModel) {
         binding.tvTitle.setText(contentModel.getFields().getTitle());
 
         String[] tags = contentModel.getFields().getTags().split(",");
         for (String tag : tags) {
             Chip chip = new Chip(this);
-            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(this, null,0,R.style.MaterialComponents_Chip_Thin);
+            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.MaterialComponents_Chip_Thin);
             chip.setChipDrawable(chipDrawable);
             chip.setText(tag.trim());
             binding.chipGroup.addView(chip);
@@ -59,7 +57,7 @@ public class ContentRunnerActivity extends AppCompatActivity {
             startActivity(youtube);
         });
 
-        binding.toolbar.setNavigationOnClickListener( view -> {
+        binding.toolbar.setNavigationOnClickListener(view -> {
             onBackPressed();
         });
     }
