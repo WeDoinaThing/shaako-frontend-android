@@ -16,39 +16,50 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DiseaseInference extends AppCompatActivity {
     private static final String TAG = "DiseaseInfActivity";
 
     private ArrayList<String> sympoms_selection = new ArrayList<>();
     private Map<String, Integer> selectedSymptomMap = new HashMap<>();
-    private TextView tvDisease;
+    private TextView tvDisease_1;
+    private TextView tvDisease_2;
+    private TextView tvDisease_3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disease_inference);
-        tvDisease = findViewById(R.id.disease1_name);
+        tvDisease_1 = findViewById(R.id.disease1_name);
+        tvDisease_2 = findViewById(R.id.disease2_name);
+        tvDisease_3 = findViewById(R.id.disease3_name);
 
         if(getIntent().hasExtra("SymptomsList"))
             sympoms_selection = getIntent().getStringArrayListExtra("SymptomsList");
 
         setTag("Selections", sympoms_selection);
         getIdMapOfSymptoms();
-        Integer detectedDisease = runInference();
-        String diseaseString = Diseases.getDisease(detectedDisease);
-        tvDisease.setText(diseaseString);
+        runInference();
     }
 
-    private Integer runInference(){
+    private void runInference(){
         double[] features = new double[132];
         for (Map.Entry<String, Integer> entry : selectedSymptomMap.entrySet()) {
             features[entry.getValue()] = 1.0;
         }
         RandomForestClassifier randomForestClassifier = new RandomForestClassifier(features);
-        return randomForestClassifier.infer();
+        int[] predictions = randomForestClassifier.infer();
+        int[] predictionIndexes = getBestKIndices(predictions, 3);
+
+        tvDisease_1.setText(Diseases.getDisease(predictionIndexes[0]));
+        tvDisease_2.setText(Diseases.getDisease(predictionIndexes[1]));
+        tvDisease_3.setText(Diseases.getDisease(predictionIndexes[2]));
     }
 
 //    private void addChip(String pItem, ChipGroup pChipGroup) {
@@ -92,4 +103,27 @@ public class DiseaseInference extends AppCompatActivity {
             selectedSymptomMap.put(symptom, symptom_id);
         }
     }
+
+    private int[] getBestKIndices(int[] array, int num) {
+        IndexValuePair[] pairs = new IndexValuePair[array.length];
+        for (int i = 0; i < array.length; i++) {
+            pairs[i] = new IndexValuePair(i, array[i]);
+        }
+        Arrays.sort(pairs, (o1, o2) -> Integer.compare(o2.value, o1.value));
+        int[] result = new int[num];
+        for (int i = 0; i < num; i++) {
+            result[i] = pairs[i].index;
+        }
+        return result;
+    }
+    private static class IndexValuePair {
+        private int index;
+        private int value;
+
+        public IndexValuePair(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+    }
+
 }
