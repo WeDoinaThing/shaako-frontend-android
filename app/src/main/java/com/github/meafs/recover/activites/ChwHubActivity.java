@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.adapters.NotificationAdapter;
@@ -25,6 +26,8 @@ public class ChwHubActivity extends AppCompatActivity  implements TextToSpeech.O
     private RecyclerView recyclerView;
     private NotificationAdapter staticRvAdapter;
     Button SOS_button;
+    Button report_monthly ;
+    Button add_contacts;
     private TextToSpeech engine;
 
     @Override
@@ -36,6 +39,8 @@ public class ChwHubActivity extends AppCompatActivity  implements TextToSpeech.O
         toolbar.setNavigationOnClickListener(view -> startActivity(new Intent(ChwHubActivity.this, MainActivity.class)));
         recyclerView = findViewById(R.id.notif_rv_layout);
         SOS_button = findViewById(R.id.generate_alert);
+        report_monthly = findViewById(R.id.generate_report);
+        add_contacts = findViewById(R.id.set_emergency_contacts);
         engine = new TextToSpeech(ChwHubActivity.this, this);
         Speak speak = new Speak(ChwHubActivity.this);
 
@@ -52,6 +57,13 @@ public class ChwHubActivity extends AppCompatActivity  implements TextToSpeech.O
             speak.speak(engine, "Sending alert to all Emergency Contacts!! ");
         });
 
+        report_monthly.setOnClickListener(view2 ->{
+            Toast.makeText(this, "ToBeImplemented: Monthly Report Generation and Supervisor contact", Toast.LENGTH_SHORT).show();
+        });
+
+        add_contacts.setOnClickListener(view3 ->{
+            Toast.makeText(this, "ToBeImplemented: Add Emergency Contact for SOS service", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
