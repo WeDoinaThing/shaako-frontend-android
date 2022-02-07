@@ -83,6 +83,7 @@
     <string name="invalidQR">Please scan a valid QR code!</string>
     <string name="hospital_name">Hospital Name</string>
     <string name="show_nearby_hospitals">Show nearby hospitals</string>
+    <string name="title_activity_chw_hub">ChwHub</string>
 
 
 </resources>

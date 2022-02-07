@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
         <activity
+            android:name=".activites.ChwHubActivity"
+            android:exported="false" />
+        <activity
             android:name=".activites.MapActivity"
             android:exported="false" />
         <activity

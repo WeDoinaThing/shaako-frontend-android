@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Disease Screening"
+        android:visibility="gone"
         />
     <ScrollView
         android:layout_width="match_parent"
@@ -33,11 +34,13 @@
                         android:fontFamily="@font/nunito"
                         android:paddingStart="16dp"
                         android:text="@string/highlights"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
                         android:textFontWeight="700"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@id/static_rv_layout"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/static_rv_layout"
                         android:layout_width="match_parent"
@@ -64,6 +67,7 @@
                     android:layout_height="120dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
+
                     android:background="@drawable/education_background_pink">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -148,6 +152,54 @@
                             app:tint="@color/black" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/hub_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="#8AD68D"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:backgroundTint="#00FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="CHW Center"
+                            android:textColor="#000"
+                            android:textFontWeight="700"
+                            android:textSize="25dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="All your CHW needs"
+                            android:textColor="#000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_inward"
+                            app:tint="@color/black" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

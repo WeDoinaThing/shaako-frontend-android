@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2328125" />
         <entry key="app/src/main/res/drawable/button_drawable_complementary.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.22239583333333332" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.34375" />
         <entry key="app/src/main/res/drawable/fab_background.xml" value="0.304" />
         <entry key="app/src/main/res/drawable/first.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/gradient_1.xml" value="0.198" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/font/kohinoorbangla.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/font/nunito.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_add_patient.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_chw_hub.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_content_runner.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/layout/activity_disease_screening.xml" value="0.3697916666666667" />
@@ -61,9 +63,12 @@
         <entry key="app/src/main/res/layout/fragment_contact.xml" value="0.24909420289855072" />
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/notification_item.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/task_list.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/layout/task_list_content.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.19791666666666666" />

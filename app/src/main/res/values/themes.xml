@@ -36,4 +36,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorAccent</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Recover.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Recover.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Recover.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

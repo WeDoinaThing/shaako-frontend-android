@@ -153,6 +153,7 @@
                 android:background="@drawable/fab_background"
                 android:backgroundTint="@color/grey_200"
                 android:paddingVertical="8dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
