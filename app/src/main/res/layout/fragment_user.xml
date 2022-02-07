@@ -9,6 +9,7 @@
         android:id="@+id/useless_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="Disease Screening"
         />
     <ScrollView
@@ -17,14 +18,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ScrollView
                 android:id="@+id/scroll_stats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/lightSecondaryColor">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
                         android:id="@+id/intro_text"
                         android:layout_width="match_parent"
@@ -38,12 +42,13 @@
                         android:textSize="24sp"
                         app:layout_constraintBottom_toTopOf="@id/static_rv_layout"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/static_rv_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingEnd="10dp"
                         android:clipToPadding="false"
+                        android:paddingEnd="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
