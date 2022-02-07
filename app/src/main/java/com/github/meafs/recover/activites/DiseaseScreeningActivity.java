@@ -4,6 +4,7 @@ package com.github.meafs.recover.activites;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.github.meafs.recover.adapters.SymptomsAdapter;
 import com.github.meafs.recover.models.SymptomCategories;
 import com.github.meafs.recover.models.SymptomChild;
 import com.github.meafs.recover.models.Symptoms;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class DiseaseScreeningActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private Context mContext;
     private Button floatingButton;
-
+    private MaterialToolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,9 @@ public class DiseaseScreeningActivity extends AppCompatActivity {
         mContext = DiseaseScreeningActivity.this;
         mRecyclerView = findViewById(R.id.recyclerView);
         floatingButton = findViewById(R.id.disease_selection_done);
+        toolbar = findViewById(R.id.toolbar);
+
+        toolbar.setNavigationOnClickListener( v-> onBackPressed());
         SymptomsAdapter recyclerDataAdapter = new SymptomsAdapter(getSymptoms(), floatingButton);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(recyclerDataAdapter);

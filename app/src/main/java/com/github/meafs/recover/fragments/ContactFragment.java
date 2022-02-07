@@ -82,6 +82,8 @@ public class ContactFragment extends Fragment implements TextToSpeech.OnInitList
 
         list.add(new EmergencyModel("Ambulance", "Service", "999"));
         list.add(new EmergencyModel("Hospital", "Service", "999"));
+        list.add(new EmergencyModel("NGO Supervisor", "Service", "018XXXXXXXX"));
+        list.add(new EmergencyModel("NGO Delegate", "Service", "017XXXXXXXX"));
         emergencyAdapter = new EmergencyAdapter(list, view.getContext(), engine);
 
         recyclerView = view.findViewById(R.id.emergencyRecView);
