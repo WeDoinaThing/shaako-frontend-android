@@ -111,7 +111,7 @@ public class SymptomsAdapter extends RecyclerView.Adapter<SymptomsAdapter.MyView
             }
             selection_done.setOnClickListener(v -> {
                 if (symptoms_selection.size() < 4) {
-                    Toast.makeText(context, "Please select more than 3 symptoms", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Please Select at least 3 Symptoms", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(context, DiseaseInference.class);
                     intent.putStringArrayListExtra("SymptomsList", symptoms_selection);

@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DiseaseInference extends AppCompatActivity implements View.OnClickListener {
+public class DiseaseInference extends AppCompatActivity{
     private static final String TAG = "DiseaseInfActivity";
     Map<String, Integer> symptomsMap = Symptoms.mapSymptoms();
 
@@ -35,10 +36,8 @@ public class DiseaseInference extends AppCompatActivity implements View.OnClickL
     private final Map<String, Integer> selectedSymptomMap = new HashMap<>();
     private MaterialToolbar toolbar;
     private TextView tvDisease_1;
-    private TextView tvDisease_1_info;
     private ConstraintLayout diag_card;
-    private CardView disease_info_card;
-    private CardView disease_doctor_card;
+    private WebView webViewDiseaseInformation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +46,20 @@ public class DiseaseInference extends AppCompatActivity implements View.OnClickL
         toolbar = findViewById(R.id.toolbar);
         diag_card = findViewById(R.id.diagnosis_card);
         tvDisease_1 = findViewById(R.id.disease_name);
-        disease_info_card = findViewById(R.id.disease_information_card);
-        tvDisease_1_info = findViewById(R.id.disease_information);
-        disease_doctor_card = findViewById(R.id.disease_doctor_card);
+        webViewDiseaseInformation = findViewById(R.id.web_view_disease_information);
+//        disease_info_card = findViewById(R.id.disease_information_card);
+//        tvDisease_1_info = findViewById(R.id.disease_information);
+//        disease_doctor_card = findViewById(R.id.disease_doctor_card);
 
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         if (getIntent().hasExtra("SymptomsList"))
             sympoms_selection = getIntent().getStringArrayListExtra("SymptomsList");
 
         setTag("Selections", sympoms_selection);
         getIdMapOfSymptoms(symptomsMap, sympoms_selection);
         runInference(selectedSymptomMap);
-        diag_card.setOnClickListener(this);
     }
-    @Override
-    public void onBackPressed() {
-        ((Activity) this.getApplicationContext()).finish();
 
-    }
     private void setTag(String chipName, ArrayList<String> tagList) {
         System.out.println("TTAGLIST: " + tagList);
         final ChipGroup chipGroup = findViewById(R.id.symptoms_chipGroup);
@@ -117,7 +104,9 @@ public class DiseaseInference extends AppCompatActivity implements View.OnClickL
         int[] predictionIndexes = IntegerUtility.getBestKIndices(predictions, 3);
 
         tvDisease_1.setText(Diseases.getDisease(predictionIndexes[0]));
-        tvDisease_1_info.setText(DiseaseInformation.getTB());
+        webViewDiseaseInformation.getSettings().setJavaScriptEnabled(true);
+        webViewDiseaseInformation.loadData(DiseaseInformation.getTB(), "text/html; charset=utf-8", "UTF-8");
+
     }
 
     private void getIdMapOfSymptoms(Map<String, Integer> received_symptomsMap, ArrayList <String> received_sympoms_selection) {
@@ -125,17 +114,6 @@ public class DiseaseInference extends AppCompatActivity implements View.OnClickL
             String symptom = received_sympoms_selection.get(i).toLowerCase().replace(" ", "_");
             Integer symptom_id = received_symptomsMap.get(symptom);
             selectedSymptomMap.put(symptom, symptom_id);
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (disease_info_card.getVisibility() == View.VISIBLE) {
-            disease_info_card.setVisibility(View.GONE);
-            disease_doctor_card.setVisibility(View.GONE);
-        } else {
-            disease_info_card.setVisibility(View.VISIBLE);
-            disease_doctor_card.setVisibility(View.VISIBLE);
         }
     }
 }
