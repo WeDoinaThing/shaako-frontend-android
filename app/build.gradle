@@ -34,6 +34,8 @@ android {
 
 dependencies {
     implementation files('libs/randomClassifier.jar')
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
     def arch_version = "2.0.0-beta01"
 
     implementation 'androidx.appcompat:appcompat:1.4.0'

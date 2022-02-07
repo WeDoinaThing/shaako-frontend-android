@@ -24,11 +24,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/lightSecondaryColor">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <TextView
                         android:id="@+id/intro_text"
                         android:layout_width="match_parent"
@@ -153,6 +151,54 @@
                             app:tint="@color/black" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/hub_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="#8AD68D"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:backgroundTint="#00FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="CHW Center"
+                            android:textColor="#000"
+                            android:textFontWeight="700"
+                            android:textSize="25dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="All your CHW needs"
+                            android:textColor="#000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_inward"
+                            app:tint="@color/black" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

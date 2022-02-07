@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
+import com.github.meafs.recover.activites.ChwHubActivity;
 import com.github.meafs.recover.activites.ContentActivity;
 import com.github.meafs.recover.activites.DiseaseScreeningActivity;
 import com.github.meafs.recover.activites.QuizActivity;
@@ -39,6 +40,7 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
     private RecyclerView recyclerView;
     private StaticRvAdapter staticRvAdapter;
     private ConstraintLayout quizCardView;
+    private ConstraintLayout chw_hub;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -83,7 +85,7 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         trainingContent = view.findViewById(R.id.train_card);
         quizcontent = view.findViewById(R.id.quizcard);
-
+        chw_hub = view.findViewById(R.id.hub_card);
         quizCardView = view.findViewById(R.id.quiz_card);
         engine = new TextToSpeech(view.getContext(), this);
 
@@ -101,6 +103,10 @@ public class UserFragment extends Fragment implements TextToSpeech.OnInitListene
             startActivity(new Intent(getContext(), QuizActivity.class));
         });
 
+        chw_hub.setOnClickListener( view99 -> {
+            speak.speak(engine, "Now opening CHW HUB activity!!");
+            startActivity(new Intent(getContext(), ChwHubActivity.class));
+        });
         ArrayList<StaticRvModel> item = new ArrayList<>();
         item.add(new StaticRvModel(R.drawable.coursefin, "2", "courses finished", "#3498DB"));
         item.add(new StaticRvModel(R.drawable.score, "42", "points earned", "#E74C3C"));
