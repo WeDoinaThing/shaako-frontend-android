@@ -42,6 +42,7 @@
         <entry key="app/src/main/res/layout/activity_chw_hub.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_content_runner.xml" value="0.16354166666666667" />
+        <entry key="app/src/main/res/layout/activity_disease_inference.xml" value="0.17046605876393112" />
         <entry key="app/src/main/res/layout/activity_disease_screening.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.35625" />
@@ -75,7 +76,8 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
