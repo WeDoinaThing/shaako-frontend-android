@@ -22,7 +22,7 @@ public class ReminderListActvity extends AppCompatActivity {
 
     FloatingActionButton mCreateRem;
     RecyclerView mRecyclerview;
-    ArrayList<ReminderModel> dataholder = new ArrayList<ReminderModel>();                                               //Array list to add reminders and display in recyclerview
+    ArrayList<ReminderModel> dataholder = new ArrayList<>();                                               //Array list to add reminders and display in recyclerview
     ReminderAdapter adapter;
 
     @Override
@@ -31,9 +31,9 @@ public class ReminderListActvity extends AppCompatActivity {
         setContentView(R.layout.reminder_list);
 
 
-        mRecyclerview = (RecyclerView) findViewById(R.id.recyclerView_reminder);
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        mCreateRem = (FloatingActionButton) findViewById(R.id.create_reminder);                     //Floating action button to change activity
+        mRecyclerview = findViewById(R.id.recyclerView_reminder);
+        mRecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
+        mCreateRem = findViewById(R.id.create_reminder);                     //Floating action button to change activity
         mCreateRem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

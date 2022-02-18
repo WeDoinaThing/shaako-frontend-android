@@ -1,5 +1,6 @@
 package com.github.meafs.recover.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
@@ -20,8 +21,9 @@ import com.github.meafs.recover.utils.dbManager;
 import java.util.ArrayList;
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myviewholder> {
-    ArrayList<ReminderModel> dataholder = new ArrayList<ReminderModel>();                                               //array list to hold the reminders
+    ArrayList<ReminderModel> dataholder = new ArrayList<>();                                               //array list to hold the reminders
     private Context context;
+
     public ReminderAdapter(ArrayList<ReminderModel> dataholder) {
 
         this.dataholder = dataholder;
@@ -36,7 +38,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+    public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.mTitle.setText(dataholder.get(position).getTitle());                                 //Binds the single reminder objects to recycler view
         holder.mDate.setText(dataholder.get(position).getDate());
         holder.mTime.setText(dataholder.get(position).getTime());
@@ -44,25 +46,31 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
         holder.reminder_rv_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder adb=new AlertDialog.Builder(context);
+                AlertDialog.Builder adb = new AlertDialog.Builder(context);
                 adb.setTitle("Delete?");
                 adb.setMessage("Are you sure you want to delete " + position);
                 final int positionToRemove = position;
                 adb.setNegativeButton("Cancel", null);
                 adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String title =(String) ((TextView) view.findViewById(R.id.txtTitle)).getText();
-                        String date =(String) ((TextView) view.findViewById(R.id.txtDate)).getText();
-                        String time =(String) ((TextView) view.findViewById(R.id.txtTime)).getText();
-                        String pname =(String) ((TextView) view.findViewById(R.id.txtPname)).getText();
+                        String title = (String) ((TextView) view.findViewById(R.id.txtTitle)).getText();
+                        String date = (String) ((TextView) view.findViewById(R.id.txtDate)).getText();
+                        String time = (String) ((TextView) view.findViewById(R.id.txtTime)).getText();
+                        String pname = (String) ((TextView) view.findViewById(R.id.txtPname)).getText();
+
                         String result = new dbManager(context).deleteReminder(title, date, time, pname);
                         Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
-                        notifyDataSetChanged();
-                    }});
+
+                        dataholder.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, getItemCount());
+                    }
+                });
                 adb.show();
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
@@ -77,11 +85,11 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
         public myviewholder(@NonNull View itemView) {
             super(itemView);
 
-            mTitle = (TextView) itemView.findViewById(R.id.txtTitle);                               //holds the reference of the materials to show data in recyclerview
-            mDate = (TextView) itemView.findViewById(R.id.txtDate);
-            mTime = (TextView) itemView.findViewById(R.id.txtTime);
-            mPatient = (TextView) itemView.findViewById(R.id.txtPname);
-            reminder_rv_layout = (CardView) itemView.findViewById(R.id.reminder_item_layout);
+            mTitle = itemView.findViewById(R.id.txtTitle);                               //holds the reference of the materials to show data in recyclerview
+            mDate = itemView.findViewById(R.id.txtDate);
+            mTime = itemView.findViewById(R.id.txtTime);
+            mPatient = itemView.findViewById(R.id.txtPname);
+            reminder_rv_layout = itemView.findViewById(R.id.reminder_item_layout);
         }
     }
 }

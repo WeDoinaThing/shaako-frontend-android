@@ -15,7 +15,9 @@ public class dbManager extends SQLiteOpenHelper {
     public dbManager(@Nullable Context context) {
         super(context, dbname, null, 1);
     }
+
     String TABLE_NAME = "tbl_reminder";
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {                                           //sql query to insert data in sqllite
         String query = "create table tbl_reminder(id integer primary key autoincrement,title text,date text,time text, pname text)";
@@ -31,7 +33,7 @@ public class dbManager extends SQLiteOpenHelper {
 
     }
 
-    public String addreminder(String title, String date, String time, String pname ) {
+    public String addreminder(String title, String date, String time, String pname) {
         SQLiteDatabase database = this.getReadableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -49,6 +51,7 @@ public class dbManager extends SQLiteOpenHelper {
         }
 
     }
+
     // below is the method for deleting our course.
     public String deleteReminder(String title, String date, String time, String pname) {
 
@@ -58,7 +61,16 @@ public class dbManager extends SQLiteOpenHelper {
 
         // on below line we are calling a method to delete our
         // course and we are comparing it with our course name.
-        float result = db.delete("tablename","title=? and date=? and time=? and pname=?",new String[]{title, date,time, pname});
+
+//        String whereClause = "title" + "=?" + " and date" + "=?" + " and time" + "=?" + " and pname" + "=?";
+
+        String whereClause = "title" + "=?";
+
+        String[] whereArgs = new String[]{title};
+
+        float result = db.delete(TABLE_NAME, whereClause, whereArgs);
+
+//        float result = db.delete(TABLE_NAME, "title" + "=?" + " and date" + "=?" + " and time" + "=?" + "and pname" + "=?", new String[]{title, date, time, pname});
         if (result == -1) {
             db.close();
             return "Failed";
@@ -67,6 +79,7 @@ public class dbManager extends SQLiteOpenHelper {
             return "Successfully deleted";
         }
     }
+
     public Cursor readallreminders() {
         SQLiteDatabase database = this.getWritableDatabase();
         String query = "select * from tbl_reminder order by id desc";                               //Sql query to  retrieve  data from the database

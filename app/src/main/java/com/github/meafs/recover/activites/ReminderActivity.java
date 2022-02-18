@@ -2,6 +2,7 @@ package com.github.meafs.recover.activites;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -25,20 +26,22 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 //this class is to take the reminders from the user and inserts into the database
 public class ReminderActivity extends AppCompatActivity {
     Button mSubmitbtn, mDatebtn, mTimebtn, mPname;
     EditText mTitledit;
     String timeTonotify;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
-        mTitledit = (EditText) findViewById(R.id.editTitle);
-        mDatebtn = (Button) findViewById(R.id.btnDate);                                             //assigned all the material reference to get and set data
-        mTimebtn = (Button) findViewById(R.id.btnTime);
-        mSubmitbtn = (Button) findViewById(R.id.btnSubmit);
-        mPname = (Button) findViewById(R.id.btnpatient);
+        mTitledit = findViewById(R.id.editTitle);
+        mDatebtn = findViewById(R.id.btnDate);                                             //assigned all the material reference to get and set data
+        mTimebtn = findViewById(R.id.btnTime);
+        mSubmitbtn = findViewById(R.id.btnSubmit);
+        mPname = findViewById(R.id.btnpatient);
         mTimebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,12 +73,14 @@ public class ReminderActivity extends AppCompatActivity {
             }
         });
     }
+
     private void processinsert(String title, String date, String time, String pname) {
         String result = new dbManager(this).addreminder(title, date, time, pname);                  //inserts the title,date,time into sql lite database
         setAlarm(title, date, time);                                                                //calls the set alarm method to set alarm
         mTitledit.setText("");
         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
     }
+
     private void selectTime() {                                                                     //this method performs the time picker task
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -89,6 +94,7 @@ public class ReminderActivity extends AppCompatActivity {
         }, hour, minute, false);
         timePickerDialog.show();
     }
+
     private void selectDate() {                                                                     //this method performs the date picker task
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -102,6 +108,7 @@ public class ReminderActivity extends AppCompatActivity {
         }, year, month, day);
         datePickerDialog.show();
     }
+
     public String FormatTime(int hour, int minute) {                                                //this method converts the time into 12hr format and assigns am or pm
         String time;
         time = "";
@@ -123,6 +130,7 @@ public class ReminderActivity extends AppCompatActivity {
         }
         return time;
     }
+
     private void setAlarm(String text, String date, String time) {
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);                   //assigning alarm manager object to set alarm
         Intent intent = new Intent(getApplicationContext(), AlarmBroadcast.class);
