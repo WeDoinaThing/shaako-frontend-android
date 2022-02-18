@@ -213,7 +213,24 @@
         app:elevation="0dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:orientation="vertical"
         android:layout_margin="10dp">
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/reminder_act"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:backgroundTint="@color/secondaryColor"
+            android:shadowRadius="0"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            app:borderWidth="0dp"
+            android:layout_margin="5dp"
+            android:textFontWeight="700"
+            android:text="Reminder"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_add"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/add_card1"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
@@ -225,6 +242,7 @@
             android:elevation="0dp"
             app:elevation="0dp"
             app:borderWidth="0dp"
+            android:layout_margin="5dp"
             android:textFontWeight="700"
             android:text="@string/add_patient"
             android:textColor="@color/white"

@@ -42,12 +42,14 @@
         <entry key="app/src/main/res/layout/activity_chw_hub.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/activity_content.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_content_runner.xml" value="0.16354166666666667" />
+        <entry key="app/src/main/res/layout/activity_disease_inference.xml" value="0.17046605876393112" />
         <entry key="app/src/main/res/layout/activity_disease_screening.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_patient_details.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_quiz.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/activity_quiz_runner.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_reminder.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.18645833333333334" />
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.20625" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20625" />
@@ -64,9 +66,15 @@
         <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/notification_item.xml" value="0.32760416666666664" />
+        <entry key="app/src/main/res/layout/notification_layout.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/notification_message.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/patient_history_rv_item.xml" value="0.3697916666666667" />
         <entry key="app/src/main/res/layout/patient_rv_item.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/reminder_item.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/reminder_list.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/rv_item_quiz.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/static_rv_item.xml" value="0.3697916666666667" />
+        <entry key="app/src/main/res/layout/symptom_list.xml" value="0.2554347826086957" />
         <entry key="app/src/main/res/layout/task_list.xml" value="0.32760416666666664" />
         <entry key="app/src/main/res/layout/task_list_content.xml" value="0.18568840579710144" />
         <entry key="app/src/main/res/menu/bottomnavigation.xml" value="0.30462962962962964" />
@@ -75,7 +83,8 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

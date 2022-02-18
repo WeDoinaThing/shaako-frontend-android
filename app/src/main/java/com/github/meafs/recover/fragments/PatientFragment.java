@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.meafs.recover.R;
 import com.github.meafs.recover.activites.AddPatientActivity;
+import com.github.meafs.recover.activites.ReminderListActvity;
 import com.github.meafs.recover.adapters.PatientRvAdapter;
 import com.github.meafs.recover.models.Document;
 import com.github.meafs.recover.utils.Speak;
@@ -40,7 +41,7 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
     private final ArrayList<Document> arrayList = new ArrayList<>();
     private final ArrayList<Document> visibleArrayList = new ArrayList<>();
     private ProgressBar progressBar;
-    private ExtendedFloatingActionButton extendedFloatingActionButton;
+    private ExtendedFloatingActionButton extendedFloatingActionButton, reminder_button;
     private String mParam1;
     private String mParam2;
 
@@ -87,6 +88,7 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
         Speak speak = new Speak(view.getContext());
 
         extendedFloatingActionButton = view.findViewById(R.id.add_card1);
+        reminder_button = view.findViewById(R.id.reminder_act);
 
         patientRvAdapter = new PatientRvAdapter(getContext(), visibleArrayList, engine);
 
@@ -118,6 +120,12 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
             speak.speak(engine, extendedFloatingActionButton.getText().toString());
             Intent mIntent = new Intent(view1.getContext(), AddPatientActivity.class);
             mIntent.putExtra("size", String.valueOf(arrayList.size()));
+            startActivity(mIntent);
+        });
+
+        reminder_button.setOnClickListener(view2 ->{
+            speak.speak(engine, reminder_button.getText().toString());
+            Intent mIntent = new Intent(view2.getContext(), ReminderListActvity.class);
             startActivity(mIntent);
         });
 
