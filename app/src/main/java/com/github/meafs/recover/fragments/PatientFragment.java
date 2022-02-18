@@ -51,6 +51,7 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
 
     private EditText etSearchText;
     private TextToSpeech engine;
+    private ArrayList<String> patientNames = new ArrayList<>();
 
     public PatientFragment() {
     }
@@ -102,6 +103,11 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
                 tvVisitedAmount.setText(String.valueOf(0));
                 tvScheduledAmount.setText(String.valueOf(0));
                 filter("");
+
+                for (int i = 0; i < documents.size(); i++) {
+                    patientNames.add(documents.get(i).getName());
+                }
+
                 progressBar.setVisibility(View.GONE);
             } else {
                 tvPatientAmount.setText(String.valueOf(0));
@@ -123,9 +129,10 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
             startActivity(mIntent);
         });
 
-        reminder_button.setOnClickListener(view2 ->{
+        reminder_button.setOnClickListener(view2 -> {
             speak.speak(engine, reminder_button.getText().toString());
             Intent mIntent = new Intent(view2.getContext(), ReminderListActvity.class);
+            mIntent.putStringArrayListExtra("namesList", patientNames);
             startActivity(mIntent);
         });
 

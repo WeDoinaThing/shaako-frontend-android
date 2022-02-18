@@ -21,7 +21,7 @@ import com.github.meafs.recover.utils.dbManager;
 import java.util.ArrayList;
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myviewholder> {
-    ArrayList<ReminderModel> dataholder = new ArrayList<>();                                               //array list to hold the reminders
+    ArrayList<ReminderModel> dataholder = new ArrayList<>();
     private Context context;
 
     public ReminderAdapter(ArrayList<ReminderModel> dataholder) {
@@ -32,14 +32,14 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reminder_item, parent, false);  //inflates the xml file in recyclerview
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reminder_item, parent, false);
         context = parent.getContext();
         return new myviewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
-        holder.mTitle.setText(dataholder.get(position).getTitle());                                 //Binds the single reminder objects to recycler view
+        holder.mTitle.setText(dataholder.get(position).getTitle());
         holder.mDate.setText(dataholder.get(position).getDate());
         holder.mTime.setText(dataholder.get(position).getTime());
         holder.mPatient.setText(dataholder.get(position).getPname());
@@ -85,7 +85,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
         public myviewholder(@NonNull View itemView) {
             super(itemView);
 
-            mTitle = itemView.findViewById(R.id.txtTitle);                               //holds the reference of the materials to show data in recyclerview
+            mTitle = itemView.findViewById(R.id.txtTitle);
             mDate = itemView.findViewById(R.id.txtDate);
             mTime = itemView.findViewById(R.id.txtTime);
             mPatient = itemView.findViewById(R.id.txtPname);

@@ -11,6 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,14 +27,16 @@ import com.github.meafs.recover.utils.dbManager;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-//this class is to take the reminders from the user and inserts into the database
 public class ReminderActivity extends AppCompatActivity {
     Button mSubmitbtn, mDatebtn, mTimebtn, mPname;
     EditText mTitledit;
     String timeTonotify;
+    private ArrayList<String> names = new ArrayList<>();
+    private String patientName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,34 +46,56 @@ public class ReminderActivity extends AppCompatActivity {
         mDatebtn = findViewById(R.id.btnDate);                                             //assigned all the material reference to get and set data
         mTimebtn = findViewById(R.id.btnTime);
         mSubmitbtn = findViewById(R.id.btnSubmit);
-        mPname = findViewById(R.id.btnpatient);
+
+        Bundle mBundle = getIntent().getExtras();
+        if (mBundle != null) {
+            names = mBundle.getStringArrayList("namesList");
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(ReminderActivity.this
+                , R.layout.dropdown_menu_item, names);
+
+        AutoCompleteTextView autoCompleteTextView = findViewById(R.id.patient_dropdown);
+        autoCompleteTextView.setAdapter(adapter);
+
+        autoCompleteTextView.setOnItemClickListener((adapterView, view, i, l) -> {
+            patientName = (String) adapterView.getItemAtPosition(i);
+        });
+
         mTimebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectTime();                                                                       //when we click on the choose time button it calls the select time method
             }
         });
+
         mDatebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectDate();
             }                                        //when we click on the choose date button it calls the select date method
         });
+
         mSubmitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String title = mTitledit.getText().toString().trim();                               //access the data from the input field
                 String date = mDatebtn.getText().toString().trim();                                 //access the date from the choose date button
                 String time = mTimebtn.getText().toString().trim();                                 //access the time from the choose time button
-                String pname = mPname.getText().toString().trim();                                  // TO-DO
-                if (title.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please Enter text", Toast.LENGTH_SHORT).show();   //shows the toast if input field is empty
-                } else {
-                    if (time.equals("time") || date.equals("date")) {                                               //shows toast if date and time are not selected
-                        Toast.makeText(getApplicationContext(), "Please select date and time", Toast.LENGTH_SHORT).show();
+                String pname = patientName;
+                if (pname != null) {
+
+                    if (title.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Please Enter text", Toast.LENGTH_SHORT).show();   //shows the toast if input field is empty
                     } else {
-                        processinsert(title, date, time, pname);
+                        if (time.equals("time") || date.equals("date")) {                                               //shows toast if date and time are not selected
+                            Toast.makeText(getApplicationContext(), "Please select date and time", Toast.LENGTH_SHORT).show();
+                        } else {
+                            processinsert(title, date, time, pname);
+                        }
                     }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please select Patient", Toast.LENGTH_SHORT).show();
                 }
             }
         });

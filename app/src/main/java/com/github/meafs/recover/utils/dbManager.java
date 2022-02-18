@@ -37,12 +37,12 @@ public class dbManager extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getReadableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);                                                          //Inserts  data into sqllite database
+        contentValues.put("title", title);
         contentValues.put("date", date);
         contentValues.put("time", time);
-        contentValues.put("pname", "Abul"); //TO-DO
+        contentValues.put("pname", pname);
 
-        float result = database.insert(TABLE_NAME, null, contentValues);    //returns -1 if data successfully inserts into database
+        float result = database.insert(TABLE_NAME, null, contentValues);
 
         if (result == -1) {
             return "Failed";

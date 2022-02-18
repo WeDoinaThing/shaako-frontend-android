@@ -22,8 +22,9 @@ public class ReminderListActvity extends AppCompatActivity {
 
     FloatingActionButton mCreateRem;
     RecyclerView mRecyclerview;
-    ArrayList<ReminderModel> dataholder = new ArrayList<>();                                               //Array list to add reminders and display in recyclerview
+    ArrayList<ReminderModel> dataholder = new ArrayList<>();
     ReminderAdapter adapter;
+    private ArrayList<String> names = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,29 +34,37 @@ public class ReminderListActvity extends AppCompatActivity {
 
         mRecyclerview = findViewById(R.id.recyclerView_reminder);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        mCreateRem = findViewById(R.id.create_reminder);                     //Floating action button to change activity
+        mCreateRem = findViewById(R.id.create_reminder);
+
+        Bundle mBundle = getIntent().getExtras();
+        if (mBundle != null) {
+            names = mBundle.getStringArrayList("namesList");
+        }
+
         mCreateRem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReminderActivity.class);
-                startActivity(intent);                                                              //Starts the new activity to add Reminders
+                intent.putStringArrayListExtra("namesList", names);
+                startActivity(intent);
             }
         });
 
-        Cursor cursor = new dbManager(getApplicationContext()).readallreminders();                  //Cursor To Load data From the database
+        Cursor cursor = new dbManager(getApplicationContext()).readallreminders();
         while (cursor.moveToNext()) {
             ReminderModel model = new ReminderModel(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+            System.out.println("CURSOR: " +  cursor.getString(4));
             dataholder.add(model);
         }
 
         adapter = new ReminderAdapter(dataholder);
-        mRecyclerview.setAdapter(adapter);                                                          //Binds the adapter with recyclerview
+        mRecyclerview.setAdapter(adapter);
 
     }
 
     @Override
     public void onBackPressed() {
-        finish();                                                                                   //Makes the user to exit from the app
+        finish();
         super.onBackPressed();
 
     }

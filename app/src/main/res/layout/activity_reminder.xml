@@ -3,30 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/lighterSecondaryColor"
     android:layout_height="match_parent"
+    android:background="@color/lighterSecondaryColor"
     android:gravity="center"
     android:orientation="vertical"
     app:backgroundTint="@null"
     tools:context=".activites.ReminderListActvity">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical"
             app:backgroundTint="@null">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Add Reminder Here..."
                 android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
@@ -34,10 +38,12 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/background_sub_module_text"
                 android:hint="Enter The Task" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnDate"
                     android:layout_width="wrap_content"
@@ -45,6 +51,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="0.5"
                     android:text="date" />
+
                 <Button
                     android:id="@+id/btnTime"
                     android:layout_width="wrap_content"
@@ -53,13 +60,26 @@
                     android:layout_weight="0.5"
                     android:text="time" />
             </LinearLayout>
-            <Button
-                android:id="@+id/btnpatient"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/lin1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0.5"
-                android:text="Patient" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Choose Patient"
+                android:orientation="horizontal"
+                app:startIconDrawable="@drawable/ic_patient">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/patient_dropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
