@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
@@ -18,6 +19,7 @@ import com.github.meafs.recover.models.NotificationMessage;
 public class AlarmBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Bundle bundle = intent.getExtras();
         String text = bundle.getString("event");
         String date = bundle.getString("date") + " " + bundle.getString("time");
@@ -31,18 +33,20 @@ public class AlarmBroadcast extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "notify_001");
         //here we set all the properties for the notification
         RemoteViews contentView = new RemoteViews(context.getPackageName(), R.layout.notification_layout);
+
         contentView.setImageViewResource(R.id.image, R.mipmap.ic_launcher);
         PendingIntent pendingSwitchIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        contentView.setOnClickPendingIntent(R.id.flashButton, pendingSwitchIntent);
+//        contentView.setOnClickPendingIntent(R.id.snooze, pendingSwitchIntent);
+
         contentView.setTextViewText(R.id.message, text);
         contentView.setTextViewText(R.id.date, date);
         mBuilder.setSmallIcon(R.drawable.alarm);
         mBuilder.setAutoCancel(true);
-        mBuilder.setOngoing(true);
+        mBuilder.setOngoing(false);
         mBuilder.setAutoCancel(true);
-        mBuilder.setPriority(Notification.PRIORITY_HIGH);
+        mBuilder.setPriority(Notification.PRIORITY_DEFAULT);
         mBuilder.setOnlyAlertOnce(true);
-        mBuilder.build().flags = Notification.FLAG_NO_CLEAR | Notification.PRIORITY_HIGH;
+        mBuilder.build().flags =  Notification.PRIORITY_DEFAULT;
         mBuilder.setContent(contentView);
         mBuilder.setContentIntent(pendingIntent);
         //we have to create notification channel after api level 26
@@ -55,5 +59,6 @@ public class AlarmBroadcast extends BroadcastReceiver {
         }
         Notification notification = mBuilder.build();
         notificationManager.notify(1, notification);
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
     }
 }
