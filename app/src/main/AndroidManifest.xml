@@ -7,6 +7,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -26,6 +27,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recover">
+        <activity
+            android:name=".activites.ReminderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activites.ReminderListActvity"
+            android:exported="false" />
         <activity
             android:name=".activites.ChwHubActivity"
             android:exported="false" />
@@ -86,9 +93,8 @@
         <activity
             android:name=".activites.ui.configure_task.ConfigureTaskActivity"
             android:exported="true" />
-        <activity
-            android:name=".activites.ui.detail_task.TaskDetailActivity"
-            android:exported="true" />
+        <receiver android:name=".utils.AlarmBroadcast" />
+
     </application>
 
 </manifest>
