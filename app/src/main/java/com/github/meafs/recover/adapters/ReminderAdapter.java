@@ -43,31 +43,28 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.myview
         holder.mDate.setText(dataholder.get(position).getDate());
         holder.mTime.setText(dataholder.get(position).getTime());
         holder.mPatient.setText(dataholder.get(position).getPname());
-        holder.reminder_rv_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder adb = new AlertDialog.Builder(context);
-                adb.setTitle("Delete?");
-                adb.setMessage("Are you sure you want to delete " + position);
-                final int positionToRemove = position;
-                adb.setNegativeButton("Cancel", null);
-                adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        String title = (String) ((TextView) view.findViewById(R.id.txtTitle)).getText();
-                        String date = (String) ((TextView) view.findViewById(R.id.txtDate)).getText();
-                        String time = (String) ((TextView) view.findViewById(R.id.txtTime)).getText();
-                        String pname = (String) ((TextView) view.findViewById(R.id.txtPname)).getText();
+        holder.reminder_rv_layout.setOnClickListener(view -> {
+            AlertDialog.Builder adb = new AlertDialog.Builder(context);
+            adb.setTitle("Delete?");
+            adb.setMessage("Are you sure you want to delete " + dataholder.get(position).getTitle() + " with " + dataholder.get(position).getPname());
+            final int positionToRemove = position;
+            adb.setNegativeButton("Cancel", null);
+            adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    String title = (String) ((TextView) view.findViewById(R.id.txtTitle)).getText();
+                    String date = (String) ((TextView) view.findViewById(R.id.txtDate)).getText();
+                    String time = (String) ((TextView) view.findViewById(R.id.txtTime)).getText();
+                    String pname = (String) ((TextView) view.findViewById(R.id.txtPname)).getText();
 
-                        String result = new dbManager(context).deleteReminder(title, date, time, pname);
-                        Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
+                    String result = new dbManager(context).deleteReminder(title, date, time, pname);
+                    Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
 
-                        dataholder.remove(position);
-                        notifyItemRemoved(position);
-                        notifyItemRangeChanged(position, getItemCount());
-                    }
-                });
-                adb.show();
-            }
+                    dataholder.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, getItemCount());
+                }
+            });
+            adb.show();
         });
     }
 

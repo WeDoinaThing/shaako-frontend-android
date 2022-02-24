@@ -41,13 +41,10 @@ public class ReminderListActvity extends AppCompatActivity {
             names = mBundle.getStringArrayList("namesList");
         }
 
-        mCreateRem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReminderActivity.class);
-                intent.putStringArrayListExtra("namesList", names);
-                startActivity(intent);
-            }
+        mCreateRem.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), ReminderActivity.class);
+            intent.putStringArrayListExtra("namesList", names);
+            startActivity(intent);
         });
 
         Cursor cursor = new dbManager(getApplicationContext()).readallreminders();

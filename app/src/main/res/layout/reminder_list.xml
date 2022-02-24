@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/lighterSecondaryColor"
     android:layout_height="match_parent"
     tools:context=".activites.ReminderListActvity">
 
@@ -14,16 +13,29 @@
         android:orientation="vertical"
         >
 
-        <TextView
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/notif_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/lighterSecondaryColor"
-            android:fontFamily="@font/nunito"
-            android:text="Schedules"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24dp" />
+            android:background="@color/lightSecondaryColor"
+            app:itemIconTint="@color/white"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:navigationIconTint="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:text="Schedules"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textFontWeight="600"
+                android:textSize="22sp" />
+        </com.google.android.material.appbar.MaterialToolbar>
+
 
         <ScrollView
             android:id="@+id/notif_list"

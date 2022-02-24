@@ -71,9 +71,9 @@
                 android:id="@+id/patietdate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusable="false"
                 android:inputType="date"
-                android:singleLine="true"
-                android:focusable="false"/>
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,36 +100,36 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/lin1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:weightSum="6"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/contact">-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/lin1"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginEnd="10dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:weightSum="6"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/contact">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lin1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lin1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Sex"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/contact"
+            app:startIconDrawable="@drawable/ic_sex">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/sex_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Sex"
-                app:startIconDrawable="@drawable/ic_sex"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/contact"
-                >
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/sex_dropdown"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:id="@+id/lin2"
