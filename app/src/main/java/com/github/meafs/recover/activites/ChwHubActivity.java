@@ -49,6 +49,8 @@ public class ChwHubActivity extends AppCompatActivity  implements TextToSpeech.O
         item.add(new NotificationModel("2-June-2022","Recent Cholera surge in your region, tap to know more!","#AA80deea"));
         item.add(new NotificationModel( "19-April-2022","Report to you supervisor to collect new supplies!","#AA80deea"));
         item.add(new NotificationModel("30-March-2022", "Polio Vaccination campaign ends on January, 2023","#AA80deea"));
+        item.add(new NotificationModel("19-March-2022", "Covid Vaccination campaign ends this week","#AA80deea"));
+        item.add(new NotificationModel("10-March-2022", "Cholera campaign ended successfully","#AA80deea"));
 
         staticRvAdapter = new NotificationAdapter(item);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

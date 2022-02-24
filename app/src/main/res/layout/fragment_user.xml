@@ -156,8 +156,7 @@
                     android:layout_height="120dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/circle"
-                    android:backgroundTint="#8AD68D"
+                    android:background="@drawable/chw_home"
                     >
                     <LinearLayout
                         android:layout_width="wrap_content"

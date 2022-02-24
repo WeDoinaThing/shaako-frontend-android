@@ -44,8 +44,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             row_index = position;
             notifyDataSetChanged();
         });
-
-        holder.linearLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(currentItem.getColorResource())));
     }
 
     @Override
