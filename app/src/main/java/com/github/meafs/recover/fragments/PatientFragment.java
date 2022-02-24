@@ -107,7 +107,7 @@ public class PatientFragment extends Fragment implements TextToSpeech.OnInitList
                 for (int i = 0; i < documents.size(); i++) {
                     patientNames.add(documents.get(i).getName());
                 }
-
+                reminder_button.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
             } else {
                 tvPatientAmount.setText(String.valueOf(0));

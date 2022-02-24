@@ -230,6 +230,7 @@
             android:textFontWeight="700"
             android:text="Reminder"
             android:textColor="@color/white"
+            android:visibility="gone"
             app:icon="@drawable/ic_add"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/add_card1"
